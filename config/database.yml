@@ -1,0 +1,22 @@
+defaults: &defaults
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  username: root
+  password: 
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *defaults
+  database: dmp_development
+
+test:
+  <<: *defaults
+  database: dmp_test
+
+production:
+  <<: *defaults
+  database: dmp_production
+
+

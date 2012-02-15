@@ -1,0 +1,11 @@
+%label{:class => "label"}= t("activerecord.attributes.post.name", :default => t("activerecord.labels.name", :default => "Name")) + ":"
+%p= @post.name
+%label{:class => "label"}= t("activerecord.attributes.post.body", :default => t("activerecord.labels.body", :default => "Body")) + ":"
+%p= @post.body
+%label{:class => "label"}= t("activerecord.attributes.post.user_id", :default => t("activerecord.labels.user_id", :default => "User")) + ":"
+%p= @post.user_id
+
+.form-actions
+  = link_to "Back", posts_path, :class => 'btn'
+  = link_to "Edit", edit_post_path(@post), :class => 'btn'
+  = link_to "Delete", post_path(@post), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn'
