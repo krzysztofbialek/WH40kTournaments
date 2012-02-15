@@ -41,3 +41,7 @@ group :test do
   gem 'turn', :require => false
   gem 'mocha'
 end
+
+group :production do
+  gem 'pg'
+end
