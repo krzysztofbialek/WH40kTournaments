@@ -1,7 +1,13 @@
 @import "twitter/bootstrap";
 
 body{
-  color: #CECECE
+  color: #CECECE;
+  padding-top: 48px;
+}
+
+li{
+  float: left;
+  display: block;
 }
 
 .row.header{
