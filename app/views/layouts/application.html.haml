@@ -13,21 +13,28 @@
         .nav-colapse
           %ul.nav
             %li.active
-              =link_to 'home', "/"
+              =link_to 'Blog', "/"
             %li
-              =link_to 'home', "/"
-            %li
-              =link_to 'home', "/"
+              =link_to 'Regulamin', rules_path
+          %ul.nav.pull-right
+            -if logged_in?
+              %li
+                =link_to current_user.username, ""
+              %li
+                =link_to 'Wyloguj', logout_path
+            -else
+              %li
+                =link_to 'Zaloguj', login_path
 
 .container-fluid
   .row.header
   .row{:style => "width:1024px;margin:auto"}
     .span2
-      Tu będzie nawigacja
+      Wkrótce coś tu będzie
     .span6
 
       = yield 
     .span2
-      A tu sponsorzy i pierdoły
-  
-      = link_to "New", new_post_path, :class => 'btn btn-primary'
+      Wkrótce coś tu będzie
+      -if logged_in? 
+        = link_to "Dodaj post", new_post_path, :class => 'btn'

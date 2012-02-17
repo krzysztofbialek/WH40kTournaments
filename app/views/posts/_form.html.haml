@@ -8,8 +8,6 @@
     = f.text_area :body, :class => 'text_area'
 .clearfix
   = f.label :user_id, t("activerecord.attributes.post.user_id", :default => "User"), :class => :label
-  .input
-    = f.number_field :user_id, :class => 'number_field'
 
 .form-actions
   %button{:class => "btn primary", :type => "submit"} Save
