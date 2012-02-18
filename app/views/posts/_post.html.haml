@@ -1,8 +1,10 @@
 .post
   %h2
-    = post.name
+    = link_to post.name, post_path(post), :style => "text-decoration:none"
   .body
     = post.body
+  .date
+    ="Dodano #{post.created_at} przez admin"
   -if logged_in?
     .links
       = link_to "Show", post_path(post)
