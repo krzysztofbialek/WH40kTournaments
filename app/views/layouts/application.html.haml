@@ -12,10 +12,12 @@
       .container
         .nav-colapse
           %ul.nav
-            %li.active
+            %li
               =link_to 'Blog', "/"
             %li
               =link_to 'Regulamin', rules_path
+            %li
+              =link_to 'Zgłoszenia', team_registrations_path
           %ul.nav.pull-right
             -if logged_in?
               %li

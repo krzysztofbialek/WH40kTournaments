@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  team_id: 1
+  payment: false
+  rosters: false
+  rosters_valid: false
+
+two:
+  team_id: 1
+  payment: false
+  rosters: false
+  rosters_valid: false

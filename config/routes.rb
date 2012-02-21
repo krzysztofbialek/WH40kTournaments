@@ -2,7 +2,7 @@ Dmp40k::Application.routes.draw do
   
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
-  match 'signup' => 'users#new', :as => :signup
+#  match 'signup' => 'users#new', :as => :signup
 
   match 'logout' => 'sessions#destroy', :as => :logout
 
@@ -15,6 +15,8 @@ Dmp40k::Application.routes.draw do
   resources :users
 
   resources :posts
+  resources :team_registrations, :path => "registrations"
+  resources :teams
   root :to => 'posts#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.

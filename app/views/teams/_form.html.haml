@@ -1,0 +1,13 @@
+.add_team
+  = form_for @team do |f|
+    %p
+      = f.label :name, "Nazwa drużyny"
+      = f.text_field :name
+    %p
+      = f.label :city, "Miasto"
+      = f.text_field :city
+    %p
+      = f.label :country, "Kraj"
+      = f.text_field :country, :placeholder => "Polska"
+    %p  
+      = f.submit (@team.new_record? ? "Dodaj" : "Uaktualnij")

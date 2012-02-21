@@ -1,0 +1,21 @@
+%table.table.table-bordered
+  %thead
+    %tr
+      %th
+        Nazwa drużyny
+      %th
+        Miasto
+      %th
+        Kraj
+      %th
+        Przedpłata
+      %th
+        Rozpiski
+      %th
+        Rozpiski poprawne?
+  %tbody
+    -@registrations.each do |reg|
+      =render :partial => 'registration', :locals => {:reg => reg}
+
+-if logged_in?
+  =render :partial => 'teams/form'
