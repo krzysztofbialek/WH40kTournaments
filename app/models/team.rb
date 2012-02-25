@@ -1,6 +1,7 @@
 class Team < ActiveRecord::Base
 
   has_one :team_registration
+  accepts_nested_attributes_for :team_registration
   
   validates_presence_of :name
   validates_uniqueness_of :name

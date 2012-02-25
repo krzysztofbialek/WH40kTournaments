@@ -14,4 +14,19 @@ class TeamsController < ApplicationController
     end
   end
 
+  def edit
+    @team = Team.find(params[:id])
+    @registration = @team.team_registration
+  end
+
+  def update
+    @registration = TeamRegistration.find(params[:id])
+    @team = @registration.team
+
+    if @team.update_attributes(params[:team])
+      redirect_to team_registrations_path, :notice => "Team updated"
+    else
+      render :edit, :notice => "Failed to update team"
+    end
+  end
 end

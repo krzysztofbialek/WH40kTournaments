@@ -11,3 +11,5 @@
     =reg.rosters? ? "tak" : "nie"
   %th
     =reg.rosters_valid? ? "tak" : "nie"
+  %th
+    =link_to 'Edytuj', edit_team_path(reg.team)

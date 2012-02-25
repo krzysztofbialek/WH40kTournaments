@@ -1,0 +1,22 @@
+.add_team
+  = form_for @team do |f|
+    %p
+      = f.label :name, "Nazwa drużyny"
+      = f.text_field :name
+    %p
+      = f.label :city, "Miasto"
+      = f.text_field :city
+    %p
+      = f.label :country, "Kraj"
+      = f.text_field :country, :placeholder => "Polska"
+    = f.fields_for :team_registration do |r|
+      %p
+        = r.label :payment, "Przedpłata"
+        = r.check_box :payment
+      %p
+        = r.label :rosters, "Rozpiski"
+        = r.check_box :rosters
+      %p
+        = r.label :rosters_valid, "Rozpiski poprawne?"
+        = r.check_box :rosters_valid
+    = f.submit (@team.new_record? ? "Dodaj" : "Uaktualnij")
