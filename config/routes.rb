@@ -15,7 +15,11 @@ Dmp40k::Application.routes.draw do
   resources :users
 
   resources :posts
-  resources :team_registrations, :path => "registrations"
+  resources :team_registrations, :path => "registrations" do
+    member do
+      get 'toggle_payment'
+    end
+  end 
   resources :teams
   root :to => 'posts#index'
   # The priority is based upon order of creation:

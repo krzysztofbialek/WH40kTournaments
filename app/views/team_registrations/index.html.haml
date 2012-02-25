@@ -13,6 +13,9 @@
         Rozpiski
       %th
         Rozpiski poprawne?
+      -if logged_in?
+        %th 
+          Akcja
   %tbody
     -@registrations.each do |reg|
       =render :partial => 'registration', :locals => {:reg => reg}

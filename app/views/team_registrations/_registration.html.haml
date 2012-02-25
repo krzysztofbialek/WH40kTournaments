@@ -7,9 +7,12 @@
     =reg.team.country
   %th
     =reg.payment? ? "tak" : "nie"
+    -if logged_in?
+      =link_to "", toggle_payment_team_registration_path(reg), :style => "margin-left:8px", :class => "#{reg.payment? ? 'icon-remove' : 'icon-ok'}"
   %th
     =reg.rosters? ? "tak" : "nie"
   %th
     =reg.rosters_valid? ? "tak" : "nie"
-  %th
-    =link_to 'Edytuj', edit_team_path(reg.team)
+  -if logged_in?
+    %th
+      =link_to 'Edytuj', edit_team_path(reg.team)
