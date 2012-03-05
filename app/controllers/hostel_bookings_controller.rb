@@ -1,7 +1,7 @@
 class HostelBookingsController < ApplicationController
 
   def index
-    @bookings = HostelBooking.order('created_at ASC')
+    @bookings = HostelBooking.all
     @booking = HostelBooking.new
   end
   
