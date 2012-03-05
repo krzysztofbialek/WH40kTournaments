@@ -18,6 +18,8 @@ Dmp40k::Application.routes.draw do
   resources :team_registrations, :path => "registrations" do
     member do
       get 'toggle_payment'
+      get 'toggle_rosters'
+      get 'toggle_rosters_validation'
     end
   end 
   resources :teams

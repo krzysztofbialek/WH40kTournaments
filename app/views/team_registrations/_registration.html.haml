@@ -13,8 +13,13 @@
       =link_to "", toggle_payment_team_registration_path(reg), :style => "margin-left:8px", :class => "#{reg.payment? ? 'icon-remove' : 'icon-ok'}"
   %th
     =reg.rosters? ? "tak" : "nie"
+    -if logged_in?
+      =link_to "", toggle_rosters_team_registration_path(reg), :style => "margin-left:8px", :class => "#{reg.rosters? ? 'icon-remove' : 'icon-ok'}"
   %th
     =reg.rosters_valid? ? "tak" : "nie"
+    -if logged_in?
+      =link_to "", toggle_rosters_validation_team_registration_path(reg), :style => "margin-left:8px", :class => "#{reg.rosters_valid? ? 'icon-remove' : 'icon-ok'}"
   -if logged_in?
     %th
-      =link_to 'Edytuj', edit_team_path(reg.team)
+      =link_to "", edit_team_path(reg.team), :class => 'icon-edit'
+      =link_to "", team_registration_path(reg), :class => 'icon-remove', :method => :delete, :confirm => "Are you sure?"
