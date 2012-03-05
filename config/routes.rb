@@ -15,6 +15,7 @@ Dmp40k::Application.routes.draw do
   resources :users
 
   resources :posts
+
   resources :team_registrations, :path => "registrations" do
     member do
       get 'toggle_payment'
@@ -22,7 +23,15 @@ Dmp40k::Application.routes.draw do
       get 'toggle_rosters_validation'
     end
   end 
+
   resources :teams
+
+  resources :hostel_bookings do
+    member do
+      get 'toggle_payment'
+    end
+  end
+
   root :to => 'posts#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.

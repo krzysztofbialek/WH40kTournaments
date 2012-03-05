@@ -1,0 +1,22 @@
+%table.table.table-bordered
+  %thead
+    %tr
+      %th
+        Lp.
+      %th
+        Imie
+      %th
+        Nazwisko
+      %th
+        Email
+      %th
+        Przedpłata
+      -if logged_in?
+        %th 
+          Akcja
+  %tbody
+    -@bookings.each_with_index do |booking, i|
+      =render :partial => 'booking', :locals => {:booking => booking, :i => i}
+
+-if logged_in?
+  =render :partial => 'hostel_bookings/form'

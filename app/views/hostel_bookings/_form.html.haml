@@ -1,0 +1,15 @@
+.add_team
+  %p
+    Dodaj rezerwację
+  = form_for @booking do |f|
+    %p
+      = f.label :first_name, "Imie"
+      = f.text_field :first_name
+    %p
+      = f.label :last_name, "Nazwisko"
+      = f.text_field :last_name
+    %p
+      = f.label :email, "Email"
+      = f.email_field :email
+    %p  
+      = f.submit (@booking.new_record? ? "Dodaj rezerwację" : "Uaktualnij")

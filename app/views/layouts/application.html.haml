@@ -18,6 +18,8 @@
               =link_to 'Regulamin', rules_path
             %li
               =link_to 'Zgłoszenia', team_registrations_path
+            %li
+              =link_to 'Noclegi', hostel_bookings_path
           %ul.nav.pull-right
             -if logged_in?
               %li
@@ -34,6 +36,8 @@
     .span2
       =render :partial => "shared/fb"
     .span6
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}"
 
       = yield 
     .span2
