@@ -1,6 +1,6 @@
 .add_team
   %p
-    Dodaj rezerwację
+    ="#{@booking.new_record? ? 'Dodaj rezerwację' : 'Edytuj rezerwację'}"
   = form_for @booking do |f|
     %p
       = f.label :first_name, "Imie"

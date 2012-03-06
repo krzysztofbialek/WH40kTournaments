@@ -14,6 +14,20 @@ class HostelBookingsController < ApplicationController
     end
   end
 
+  def edit
+    @booking = HostelBooking.find(params[:id]) 
+  end
+  
+  def update
+    @booking = HostelBooking.find(params[:id])
+
+    if @booking.update_attributes(params[:hostel_booking])
+      redirect_to hostel_bookings_path, :notice => "Booking updated"
+    else
+      render :edit, :notice => "Failed to update booking"
+    end
+  end
+
   def destroy
     booking = HostelBooking.find(params[:id])
     if booking.delete

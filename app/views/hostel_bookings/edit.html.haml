@@ -1,0 +1,15 @@
+.add_team
+  = form_for @booking do |f|
+    %p
+      = f.label :first_name, "Imię"
+      = f.text_field :first_name
+    %p
+      = f.label :last_name, "Nazwiskp"
+      = f.text_field :last_name
+    %p
+      = f.label :email, "Email"
+      = f.email_field :email
+    %p
+      = f.label :payment, "Przedpłata"
+      = f.check_box :payment
+    = f.submit (@booking.new_record? ? "Dodaj" : "Uaktualnij")
