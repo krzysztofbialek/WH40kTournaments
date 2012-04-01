@@ -21,6 +21,10 @@
   %tbody
     -@registrations.each_with_index do |reg, i|
       =render :partial => 'registration', :locals => {:reg => reg, :i => i}
+      -if i == 2
+        %tr.label.label-important
+          %th{:colspan => "#{logged_in? ? 8 : 6}" }
+            Początek listy rezerwowej
 
 -if logged_in?
   =render :partial => 'teams/form'
