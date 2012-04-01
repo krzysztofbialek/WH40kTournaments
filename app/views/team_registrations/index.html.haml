@@ -1,4 +1,4 @@
-%table.table.table-bordered
+%table.table.table-bordered.tablesorter
   %thead
     %tr
       %th
@@ -28,3 +28,10 @@
 
 -if logged_in?
   =render :partial => 'teams/form'
+
+:javascript
+  $(document).ready(function() 
+    { 
+      $(".tablesorter").tablesorter(); 
+    } 
+  ); 
