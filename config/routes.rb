@@ -23,6 +23,7 @@ Dmp40k::Application.routes.draw do
       get 'toggle_payment'
       get 'toggle_rosters'
       get 'toggle_rosters_validation'
+      get 'toggle_accept'
     end
   end 
 
