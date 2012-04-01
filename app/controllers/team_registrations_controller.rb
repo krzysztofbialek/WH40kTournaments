@@ -1,7 +1,7 @@
 class TeamRegistrationsController < ApplicationController
  
   def index
-    @registrations = TeamRegistration.includes([:team]).order('accepted_at DESC')
+    @registrations = TeamRegistration.includes([:team]).order('accepted_at DESC, created_at ASC')
     @team = Team.new
   end 
 
