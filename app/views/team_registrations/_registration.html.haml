@@ -23,4 +23,4 @@
       =link_to "", toggle_accept_team_registration_path(reg), :style => "margin-left:3px", :class => "#{reg.accepted_at? ? 'icon-remove' : 'icon-ok'}"
     %th
       =link_to "", edit_team_path(reg.team), :class => 'icon-edit'
-      =link_to "", team_registration_path(reg), :class => 'icon-remove', :method => :delete, :confirm => "Are you sure?"
+      =link_to "", team_path(reg.team), :class => 'icon-remove', :method => :delete, :confirm => "Are you sure?"

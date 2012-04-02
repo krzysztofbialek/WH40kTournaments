@@ -4,6 +4,14 @@ class TeamsController < ApplicationController
     @teams = Teams.all
   end
   
+  def destroy
+    team = Team.find(params[:id])   
+    if team.destroy
+      redirect_to team_registrations_path, :notice => "team deleted"
+    end
+  end
+
+  
   def create
     @team = Team.new(params[:team])
     if @team.save
