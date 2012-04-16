@@ -20,3 +20,11 @@ h3.info{
 }
 
 .hide{ display: none }
+
+.banner{
+  a{
+    &:hover{
+      background-color: transparent;
+    }
+  }
+}

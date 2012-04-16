@@ -44,6 +44,20 @@
 
       = yield 
     .span2
-      Wkrótce coś tu będzie
+      .banner
+        %h2
+          Sponsorzy
+        %p
+          =link_to image_tag("PuppetsWar.jpg"), "http://puppetswar.com"
+        %p
+          =link_to image_tag("bitspudlo.png"), "http://bitsbox.eu"
+        %p
+          =link_to image_tag("MaxMini.jpg"), "http://maxmini.eu"
+        %p
+          =link_to image_tag("MicroArt.png"), "http://microartstudio.com"
+        %p
+          =link_to image_tag("warfaber.png"), "http://warfaber.pl"
+        %p
+          =link_to image_tag("mediateka.png"), "http://mediateka.waw.pl"
       -if logged_in? 
         = link_to "Dodaj post", new_post_path, :class => 'btn'
