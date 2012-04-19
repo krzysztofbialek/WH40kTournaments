@@ -4,5 +4,8 @@ class PagesController < ApplicationController
 
   def contest
   end
+  
+  def directions
+  end
 
 end

@@ -28,3 +28,13 @@ h3.info{
     }
   }
 }
+
+.modal{
+  &.big{  
+    max-height: 800px;
+    img{
+      max-width: 1280px;
+      max-height: 800px;
+    }
+  }
+}

@@ -12,6 +12,8 @@ Dmp40k::Application.routes.draw do
 
   match '/painting_contest' => 'pages#contest', :as => 'contest'
 
+  match '/directions' => 'pages#directions', :as => 'directions'
+
   resources :sessions
 
   resources :users

@@ -1,0 +1,38 @@
+%h3.label-important
+  Ważne informacje dla dojeżdżających pociagiem
+.body
+  %p
+    %h4
+      Mamy teraz chaos komunikacyjny w Warszawie. Metro nie kursuje od g. 22 w piątki do poniedziałku na odcinku Ratusz-Świętokrzyska-Centrum. Poza tym w al. Jana Pawła nie jeżdżą tramwaje do końca kwietnia. Dodając do tego rozkopaną ul. Świętokrzyską i parę innych atrakcji wychodzi z tego niezły bałagan.
+  %p
+    Najsensowniejszy dojazd z Dworca Centralnego do Mediateki, gdzie będzie odbywać się turniej to autobus 160 w stronę Targówka z przystanku nr 20 między dworcem a Złotymi Tarasami. Najlepiej wyjść z peronu do głównej hali dworca i będzie widać wiaty tuż obok budynku dworca.
+  %p
+    %strong=link_to 'Rozkład autobusów w weekendy', "http://ztm.waw.pl/rozklad_nowy.php?c=182&l=1&a=160&n=7002&o=23&k=B&d=2012-04-27"
+  %p
+    Autobusem jedziemy 6 przystanków do Metro Ratusz i przesiadamy się w metro. Na peron wjeżdża pociąg, który kursuje wahadłowo - należy do niego wsiąść i wysiąść na stacji Wawrzyszew.
+    %br
+    Stąd trzeba dojść ok. 10 minut - jeżeli się zgubicie to najlepiej pytać o Kościół NMP. Wysoki blok za nim to miejsce, w które macie trafić.
+  %p
+    Jeśli chodzi o bilety to najlepiej korzystać z 20-minutowych, 40-minutowych (powinien spokojnie wystarczyć od momentu skasowania w autobusie do wysiadki na metro Wawrzyszew) lub dobowych (na 24 godziny od momentu skasowania do wszystkich środków komunikacji):
+  %p
+    %strong=link_to 'Cennik biletów ZTM', "http://www.ztm.waw.pl/?c=516&l=1"
+  %h3
+    Mapki
+  %ul.nav
+    %li
+      =link_to 'Jak dojść z metra', "#metro", 'data-toggle' => "modal", :class => "btn"
+      %div#metro.modal.hide.fade.big
+        =image_tag("z_metra.jpg")
+    %li
+      =link_to 'Droga do Hostelu', "#hostel", 'data-toggle' => "modal", :class => "btn"
+      %div#hostel.modal.hide.fade.big
+        =image_tag("Hostel_Mediateka.jpg")
+    %li
+      =link_to 'Droga na afterek', "#after", 'data-toggle' => "modal", :class => "btn"
+      %div#after.modal.hide.fade.big
+        =image_tag("Afterek_Szynk_Nad_Rozlewiskiem.jpg", :size => '100%')
+    %li
+      =link_to 'Powrót z afterka', "#after_after", 'data-toggle' => "modal", :class => "btn"
+      %div#after_after.modal.hide.fade.big
+        =image_tag("After_afterek.jpg")
+
