@@ -1,13 +1,13 @@
 .post
   %h2
-    = link_to post.name, post_path(post), :style => "text-decoration:none"
+    = link_to post.name, tournament_post_path(@tournament, post), :style => "text-decoration:none"
   .body
-    = post.body
+    = redcloth(post.body)
   .date
     ="Dodano #{post.created_at} przez admin"
   -if logged_in?
     .links
-      = link_to "Show", post_path(post)
-      = link_to "Edit", edit_post_path(post)
-      = link_to "Destroy", post_path(post), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+      = link_to "Show", tournament_post_path(@tournament, post)
+      = link_to "Edit", edit_tournament_post_path(@tournament, post)
+      = link_to "Destroy", tournament_post_path(@tournament, post), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
 

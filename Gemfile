@@ -10,6 +10,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
+gem 'RedCloth'
 
 # Gems used only for assets and not required
 # in production environments by default.

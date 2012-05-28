@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
 
   before_filter :login_required, :only => [:new, :edit, :destroy]
+  before_filter :get_tournament
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = @tournament.posts
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,7 +28,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
-    @post = Post.new
+    @post = @tournament.posts.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,11 +44,11 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    @post = @tournament.posts.new(params[:post])
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to tournament_post_path(@tournament, @post), notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
@@ -63,7 +64,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to tournament_post_path(@tournament, @post), notice: 'Post was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -82,5 +83,11 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url }
       format.json { head :ok }
     end
+  end
+
+  private
+
+  def get_tournament
+    @tournament = Tournament.find(params[:tournament_id])
   end
 end

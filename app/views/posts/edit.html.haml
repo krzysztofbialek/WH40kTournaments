@@ -1,3 +1,3 @@
-= form_for @post, :url => post_path(@post), :html => { :class => "edit_post", :id => "edit_post" } do |f|
+= form_for @post, :url => tournament_post_path(@tournament, @post), :html => { :class => "edit_post", :id => "edit_post" } do |f|
   %input{:name => "_method", :type => "hidden", :value =>"put"}
   = render :partial => "form", :locals => {:f => f}
