@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   before_filter :login_required, :only => [:new, :edit, :destroy]
-  before_filter :get_tournament
+  before_filter :load_tournament, :load_pages
 
   # GET /posts
   # GET /posts.json
@@ -87,7 +87,4 @@ class PostsController < ApplicationController
 
   private
 
-  def get_tournament
-    @tournament = Tournament.find(params[:tournament_id])
-  end
 end

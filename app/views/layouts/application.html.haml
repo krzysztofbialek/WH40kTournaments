@@ -13,18 +13,16 @@
       .container
         .nav-colapse
           %ul.nav
-            %li
-              =link_to 'Blog', "/"
-            %li
-              =link_to 'Regulamin', rules_path
-            %li
-              =link_to 'Konkurs malarski', contest_path
-            %li
-              =link_to 'Zgłoszenia', team_registrations_path
-            %li
-              =link_to 'Noclegi', hostel_bookings_path
-            %li
-              =link_to 'Dojazd', directions_path
+            -if @tournament
+              %li
+                =link_to 'Blog', tournament_posts_path(@tournament)
+              - if @pages.any?
+                - @pages.each do |page|
+                  -if page.persisted?
+                    %li
+                      =link_to page.title, tournament_page_path(@tournament, page)
+              %li
+                = link_to 'Add page', new_tournament_page_path(@tournament) 
           %ul.nav.pull-right
             -if logged_in?
               %li

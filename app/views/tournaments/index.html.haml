@@ -1,5 +1,5 @@
 -@tournaments.each do |t|
-  =t.name
+  =link_to t.name, tournament_posts_path(t)
   =t.rank
   =t.start_date
   =t.city

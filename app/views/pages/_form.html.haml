@@ -1,0 +1,18 @@
+.clearfix
+  = f.label :title, t("activerecord.attributes.page.title", :default => "Title"), :class => :label
+  .input
+    = f.text_field :title, :class => 'text_field'
+.clearfix
+  = f.label :slug, 'Link', :class => :label
+  .input
+    = f.text_field :slug, :class => 'text_field'
+.clearfix
+  = f.label :content, t("activerecord.attributes.page.content", :default => "Content"), :class => :label
+  .input
+    = f.text_area :content, :class => 'text_area span4'
+.clearfix
+
+.form-actions
+  %button{:class => "btn primary", :type => "submit"} Save
+  or
+  = link_to "Cancel", tournament_posts_path(@tournament)

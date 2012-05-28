@@ -38,6 +38,7 @@ Dmp40k::Application.routes.draw do
   
   resources :tournaments do
     resources :posts
+    resources :pages
   end
 
   root :to => 'tournaments#index'
