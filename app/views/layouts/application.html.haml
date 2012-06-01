@@ -16,7 +16,7 @@
             -if @tournament
               %li
                 =link_to 'Blog', tournament_posts_path(@tournament)
-              - if @pages.any?
+              - if @pages
                 - @pages.each do |page|
                   -if page.persisted?
                     %li

@@ -1,0 +1,28 @@
+%table.table.table-bordered.tablesorter
+  %thead
+    %tr
+      %th
+        Lp.
+      %th
+        Gracz  
+      %th
+        Miasto
+      %th
+        Przedpłata
+      %th
+        Rozpiski
+      %th
+        Rozpiski poprawne?
+      -if logged_in?
+        %th 
+          Akcja
+  %tbody
+    -@registrations.each_with_index do |reg, i|
+      =render :partial => 'registration', :locals => {:reg => reg, :i => i}
+=render :partial => 'form'
+:javascript
+  $(document).ready(function() 
+    { 
+      $(".tablesorter").tablesorter(); 
+    } 
+  ); 

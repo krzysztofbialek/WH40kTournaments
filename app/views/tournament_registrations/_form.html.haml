@@ -1,0 +1,26 @@
+.add_team
+  %p
+    Dodaj zgłoszenie
+  = form_for @tournament_registration, :url => tournament_tournament_registrations_path do |f|
+    %p
+      = f.label :player_id, "Wybierz gracza"
+      = f.select :player_id, options_from_collection_for_select(@players, "id", "last_name") 
+    %p  
+      = f.submit
+  %p
+    Albo stwórz nowego
+  = form_for @player do |f|
+    %p
+      = f.label :first_name, "Imię"
+      = f.text_field :first_name
+    %p
+      = f.label :last_name, "Nazwisko"
+      = f.text_field :last_name
+    %p
+      = f.label :nick, "Nick"
+      = f.text_field :nick
+    %p
+      = f.label :city, "Miast"
+      = f.text_field :city
+    %p  
+      = f.submit

@@ -14,19 +14,13 @@ Dmp40k::Application.routes.draw do
 
   match '/directions' => 'pages#directions', :as => 'directions'
 
+  resources :players  
+
   resources :sessions
 
   resources :users
 
 
-  resources :team_registrations, :path => "registrations" do
-    member do
-      get 'toggle_payment'
-      get 'toggle_rosters'
-      get 'toggle_rosters_validation'
-      get 'toggle_accept'
-    end
-  end 
 
   resources :teams
 
@@ -39,6 +33,14 @@ Dmp40k::Application.routes.draw do
   resources :tournaments do
     resources :posts
     resources :pages
+    resources :tournament_registrations, :path => "registrations" do
+      member do
+        get 'toggle_payment', :as => 'toggle_payment'
+        get 'toggle_rosters'
+        get 'toggle_rosters_validation'
+        get 'toggle_accept'
+      end
+    end 
   end
 
   root :to => 'tournaments#index'

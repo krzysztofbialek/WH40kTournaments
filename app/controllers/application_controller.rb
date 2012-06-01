@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_pages
-    @pages = @tournament.pages
+    @pages = @tournament.pages if @tournament
   end
 
 end
