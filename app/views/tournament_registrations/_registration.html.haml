@@ -6,6 +6,8 @@
   %th
     =reg.player.city
   %th
+    =reg.army
+  %th
     =reg.payment_send? ? "tak" : "nie"
     -if logged_in?
       =link_to "", toggle_payment_tournament_tournament_registration_path(@tournament, reg), :style => "margin-left:8px", :class => "#{reg.payment_send? ? 'icon-remove' : 'icon-ok'}"

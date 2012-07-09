@@ -1,0 +1,11 @@
+%tr
+  %th
+    = "#{i + 1}"
+  %th
+    =link_to t.name, tournament_posts_path(t)
+  %th
+    =t.city
+  %th
+    =t.rank
+  %th
+    =t.start_date.to_date

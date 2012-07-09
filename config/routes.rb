@@ -14,7 +14,9 @@ Dmp40k::Application.routes.draw do
 
   match '/directions' => 'pages#directions', :as => 'directions'
 
-  resources :players  
+  resources :players do
+    resources :tournament_registrations 
+  end
 
   resources :sessions
 

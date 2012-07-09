@@ -1,6 +1,17 @@
--@tournaments.each do |t|
-  =link_to t.name, tournament_posts_path(t)
-  =t.rank
-  =t.start_date
-  =t.city
+%table.table.table-bordered.tablesorter
+  %thead
+    %tr
+      %th
+        Lp.
+      %th
+        Nazwa turnieju
+      %th
+        Ranga
+      %th
+        Miasto
+      %th
+        Data
+  %tbody
+    -@tournaments.each_with_index do |t, i|
+      =render :partial => 'tournament', :locals => {:t => t, :i => i}
  

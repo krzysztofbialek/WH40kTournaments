@@ -4,7 +4,6 @@
   %title
   =stylesheet_link_tag "application"
   =javascript_include_tag "application"
-  %script{:src=>"http://autobahn.tablesorter.com/jquery.tablesorter.min.js"}
   =csrf_meta_tags
 
 %body
@@ -16,13 +15,15 @@
             -if @tournament
               %li
                 =link_to 'Blog', tournament_posts_path(@tournament)
+              %li
+                =link_to 'Zgłoszenia', tournament_tournament_registrations_path(@tournament)
               - if @pages
                 - @pages.each do |page|
                   -if page.persisted?
                     %li
                       =link_to page.title, tournament_page_path(@tournament, page)
               %li
-                = link_to 'Add page', new_tournament_page_path(@tournament) 
+                = link_to 'Dodaj sekcję', new_tournament_page_path(@tournament) 
           %ul.nav.pull-right
             -if logged_in?
               %li
@@ -43,19 +44,19 @@
         = content_tag :div, msg, :id => "flash_#{name}"
 
       = yield 
-    .span2
-      .banner
-        %h2
-          Sponsorzy
-        %p
-          =link_to image_tag("PuppetsWar.jpg"), "http://puppetswar.com"
-        %p
-          =link_to image_tag("bitspudlo.png"), "http://bitsbox.eu"
-        %p
-          =link_to image_tag("MaxMini.jpg"), "http://maxmini.eu"
-        %p
-          =link_to image_tag("MicroArt.png"), "http://microartstudio.com"
-        %p
-          =link_to image_tag("warfaber.png"), "http://warfaber.pl"
-        %p
-          =link_to image_tag("mediateka.png"), "http://mediateka.waw.pl"
+/   .span2
+/      .banner
+/        %h2
+/          Sponsorzy
+/        %p
+/          =link_to image_tag("PuppetsWar.jpg"), "http://puppetswar.com"
+/        %p
+/          =link_to image_tag("bitspudlo.png"), "http://bitsbox.eu"
+/        %p
+/          =link_to image_tag("MaxMini.jpg"), "http://maxmini.eu"
+/        %p
+/          =link_to image_tag("MicroArt.png"), "http://microartstudio.com"
+/        %p
+/          =link_to image_tag("warfaber.png"), "http://warfaber.pl"
+/        %p
+/          =link_to image_tag("mediateka.png"), "http://mediateka.waw.pl" 
