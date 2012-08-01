@@ -1,0 +1,16 @@
+%tr
+  %th
+    =player_counter + 1
+  %th
+    =player.league_id
+  %th
+    =player.name
+  %th
+    =player.city
+  %th
+  %th
+  %th
+  %th
+  %th
+  %th
+    =link_to "Usuń", admin_player_path(player), :method => :delete
