@@ -21,4 +21,6 @@
       =link_to "", toggle_rosters_validation_tournament_tournament_registration_path(@tournament, reg), :style => "margin-left:8px", :class => "#{reg.roster_valid? ? 'icon-remove' : 'icon-ok'}"
   -if logged_in?
     %th
-      =link_to "", tournament_tournament_registration_path(@tournament, reg), :class => 'icon-remove', :method => :delete, :confirm => "Are you sure?"
+      =link_to "", edit_tournament_tournament_registration_path(@tournament, reg), :class => 'icon-edit', :title => 'Edytuj'
+      
+      =link_to "", tournament_tournament_registration_path(@tournament, reg), :class => 'icon-remove', :method => :delete, :confirm => "Are you sure?", :title => 'Usuń zgłoszenie'

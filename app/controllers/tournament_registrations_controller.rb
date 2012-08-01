@@ -4,7 +4,7 @@ class TournamentRegistrationsController < ApplicationController
   before_filter :load_tournament
 
   def index
-    @registrations = TournamentRegistration.includes([:player]).order('created_at ASC ')
+    @registrations = @tournament.tournament_registrations.includes([:player]).order('created_at ASC ')
     @tournament_registration = @tournament.tournament_registrations.new
     @players = Player.all
     @player = Player.new
@@ -16,6 +16,19 @@ class TournamentRegistrationsController < ApplicationController
       redirect_to :back, :notice => "Dodano zgłoszenie"
     else
       redirect_to :back, :alert => "Nie udało się dodać zgłoszenia"
+    end
+  end
+
+  def edit
+    @registration = TournamentRegistration.find(params[:id])
+  end
+  
+  def update
+    @registration = TournamentRegistration.find(params[:id])
+    if @registration.update_attributes(params[:tournament_registration])
+      redirect_to tournament_tournament_registrations_path(@tournament), :notice => "Zgłoszenie uaktualnione"
+    else
+      render :edit, :alert => "Nie udało się uaktualnić zgłoszenia"
     end
   end
 

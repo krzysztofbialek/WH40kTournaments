@@ -1,0 +1,18 @@
+.add_team
+  = form_for @registration, :url => tournament_tournament_registration_path(@tournament, @registration) do |f|
+    %p
+      = f.label :player_id, "Wybierz gracza"
+      = f.select :player_id, options_from_collection_for_select(Player.all, "id", "name") 
+    %p
+      = f.label :army, "Armia"
+      = f.select :army, options_for_select(Player::Armies) 
+    %p
+      = f.label :payment_send, "Przedpłata"
+      = f.check_box :payment_send
+    %p
+      = f.label :roster_send, "Rozpiska"
+      = f.check_box :roster_send
+    %p
+      = f.label :roster_valid, "Rozpiska poprawne?"
+      = f.check_box :roster_valid
+    = f.submit "Uaktualnij"

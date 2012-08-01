@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709080626) do
+ActiveRecord::Schema.define(:version => 20120709093817) do
 
   create_table "hostel_bookings", :force => true do |t|
     t.string   "first_name"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20120709080626) do
     t.string   "city"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20120709080626) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin"
   end
 
 end

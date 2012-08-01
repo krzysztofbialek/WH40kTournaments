@@ -22,7 +22,7 @@ Dmp40k::Application.routes.draw do
 
   resources :users
 
-
+  
 
   resources :teams
 
@@ -43,6 +43,14 @@ Dmp40k::Application.routes.draw do
         get 'toggle_accept'
       end
     end 
+  end
+
+  namespace :admin do
+    resources :players do
+      collection do
+        post 'import'
+      end
+    end
   end
 
   root :to => 'tournaments#index'

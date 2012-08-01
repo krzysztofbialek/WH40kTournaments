@@ -8,11 +8,14 @@
     %p
       = f.label :army, "Armia"
       = f.select :army, options_for_select(Player::Armies) 
-    %p 
-      = f.submit
+    =f.hidden_field :tournament_id, :value => @tournament.id
+    %p
+      %button{:type => 'submit'}
+        Dodaj zgłoszenie
   %p
 .add_player
-  Albo stwórz nowego gracza
+  %p
+    Albo stwórz nowego gracza
   = form_for @player do |f|
     %p
       = f.label :league_id, "ID ligowe"
@@ -27,7 +30,15 @@
       = f.label :nick, "Nick"
       = f.text_field :nick
     %p
-      = f.label :city, "Miast"
+      = f.label :city, "Miasto"
       = f.text_field :city
+    %p
+      %label
+        Armia
+      = select_tag :army, options_for_select(Player::Armies) 
+      = hidden_field_tag :tournament_id, :value => @tournament.id
+        
     %p  
-      = f.submit
+      %button{:type => 'submit'}
+        Dodaj gracza/zgłoszenie
+    

@@ -12,36 +12,17 @@
       .container
         .nav-colapse
           %ul.nav
-            -if @tournament && @tournament.persisted?
-              %li
-                =link_to 'Blog', tournament_posts_path(@tournament)
-              %li
-                =link_to 'Zgłoszenia', tournament_tournament_registrations_path(@tournament)
-              - if @pages
-                - @pages.each do |page|
-                  -if page.persisted?
-                    %li
-                      =link_to page.title, tournament_page_path(@tournament, page)
-              %li
-                = link_to 'Dodaj sekcję', new_tournament_page_path(@tournament) 
+            %li
+              =link_to "Gracze", admin_players_path
           %ul.nav.pull-right
             %li
-              =link_to "Wszystkie turnieje", tournaments_path
-            -if logged_in?
-              %li
-                =link_to current_user.username, ""
-              %li
-                =link_to 'Wyloguj', logout_path
-            -else
-              %li
-                =link_to 'Zaloguj', login_path
+              =link_to current_user.username, ""
+            %li
+              =link_to 'Wyloguj', logout_path
 
 .container-fluid
-  .row.header
   .row{:style => "width:1024px;margin:auto"}
-    .span2
-      =render :partial => "shared/fb"
-    .span6
+    .span10
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
 

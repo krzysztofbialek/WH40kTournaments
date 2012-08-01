@@ -1,0 +1,18 @@
+.add_team
+  = form_for @registration do |f|
+    %p
+      = f.label :player_id, "Wybierz gracza"
+      = f.select :player_id, options_from_collection_for_select(@players, "id", "name") 
+    %p
+      = f.label :army, "Armia"
+      = f.select :army, options_for_select(Player::Armies) 
+    %p
+      = r.label :payment, "Przedpłata"
+      = r.check_box :payment
+    %p
+      = r.label :rosters, "Rozpiski"
+      = r.check_box :rosters
+    %p
+      = r.label :rosters_valid, "Rozpiski poprawne?"
+      = r.check_box :rosters_valid
+    = f.submit "Uaktualnij"

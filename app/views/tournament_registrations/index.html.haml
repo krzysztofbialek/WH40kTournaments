@@ -12,16 +12,17 @@
       %th
         Przedpłata
       %th
-        Rozpiski
+        Rozpiska
       %th
-        Rozpiski poprawne?
+        Rozpiska poprawne?
       -if logged_in?
         %th 
           Akcja
   %tbody
     -@registrations.each_with_index do |reg, i|
       =render :partial => 'registration', :locals => {:reg => reg, :i => i}
-=render :partial => 'form'
+-if logged_in?
+  =render :partial => 'form'
 :javascript
   $(document).ready(function() 
     { 
