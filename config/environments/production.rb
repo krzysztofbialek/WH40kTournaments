@@ -20,6 +20,8 @@ Dmp40k::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.assets.precompile += %w( mercury.js mercury.css mercury_overrides.css ) 
+
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
