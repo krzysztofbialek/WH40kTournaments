@@ -11,6 +11,9 @@
         = f.select :army, options_for_select(Player::Armies) 
       =f.hidden_field :tournament_id, :value => @tournament.id
       %p
+        =f.label :player_email, "Email gracza"
+        = f.email_field :player_email
+      %p
         %button{:type => 'submit'}
           Dodaj zgłoszenie
     %p

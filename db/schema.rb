@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709093817) do
+ActiveRecord::Schema.define(:version => 20120909190930) do
 
   create_table "hostel_bookings", :force => true do |t|
     t.string   "first_name"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20120709093817) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "army"
+    t.string   "player_email"
   end
 
   create_table "tournaments", :force => true do |t|
