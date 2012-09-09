@@ -1,4 +1,6 @@
 class TeamRegistrationsController < ApplicationController
+  
+  before_filter :load_tournament, :load_pages
  
   def index
     @registrations = TeamRegistration.includes([:team]).order('accepted DESC, accepted_at ASC, created_at ASC ')

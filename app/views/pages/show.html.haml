@@ -1,9 +1,11 @@
 %label{:class => "label"}= t("activerecord.attributes.page.title", :default => t("activerecord.labels.name", :default => "Title")) + ":"
 %p= @page.title
 %label{:class => "label"}= t("activerecord.attributes.page.content", :default => t("activerecord.labels.body", :default => "Conent")) + ":"
-%p= redcloth(@page.content)
+%p.mercury-region{data: {mercury: "full", type: "editable"}}
+  = raw(@page.content)
 
-.form-actions
-  = link_to "Back", tournament_posts_path(@tournament), :class => 'btn'
-  = link_to "Edit", edit_tournament_page_path(@tournament, @page), :class => 'btn'
-  = link_to "Delete", tournament_page_path(@tournament, @page), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn'
+-if logged_in? && (current_user == @tournament.user || current_user.admin?)
+  .form-actions
+    = link_to "Back", tournament_posts_path(@tournament), :class => 'btn'
+    = link_to "Edit", '/editor/' + "tournaments/#{@tournament.id}/pages/#{@page.id}", :class => 'btn'
+    = link_to "Delete", tournament_page_path(@tournament, @page), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn'

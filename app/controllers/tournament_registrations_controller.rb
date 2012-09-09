@@ -1,12 +1,12 @@
 #encoding: utf-8
 class TournamentRegistrationsController < ApplicationController
 
-  before_filter :load_tournament
+  before_filter :load_tournament, :load_pages
 
   def index
     @registrations = @tournament.tournament_registrations.includes([:player]).order('created_at ASC ')
     @tournament_registration = @tournament.tournament_registrations.new
-    @players = Player.all
+    @players = Player.find(:all, :order => ('last_name ASC'))
     @player = Player.new
   end
 

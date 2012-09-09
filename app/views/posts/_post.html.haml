@@ -5,7 +5,7 @@
     = redcloth(post.body)
   .date
     ="Dodano #{post.created_at} przez admin"
-  -if logged_in?
+  -if logged_in? && (current_user == @tournament.user || current_user.admin?)
     .links
       = link_to "Show", tournament_post_path(@tournament, post)
       = link_to "Edit", edit_tournament_post_path(@tournament, post)

@@ -1,5 +1,7 @@
 Dmp40k::Application.routes.draw do
   
+  Mercury::Engine.routes
+
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
 #  match 'signup' => 'users#new', :as => :signup
@@ -15,6 +17,8 @@ Dmp40k::Application.routes.draw do
   match '/directions' => 'pages#directions', :as => 'directions'
 
   match '/admin' => 'admin#index'
+
+  match '/tournaments/:id/pages/:id' => 'pages#update', :via => 'post'
 
   resources :players do
     resources :tournament_registrations 
