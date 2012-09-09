@@ -1,7 +1,10 @@
 class Player < ActiveRecord::Base
   require 'csv'
 
-  Armies = ['Grey Knights', 'Eldars', 'Chaos Space Marines', 'Space Wolves']
+  Armies = ['Grey Knights', 'Eldars', 'Chaos Space Marines', 'Space Wolves',
+             'Imperial Guard', 'Chaos Demons', 'Blood Angels', 'Dark Angels',
+             'Orks', 'Dark Eldars', 'Black Templars', 'Sister of Battle',
+             'Tyranids', 'Necrons', 'Tau']
 
   has_many :tournament_registrations, :dependent => :nullify
 
