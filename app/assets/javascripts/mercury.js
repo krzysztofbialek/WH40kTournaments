@@ -237,7 +237,7 @@ window.Mercury = {
     regions: {
       className: 'mercury-region',
       identifier: 'id',
-      dataAttributes: []
+      dataAttributes: ['tournament']
       },
 
 

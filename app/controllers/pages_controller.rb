@@ -46,9 +46,10 @@ class PagesController < ApplicationController
   
   def update
     if params[:content]
-      tournament = Tournament.find(5)
-      page = tournament.pages.find(2)
       value =  ActiveSupport::JSON.decode(params[:content])["undefined"]["value"]
+      tournament = ActiveSupport::JSON.decode(params[:content])["undefined"]["data"]["tournament"]
+      tournament = Tournament.find(tournament)
+      page = tournament.pages.find(params[:id])
       page.update_attributes(:content => value)
 
       
