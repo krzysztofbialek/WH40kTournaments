@@ -22,8 +22,9 @@
                   -if page.persisted?
                     %li
                       =link_to page.title, tournament_page_path(@tournament, page)
-              %li
-                = link_to 'Dodaj sekcję', new_tournament_page_path(@tournament) 
+              -if logged_in? && (current_user == @tournament.user || current_user.admin?)
+                %li
+                  = link_to 'Dodaj sekcję', new_tournament_page_path(@tournament) 
           %ul.nav.pull-right
             %li
               =link_to "Wszystkie turnieje", tournaments_path

@@ -1,6 +1,6 @@
-%label{:class => "label"}= t("activerecord.attributes.page.title", :default => t("activerecord.labels.name", :default => "Title")) + ":"
+%label{:class => "label"}= t("activerecord.attributes.page.title", :default => t("activerecord.labels.name", :default => "Tytuł")) + ":"
 %p= @page.title
-%label{:class => "label"}= t("activerecord.attributes.page.content", :default => t("activerecord.labels.body", :default => "Conent")) + ":"
+%label{:class => "label"}= t("activerecord.attributes.page.content", :default => t("activerecord.labels.body", :default => "Treść")) + ":"
 %p.mercury-region{data: {mercury: "full", type: "editable"}}
   = raw(@page.content)
 
