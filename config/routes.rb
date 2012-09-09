@@ -14,6 +14,8 @@ Dmp40k::Application.routes.draw do
 
   match '/directions' => 'pages#directions', :as => 'directions'
 
+  match '/admin' => 'admin#index'
+
   resources :players do
     resources :tournament_registrations 
   end
@@ -44,7 +46,7 @@ Dmp40k::Application.routes.draw do
       end
     end 
   end
-
+  
   namespace :admin do
     resources :players do
       collection do

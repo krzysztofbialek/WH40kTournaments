@@ -1,4 +1,9 @@
-%table
+.import
+  =form_tag import_admin_players_path, :multipart => true do
+    %label{:for => "file"} Plik z graczami
+    =file_field_tag 'file', :accept => 'text/txt'
+    %br
+    =submit_tag 'Importuj'
 %table.table.table-bordered.tablesorter
   %thead
     %tr
@@ -25,11 +30,5 @@
     %tbody
       =render @players
 
-.import
-  =form_tag import_admin_players_path, :multipart => true do
-    %label{:for => "file"} Plik z graczami
-    =file_field_tag 'file', :accept => 'text/txt'
-    %br
-    =submit_tag 'Importuj'
 
   
