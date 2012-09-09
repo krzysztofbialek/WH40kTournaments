@@ -9,5 +9,5 @@ class Tournament < ActiveRecord::Base
   has_many :pages, :dependent => :destroy
   has_many :tournament_registrations, :dependent => :destroy
   has_many :posts, :dependent => :destroy
-  has_many :hostel_bookings, :dependent => :destroy
+  #has_many :hostel_bookings, :dependent => :destroy
 end
