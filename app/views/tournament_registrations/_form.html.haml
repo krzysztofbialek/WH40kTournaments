@@ -39,7 +39,7 @@
       %p
         %label
           Armia
-        = select_tag :army, options_for_select(Player::Armies) 
+        = select_tag :army, options_for_select(Player::Armies), :include_blank => true 
         = hidden_field_tag :tournament_id, :value => @tournament.id
           
       %p  
