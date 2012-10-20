@@ -1,5 +1,9 @@
 class TournamentsController < ApplicationController
 
+ def show
+  redirect_to tournament_posts_path(Tournament.find(params[:id]))
+ end
+
  def index
   @tournaments = Tournament.all
  end
