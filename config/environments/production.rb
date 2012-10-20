@@ -30,7 +30,7 @@ Dmp40k::Application.configure do
   ActionMailer::Base.smtp_settings = {   
     :address => "smtp.sendgrid.net",  
     :domain => "wh40k-tournaments.com",
-    :port => 58,   
+    :port => 587,   
     :user_name => "wh40k-tournaments",   
     :password => ENV['SENDGRID_PASS'],   
     :authentication => :plain,
