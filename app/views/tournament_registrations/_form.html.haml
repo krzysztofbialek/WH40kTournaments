@@ -8,7 +8,7 @@
         = f.select :player_id, options_from_collection_for_select(@players, "id", "name") 
       %p
         = f.label :army, "Armia"
-        = f.select :army, options_for_select(Player::Armies) 
+        = f.select :army, options_for_select(Player::Armies), :include_blank => true
       =f.hidden_field :tournament_id, :value => @tournament.id
       %p
         =f.label :player_email, "Email gracza"

@@ -22,6 +22,18 @@ Dmp40k::Application.configure do
 
   config.assets.precompile += %w( mercury_overrides.js mercury.js mercury.css mercury_overrides.css ) 
 
+  config.action_mailer.delivery_method = :smtp 
+  
+  ActionMailer::Base.smtp_settings = {   
+    :address => "smtp.sendgrid.net",  
+    :domain => "wh40k-tournaments.com",
+    :port => 58,   
+    :user_name => "wh40k-tournaments",   
+    :password => ENV['SENDGRID_PASS'],   
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
