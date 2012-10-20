@@ -22,6 +22,9 @@ Dmp40k::Application.configure do
 
   config.assets.precompile += %w( mercury_overrides.js mercury.js mercury.css mercury_overrides.css ) 
 
+  config.action_mailer.default_url_options = { :host => 'wh40k-tournaments.com' }
+
+
   config.action_mailer.delivery_method = :smtp 
   
   ActionMailer::Base.smtp_settings = {   
