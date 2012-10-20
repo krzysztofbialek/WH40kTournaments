@@ -6,7 +6,8 @@ class TournamentRegistration < ActiveRecord::Base
   validates_uniqueness_of :player_id, :scope => :tournament_id
   validates_uniqueness_of :player_email, :scope => :tournament_id
 
-  after_create :notify_player, :if => :player_email
+  after_create :notify_player, :unless => Proc.new{ self.player_email.blank? }
+
 
   def notify_player
     RegistrationsMailer.tournament_signup_confirmation(self).deliver
