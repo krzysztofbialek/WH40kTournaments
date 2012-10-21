@@ -9,7 +9,7 @@
       %p
         = f.label :army, "Armia"
         = f.select :army, options_for_select(Player::Armies), :include_blank => true
-      =f.hidden_field :tournament_id, :value => @tournament.id
+        = f.hidden_field :tournament_id, :value => @tournament.id
       %p
         =f.label :player_email, "Email gracza"
         = f.email_field :player_email
@@ -40,7 +40,7 @@
         %label
           Armia
         = select_tag :army, options_for_select(Player::Armies), :include_blank => true 
-        = hidden_field_tag :tournament_id, :value => @tournament.id
+        = hidden_field_tag :tournament_id, @tournament.id
           
       %p  
         %button{:type => 'submit'}

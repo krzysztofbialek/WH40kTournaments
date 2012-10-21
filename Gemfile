@@ -13,6 +13,7 @@ gem "bcrypt-ruby", :require => "bcrypt"
 gem 'RedCloth'
 gem 'mercury-rails'
 gem "friendly_id", "~> 4.0.1"
+gem "debugger"
 
 
 # Gems used only for assets and not required

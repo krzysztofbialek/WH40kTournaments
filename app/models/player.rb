@@ -9,8 +9,8 @@ class Player < ActiveRecord::Base
   has_many :tournament_registrations, :dependent => :nullify
 
   validates_presence_of :nick
-  validates_uniqueness_of :league_id
-  validates_format_of :league_id, :with => /^[A-Za-z]{2}\d{3}$/
+  validates_uniqueness_of :league_id, :allow_blank => true
+  validates_format_of :league_id, :with => /^[A-Za-z]{2}\d{3}$/, :allow_blank => true
 
   def name
     "#{first_name} '#{nick}' #{last_name}"
