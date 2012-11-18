@@ -28,8 +28,6 @@ Dmp40k::Application.routes.draw do
 
   resources :users
 
-  
-
   resources :teams
 
   resources :hostel_bookings do
@@ -39,6 +37,7 @@ Dmp40k::Application.routes.draw do
   end
   
   resources :tournaments do
+    resource :play
     resources :posts
     resources :pages
     resources :tournament_registrations, :path => "registrations" do

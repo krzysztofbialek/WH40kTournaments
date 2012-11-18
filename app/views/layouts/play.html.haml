@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+%html
+%head
+  %title
+  =stylesheet_link_tag "application"
+  =javascript_include_tag "application"
+  =javascript_include_tag "play"
+  =csrf_meta_tags
+
+%body
+  .navbar.navbar-fixed-top
+    .navbar-inner
+      .container
+        .nav-colapse
+          %ul.nav
+            -if @tournament && @tournament.persisted?
+              %li
+                =link_to 'Blog', tournament_posts_path(@tournament)
+              %li
+                =link_to 'Zgłoszenia', tournament_tournament_registrations_path(@tournament)
+              - if @pages
+                - @pages.each do |page|
+                  -if page.persisted?
+                    %li
+                      =link_to page.title, tournament_page_path(@tournament, page)
+              -if logged_in? && (current_user == @tournament.user || current_user.admin?)
+                %li
+                  = link_to 'Dodaj sekcję', new_tournament_page_path(@tournament) 
+          %ul.nav.pull-right
+            %li
+              =link_to "Wszystkie turnieje", tournaments_path
+            -if logged_in?
+              -if current_user.admin? 
+                %li
+                  =link_to 'Panel admina', '/admin'
+              %li
+                =link_to current_user.username, ""
+              %li
+                =link_to 'Wyloguj', logout_path
+            -else
+              %li
+                =link_to 'Zaloguj', login_path
+
+.container-fluid
+  = yield 
