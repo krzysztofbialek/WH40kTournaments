@@ -1,5 +1,17 @@
-Dmp40k.Views.PlayersIndex = Backbone.View.extend({
+PlayersIndex = Backbone.View.extend({
+  tagName: 'ul',
+  
+  initialize: function(){
+    this.collection.on('add', this.addOne, this);
+  },
 
-  template: JST['players/index']
-
+  render: function(){
+    this.collection.forEach(this.addOne, this);
+  },
+  
+  addOne: function(player){
+    var playerView = new PlayerView({model: player});
+    playerView.render();
+    this.$el.append(playerView.render.el);
+  },
 });

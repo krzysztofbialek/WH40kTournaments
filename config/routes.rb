@@ -35,8 +35,12 @@ Dmp40k::Application.routes.draw do
       get 'toggle_payment'
     end
   end
+
   
   resources :tournaments do
+    namespace :play do
+      resources :players
+    end
     resource :play
     resources :posts
     resources :pages
