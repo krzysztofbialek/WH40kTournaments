@@ -1,14 +1,16 @@
 var Dmp40k =  new (Backbone.Router.extend({
-  routes: { '/': 'index' },
+  routes: { '': 'index' },
 
   initialize: function() {
     this.playersList = new Players();
     this.playersView = new PlayersIndex({collection: this.playersList});
-    $('.container-fluid').append(this.playersView.el)
+    $('.container-fluid').prepend(this.playersView.el)
   },
 
   start: function(){
-    Backbone.history.start({pushState: true});
+    var urlParts = document.location.pathname.split('/');
+    var id = urlParts[2]
+    Backbone.history.start({pushState: true, root: "/tournaments/" + id + "/play"});
   },
  
   index: function(){

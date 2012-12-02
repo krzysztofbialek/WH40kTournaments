@@ -6,9 +6,9 @@
 //
 //= require underscore
 //= require backbone
-//= require dmp40k
 //= require_tree ../templates
-//= require_tree ./models
-//= require_tree ./collections
-//= require_tree ./views
-//= require_tree ./routers
+//= require_tree ./backbone/models
+//= require_tree ./backbone/collections
+//= require_tree ./backbone/views
+//= require_tree ./backbone/routers
+//= require dmp40k

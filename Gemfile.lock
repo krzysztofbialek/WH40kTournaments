@@ -173,6 +173,7 @@ DEPENDENCIES
   bcrypt-ruby
   coffee-rails (~> 3.1.1)
   debugger
+  ejs (~> 1.1.1)
   friendly_id (~> 4.0.1)
   haml
   haml-rails

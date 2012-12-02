@@ -1,5 +1,5 @@
 PlayerView = Backbone.View.extend({
-  template: _.template('<h3><%= first_name %></h3>'),
+  template: JST['players/player'],
   tagName: 'li',
 
   render: function(){
