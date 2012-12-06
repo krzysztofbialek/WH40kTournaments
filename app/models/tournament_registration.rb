@@ -13,4 +13,8 @@ class TournamentRegistration < ActiveRecord::Base
     RegistrationsMailer.tournament_signup_confirmation(self).deliver
   end
 
+  def as_json(*args)
+    super(:only => :army).merge(:player_name => player.name)
+  end
+
 end
