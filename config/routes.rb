@@ -40,6 +40,7 @@ Dmp40k::Application.routes.draw do
   resources :tournaments do
     namespace :play do
       resources :players
+      resources :tournaments
     end
     resource :play
     resources :posts

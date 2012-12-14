@@ -1,7 +1,13 @@
 class TournamentsController < ApplicationController
 
+  respond_to :json, :html
+
  def show
-  redirect_to tournament_posts_path(Tournament.find(params[:id]))
+  tournament = Tournament.find(params[:id])
+  respond_to do |format|
+    format.html{ redirect_to tournament_posts_path(tournament) }
+    format.json{ respond_with tournament }
+  end
  end
 
  def index

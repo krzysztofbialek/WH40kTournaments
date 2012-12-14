@@ -14,7 +14,7 @@ class TournamentRegistration < ActiveRecord::Base
   end
 
   def as_json(*args)
-    super(:only => :army).merge(:player_name => player.name)
+    super(:only => [:army, :id]).merge(:player_name => player.name)
   end
 
 end

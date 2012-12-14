@@ -2,6 +2,7 @@ PlayersIndex = Backbone.View.extend({
   template: JST['players/index'],
   className: 'players-list',
   
+  
   initialize: function(){
     this.collection.on('add', this.addOne, this);
     this.collection.on('reset', this.render, this);
@@ -17,4 +18,5 @@ PlayersIndex = Backbone.View.extend({
     playerView.render();
     this.$('tbody').append(playerView.el);
   },
+
 });

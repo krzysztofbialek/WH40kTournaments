@@ -7,4 +7,11 @@ class Play::PlayersController < ApplicationController
     respond_with players 
   end
 
+  def destroy
+    player = TournamentRegistration.find(params[:id])
+    if player.destroy
+      respond_with :success
+    end
+  end
+
 end
