@@ -46,6 +46,7 @@ module Dmp40k
     config.assets.version = '1.0'
 
     config.generators do |g|
+      g.fixture_replacement :factory_girl
       g.orm :active_record
       g.template_engine :haml
       g.stylesheet_engine :sass

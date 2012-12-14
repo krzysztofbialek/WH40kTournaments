@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  player1: 1
+  player2: 1
+  player1_game_points: 1
+  player2_game_points: 1
+  player1_match_points: 1
+  player2_match_points: 1
+  round: 1
+  tournament_id: 1
+
+two:
+  player1: 1
+  player2: 1
+  player1_game_points: 1
+  player2_game_points: 1
+  player1_match_points: 1
+  player2_match_points: 1
+  round: 1
+  tournament_id: 1

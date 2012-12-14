@@ -48,6 +48,8 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
   gem 'mocha'
+  gem 'shoulda'
+  gem 'factory_girl_rails'
 end
 
 group :production do
