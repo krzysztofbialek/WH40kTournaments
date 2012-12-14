@@ -45,6 +45,7 @@ Dmp40k::Application.routes.draw do
     resource :play
     resources :posts
     resources :pages
+    resources :tournament_pairings, :as => 'pairings'
     resources :tournament_registrations, :path => "registrations" do
       member do
         get 'toggle_payment', :as => 'toggle_payment'

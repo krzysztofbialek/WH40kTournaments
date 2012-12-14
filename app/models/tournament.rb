@@ -8,6 +8,7 @@ class Tournament < ActiveRecord::Base
   validates_uniqueness_of :name
   
   belongs_to :user
+  has_many :pairings, :class_name => "TournamentPairing"
   has_many :pages, :dependent => :destroy
   has_many :tournament_registrations, :dependent => :destroy
   has_many :posts, :dependent => :destroy
