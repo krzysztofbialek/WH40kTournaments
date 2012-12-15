@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(:version => 20121214211300) do
   end
 
   create_table "tournament_pairings", :force => true do |t|
-    t.integer  "player1"
-    t.integer  "player2"
+    t.integer  "player1_id"
+    t.integer  "player2_id"
     t.integer  "player1_game_points"
     t.integer  "player2_game_points"
     t.integer  "player1_match_points"
