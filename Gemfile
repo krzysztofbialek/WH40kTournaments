@@ -50,6 +50,7 @@ group :test do
   gem 'mocha'
   gem 'shoulda'
   gem 'factory_girl_rails'
+  gem 'capybara'
 end
 
 group :production do

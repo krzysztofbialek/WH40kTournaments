@@ -6,10 +6,29 @@ FactoryGirl.define do
     city          "Warszawa"
   end
 
+  factory :post do
+    association :tournament, factory: :tournament
+    association :user, factory: :user
+    name 'Post fajny'
+    body 'Lorem ipsum'
+  end
+
+  factory :user do
+    sequence(:username) { |i| "Ziutek#{i}" }
+    sequence(:email)  { |i| "malo+#{i}@maslo.com" }
+    password 'maslo1111'
+    password_confirmation 'maslo1111' 
+  end
+
+  factory :registration, class: TournamentRegistration do
+    association :tournament, factory: :tournament
+    association :player, factory: :player
+  end
+
   factory :pairing, class: TournamentPairing do
     association :tournament, factory: :tournament
-    association :player1, factory: :player  
-    association :player2, factory: :player, league_id: 'WW002'
+    association :player1_id, factory: :player  
+    association :player2_id, factory: :player, league_id: 'WW002'
   end
 
   factory :player do
