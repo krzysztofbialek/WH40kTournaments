@@ -1,9 +1,10 @@
 FactoryGirl.define do
   factory :tournament do
-    name          "Syrenka"
-    start_date    2.days.from_now
-    rank          "Master"
-    city          "Warszawa"
+    name            "Syrenka"
+    start_date      2.days.from_now
+    rank            "Master"
+    city            "Warszawa"
+    number_of_rounds 3
   end
 
   factory :post do

@@ -8,13 +8,17 @@ class TournamentPairingTest < ActiveSupport::TestCase
     assert_equal 1, tournament.pairings.size
   end
 
-  should 'validate points on update' do
+  should 'be invalid without points on update' do
     pairing = FactoryGirl.create(:pairing)
     assert !pairing.valid?
+  end
+
+  should 'be valid with points on update' do
+    pairing = FactoryGirl.create(:pairing)
     pairing.update_attributes(:player1_game_points => 3, :player2_game_points => 8)
     assert pairing.valid?
   end
-
+  
   should 'count match points correctly' do
     pairing = FactoryGirl.create(:pairing)
     pairing.update_attributes(:player1_game_points => 3, :player2_game_points => 8)

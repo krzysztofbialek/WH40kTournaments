@@ -4,7 +4,8 @@ class Tournament < ActiveRecord::Base
   extend FriendlyId
   TournamentRanks = ['Lokal', 'Czelendżer', 'Master']
 
-  validates_presence_of :name, :start_date, :rank, :city
+  validates_presence_of :name, :start_date, :rank, :city, :number_of_rounds
+  validates_numericality_of :number_of_rounds
   validates_uniqueness_of :name
   
   belongs_to :user
@@ -14,4 +15,9 @@ class Tournament < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   friendly_id :name, use: :slugged
   #has_many :hostel_bookings, :dependent => :destroy
+
+  def update_round
+    increment!(:current_round) 
+  end
+
 end
