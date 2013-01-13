@@ -41,7 +41,15 @@
               %li
                 =link_to 'Zaloguj', login_path
 
-.container-fluid
+.play-tabs
+  %ul.nav.nav-tabs
+    %li
+      %a{href: "#start", data: {togle: "tab"}}
+        Gracze
+    %li
+      %a{href: "#results", data: {togle: "tab"}}
+        Przebieg turnieju
+.container-fluid.play
   = yield 
 .footer-js
   =javascript_include_tag "play"

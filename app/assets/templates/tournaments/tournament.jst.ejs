@@ -1,2 +1,13 @@
-<th><%= city %></th>
-<th><%= rank %></th>
+<table class='table table-bordered play-tournament'>
+  <tr>
+    <th><%= name %>, turniej klasy: <%= rank %></th>
+  </tr>
+  <tr>
+    <th>Bieżąca runda <%= current_round %></th>
+  </tr>
+  <tr class='play-start'>
+    <% if(current_round == 0){ %>
+      <th><a href='#'>Rozpocznij turniej</a></th>
+    <% } %>
+  </tr>
+</table>

@@ -1,5 +1,5 @@
 .players-list{
-  width: 40%;
+  width: 50%;
   float: left;
   .player-army{
   }
@@ -8,4 +8,21 @@
   }
 }
 
+.container-fluid{
+  &.play{
+    width: 1024px;
+    margin: auto;
+  }
+}
 
+.play-tournament{
+  float: left;
+  width: 40%;
+  margin-top: 18px;
+  margin-left: 20px;
+}
+
+.play-tabs{
+  width: 1024px;
+  margin: auto;
+}
