@@ -18,6 +18,6 @@ $(document).ajaxStart(function(){
 });
 
 $(document).ajaxStop(function(){
-  $("#global-feedback").hide();
+  $("#global-feedback").fadeOut();
 });
 
