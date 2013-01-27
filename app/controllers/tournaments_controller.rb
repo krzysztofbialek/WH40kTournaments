@@ -1,12 +1,12 @@
 class TournamentsController < ApplicationController
+  before_filter :load_tournament, :only => [:show, :generate_pairings]
 
   respond_to :json, :html
 
  def show
-  tournament = Tournament.find(params[:id])
   respond_to do |format|
-    format.html{ redirect_to tournament_posts_path(tournament) }
-    format.json{ respond_with tournament }
+    format.html{ redirect_to tournament_posts_path(@tournament) }
+    format.json{ respond_with @tournament }
   end
  end
 
@@ -26,6 +26,10 @@ class TournamentsController < ApplicationController
    else
      render :action => 'new'
    end
+ end
+
+ def generate_pairings
+   respond_with @tournament
  end
 
 end

@@ -3,7 +3,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
       
   def load_tournament
-    @tournament = Tournament.find(params[:tournament_id])
+    if params[:tournament_id] 
+      @tournament = Tournament.find(params[:tournament_id]) 
+    elsif params[:id]
+      @tournament = Tournament.find_by_slug(params[:id])
+    end
   end
 
   def load_pages

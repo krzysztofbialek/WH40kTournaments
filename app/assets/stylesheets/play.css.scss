@@ -26,3 +26,32 @@
   width: 1024px;
   margin: auto;
 }
+
+#global-feedback{
+  display: none;
+  width: 140px;
+  height: 50px;
+  position: fixed;
+  z-index: 2001;
+  top: 50%;
+  left: 50%;
+  margin-left: -61px;
+  margin-top: -61px;
+  background: #fff;
+  background: #fff;
+  border: 1px solid #333;
+  border-radius: 6px;
+  img{
+    position: absolute;
+    top: 2px;
+    left: 6px;
+  }
+  span.text{
+    display: block;
+    text-align: center;
+    width: 180px;
+    position: absolute;
+    bottom: 16px;
+    line-height: 1.3em;
+  }
+}

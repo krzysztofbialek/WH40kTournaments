@@ -51,5 +51,11 @@
         Przebieg turnieju
 .container-fluid.play
   = yield 
+
+#global-feedback
+  = image_tag "ajax-loader.gif"
+  %span.text
+    loading...
+
 .footer-js
   =javascript_include_tag "play"

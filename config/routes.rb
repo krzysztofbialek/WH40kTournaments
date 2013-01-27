@@ -54,6 +54,9 @@ Dmp40k::Application.routes.draw do
         get 'toggle_accept'
       end
     end 
+    member do
+      post 'generate_pairings'
+    end
   end
   
   namespace :admin do

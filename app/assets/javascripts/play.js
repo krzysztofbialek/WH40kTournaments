@@ -12,3 +12,12 @@
 //= require_tree ./backbone/views
 //= require_tree ./backbone/routers
 //= require dmp40k
+    
+$(document).ajaxStart(function(){
+  $("#global-feedback").show();
+});
+
+$(document).ajaxStop(function(){
+  $("#global-feedback").hide();
+});
+
