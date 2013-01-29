@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226205722) do
+ActiveRecord::Schema.define(:version => 20130129195941) do
 
   create_table "hostel_bookings", :force => true do |t|
     t.string   "first_name"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20121226205722) do
     t.integer  "tournament_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "pausing",              :default => false
   end
 
   create_table "tournament_registrations", :force => true do |t|

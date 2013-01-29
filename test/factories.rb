@@ -36,7 +36,16 @@ FactoryGirl.define do
     first_name   "Albert" 
     last_name    "Motyka"
     nick         "Hatchet"
-    league_id    "WW001"
+    sequence(:league_id) do |i| 
+      case i
+      when 1...10
+        "WW00#{i}"
+      when 10...100
+        "WW0#{i}"
+      else 
+        "WW#{i}"
+      end
+    end
   end
 
 end
