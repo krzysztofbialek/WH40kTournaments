@@ -7,6 +7,13 @@ class Player < ActiveRecord::Base
              'Tyranids', 'Necrons', 'Tau']
 
   has_many :tournament_registrations, :dependent => :nullify
+  has_many :player1_pairings, :class_name => 'TournamentPairing', :foreign_key => 'player1_id'
+  has_many :player2_pairings, :class_name => 'TournamentPairing', :foreign_key => 'player2_id'
+  
+  def pairings
+     player1_pairings + player2_pairings
+  end
+
 
   #validates_presence_of :nick
   validates_uniqueness_of :league_id, :allow_blank => true

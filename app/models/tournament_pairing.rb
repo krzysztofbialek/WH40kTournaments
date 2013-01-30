@@ -1,6 +1,9 @@
 class TournamentPairing < ActiveRecord::Base
 
   belongs_to :tournament, :dependent => :destroy
+  belongs_to :player1, :class_name => "Player", :foreign_key => "player1_id"
+  belongs_to :player2, :class_name => "Player", :foreign_key => "player2_id"
+
 
   validates_presence_of :player1_game_points, :player2_game_points, :on => :update
   validates_numericality_of :player1_game_points, :player2_game_points, :on => :update
@@ -21,6 +24,12 @@ class TournamentPairing < ActiveRecord::Base
   def update_match_points(won, points)
     send("player#{won}_match_points=", points ) 
     send("player#{(won == 1? 2 : 1)}_match_points=", 20 - points ) 
+  end
+
+  def as_json(*args)
+    super(
+      :only => [:id, :player1_game_points, :player2_game_points, :player1_match_points, :player2_match_points], 
+    ).merge(:player1_name => player1.name, :player2_name => player2.name)
   end
 
 end
