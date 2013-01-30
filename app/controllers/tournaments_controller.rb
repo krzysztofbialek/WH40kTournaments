@@ -29,7 +29,9 @@ class TournamentsController < ApplicationController
  end
 
  def generate_pairings
-   respond_with @tournament
+   if @tournament.generate_pairings
+     render :json => 'ok'
+   end
  end
 
 end

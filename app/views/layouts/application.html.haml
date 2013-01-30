@@ -25,8 +25,8 @@
               -if logged_in? && (current_user == @tournament.user || current_user.admin?)
                 %li
                   = link_to 'Dodaj sekcję', new_tournament_page_path(@tournament)
-                %li
-                  = link_to 'Rozpocznij turniej', tournament_play_path(@tournament) 
+              %li
+                = link_to 'Rozpocznij turniej', tournament_play_path(@tournament) 
           %ul.nav.pull-right
             %li
               =link_to "Wszystkie turnieje", tournaments_path

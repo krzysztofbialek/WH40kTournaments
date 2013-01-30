@@ -41,11 +41,11 @@ Dmp40k::Application.routes.draw do
     namespace :play do
       resources :players
       resources :tournaments
+      resources :tournament_pairings, :as => 'pairings'
     end
     resource :play
     resources :posts
     resources :pages
-    resources :tournament_pairings, :as => 'pairings'
     resources :tournament_registrations, :path => "registrations" do
       member do
         get 'toggle_payment', :as => 'toggle_payment'
