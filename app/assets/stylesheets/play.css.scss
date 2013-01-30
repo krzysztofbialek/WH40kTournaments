@@ -30,8 +30,19 @@
 .pairings-list{
   clear: both;
   width: 50%;
-  td.player{
-    width: 50%;
+  td.table_nr{
+    text-align: center;
+    vertical-align: middle;
+  }
+  td.players{
+    padding: 0px;
+  }
+  div.player{
+    padding: 5px;
+    text-align: center;
+    &:first-child{
+      border-bottom: solid 1px #dddddd;
+    }
   }
 }
 
