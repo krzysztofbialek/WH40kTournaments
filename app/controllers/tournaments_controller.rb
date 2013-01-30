@@ -1,7 +1,7 @@
 class TournamentsController < ApplicationController
   before_filter :load_tournament, :only => [:show, :generate_pairings]
 
-  respond_to :json, :html
+  respond_to :json
 
  def show
   respond_to do |format|
@@ -30,9 +30,10 @@ class TournamentsController < ApplicationController
 
  def generate_pairings
    if @tournament.generate_pairings
-     render :json => { :status => "ok" }
+     pairings = @tournament.pairings
+     respond_with pairings
    else
-     render :json => { :status => "failed" }
+     raise NotFound
    end
  end
 

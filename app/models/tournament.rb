@@ -27,6 +27,7 @@ class Tournament < ActiveRecord::Base
     players.each_slice(2) do |p1, p2|
       pairings.create(:player1_id => p1.player_id, :player2_id => p2.player_id, :round => current_round)
     end
+    true
   end
 
   def pausing_pairing

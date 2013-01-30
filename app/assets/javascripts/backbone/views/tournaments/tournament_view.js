@@ -8,8 +8,6 @@ TournamentView = Backbone.View.extend({
 
   render: function(){
     this.$el.html(this.template(this.model.toJSON()));
-    this.$(".generate-pairings").bind("click", this.model.generatePairings);
-    this.$(".generate-new-round").bind("click", this.model.generateNewRound);
     return this
   },
 

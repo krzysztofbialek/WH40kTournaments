@@ -5,6 +5,8 @@ PairingsIndex = Backbone.View.extend({
   
   initialize: function(){
     this.collection.on('reset', this.render, this);
+    $(".generate-pairings").live("click", this.collection.generatePairings);
+    $(".generate-new-round").live("click", this.collection.generateNewRound);
   },
 
   render: function(){
@@ -13,6 +15,7 @@ PairingsIndex = Backbone.View.extend({
   },
   
   addOne: function(pairing){
+    console.log(pairing)
     var pairingView = new PairingView({model: pairing});
     pairingView.render();
     this.$('tbody').append(pairingView.el);
