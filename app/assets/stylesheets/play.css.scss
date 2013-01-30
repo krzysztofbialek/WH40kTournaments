@@ -27,6 +27,14 @@
   margin: auto;
 }
 
+.pairings-list{
+  clear: both;
+  width: 50%;
+  td.player{
+    width: 50%;
+  }
+}
+
 #global-feedback{
   display: none;
   width: 140px;

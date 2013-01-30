@@ -4,7 +4,7 @@ Tournament = Backbone.Model.extend({
 
   generatePairings: function(){
     $.post('/tournaments/' + Dmp40k.getTournamentId() + '/generate_pairings', function(data){
-      alert(data.created_at);
+      alert(data.inspect);
     });
   },
 
