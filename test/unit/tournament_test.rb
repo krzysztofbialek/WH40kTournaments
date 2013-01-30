@@ -58,6 +58,8 @@ class TournamentTest < ActiveSupport::TestCase
     should 'increment before generating pairings' do
       2.times{FactoryGirl.create(:registration, :tournament => @tournament)}
     
+      assert_equal 0, @tournament.current_round
+      
       @tournament.generate_pairings
 
       assert_equal 1, @tournament.current_round
