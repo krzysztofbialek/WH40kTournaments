@@ -8,4 +8,8 @@ Tournament = Backbone.Model.extend({
     });
   },
 
+  generateNewRound: function(){
+    $.post('/tournaments/' + Dmp40k.getTournamentId() + '/generate_pairings' );
+  },
+
 });

@@ -1,6 +1,6 @@
 class TournamentPairing < ActiveRecord::Base
 
-  belongs_to :tournament, :dependent => :destroy
+  belongs_to :tournament
   belongs_to :player1, :class_name => "Player", :foreign_key => "player1_id"
   belongs_to :player2, :class_name => "Player", :foreign_key => "player2_id"
 
@@ -29,7 +29,7 @@ class TournamentPairing < ActiveRecord::Base
   def as_json(*args)
     super(
       :only => [:id, :player1_game_points, :player2_game_points, :player1_match_points, :player2_match_points], 
-    ).merge(:player1_name => player1.name, :player2_name => player2.name)
+    ).merge(:player1_name => player1.try(:name), :player2_name => player2.try(:name))
   end
 
 end

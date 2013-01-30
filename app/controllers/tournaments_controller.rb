@@ -30,7 +30,9 @@ class TournamentsController < ApplicationController
 
  def generate_pairings
    if @tournament.generate_pairings
-     render :json => 'ok'
+     render :json => { :status => "ok" }
+   else
+     render :json => { :status => "failed" }
    end
  end
 

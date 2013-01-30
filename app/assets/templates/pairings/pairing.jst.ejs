@@ -1,9 +1,17 @@
 <td class='table_nr'><%= id %></td>
 <td class='players'>
   <div class='player'>
-    <%= player1_name %>
+    <% if(player1_name) { %>
+      <%= player1_name %>
+    <% } else {  %>
+      pauza
+    <% } %>
   </div>
   <div class='player'>
-    <%= player2_name %>
+    <% if(player2_name) { %>
+      <%= player2_name %>
+    <% } else {  %>
+      pauza
+    <% } %>
   </div>
 </td>
