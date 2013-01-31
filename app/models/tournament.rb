@@ -17,11 +17,13 @@ class Tournament < ActiveRecord::Base
   #has_many :hostel_bookings, :dependent => :destroy
 
   def update_round
-    increment!(:current_round) 
+    increment!(:current_round)
   end
 
+
   def generate_pairings
-    update_round
+    return false if last_round?
+    update_round 
     players = tournament_registrations
     players = remove_pausing_pairing(players) if players.size.odd?
     players.each_slice(2) do |p1, p2|
@@ -30,6 +32,10 @@ class Tournament < ActiveRecord::Base
     true
   end
 
+  def last_round?
+    current_round == number_of_rounds
+  end
+  
   def pausing_pairing
     pairings.where(:pausing => true)
   end

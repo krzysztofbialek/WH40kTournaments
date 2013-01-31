@@ -7,15 +7,20 @@ Pairings = Backbone.Collection.extend({
   },
  
   generatePairings: function() {
-    console.log(collection)
-    $.post('/tournaments/' + Dmp40k.getTournamentId() + '/generate_pairings', function(data){
-      alert(data.inspect);
-    });
+    this.url = '/tournaments/' + Dmp40k.getTournamentId() + '/generate_pairings';
+    this.fetch();
   },
 
   generateNewRound: function(){
     this.url = '/tournaments/' + Dmp40k.getTournamentId() + '/generate_pairings';
-    this.fetch();
+    this.fetch({
+      success: function(response, xhr){
+        console.log('cool')
+      },
+      error: function(collection, error){
+        alert(JSON.parse(error.responseText).msg);
+      },
+    });
   },
 
 });

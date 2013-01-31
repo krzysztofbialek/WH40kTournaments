@@ -1,3 +1,4 @@
+#encoding: utf-8
 class TournamentsController < ApplicationController
   before_filter :load_tournament, :only => [:show, :generate_pairings]
 
@@ -33,7 +34,7 @@ class TournamentsController < ApplicationController
      pairings = @tournament.pairings
      respond_with pairings
    else
-     raise NotFound
+     render :json => {:msg => 'Aktualne runda jest ostatnią', :code => '400'}, :status => 422
    end
  end
 
