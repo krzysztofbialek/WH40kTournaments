@@ -28,7 +28,7 @@ class TournamentPairing < ActiveRecord::Base
 
   def as_json(*args)
     super(
-      :only => [:id, :player1_game_points, :player2_game_points, :player1_match_points, :player2_match_points], 
+      :only => [:id, :player1_game_points, :player2_game_points, :player1_match_points, :player2_match_points, :round, :table], 
     ).merge(:player1_name => player1.try(:name), :player2_name => player2.try(:name))
   end
 

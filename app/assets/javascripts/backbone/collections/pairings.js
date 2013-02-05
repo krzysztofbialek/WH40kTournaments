@@ -9,6 +9,7 @@ Pairings = Backbone.Collection.extend({
   generatePairings: function() {
     this.url = '/tournaments/' + Dmp40k.getTournamentId() + '/generate_pairings';
     this.fetch();
+    this.updateRound();
   },
 
   generateNewRound: function(){

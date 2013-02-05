@@ -21,10 +21,11 @@ class TournamentTest < ActiveSupport::TestCase
 
     setup do
       @tournament = FactoryGirl.create(:tournament)
+      2.times{FactoryGirl.create(:registration, :tournament => @tournament)}
     end   
  
     should 'generate pairings with #generate_pairings' do
-      10.times{FactoryGirl.create(:registration, :tournament => @tournament)}
+      8.times{FactoryGirl.create(:registration, :tournament => @tournament)}
 
       @tournament.generate_pairings
 
@@ -32,7 +33,7 @@ class TournamentTest < ActiveSupport::TestCase
     end
 
     should 'generating pausing pairing when players number is odd' do
-      3.times{FactoryGirl.create(:registration, :tournament => @tournament)}
+      FactoryGirl.create(:registration, :tournament => @tournament)
     
       @tournament.generate_pairings
 
@@ -40,7 +41,7 @@ class TournamentTest < ActiveSupport::TestCase
     end
 
     should 'mark pausing player with flag' do
-      3.times{FactoryGirl.create(:registration, :tournament => @tournament)}
+      FactoryGirl.create(:registration, :tournament => @tournament)
     
       @tournament.generate_pairings
 
@@ -48,7 +49,6 @@ class TournamentTest < ActiveSupport::TestCase
     end
     
     should 'set correct round in pairing' do
-      2.times{FactoryGirl.create(:registration, :tournament => @tournament)}
     
       @tournament.generate_pairings
 
@@ -56,7 +56,6 @@ class TournamentTest < ActiveSupport::TestCase
     end
     
     should 'increment before generating pairings' do
-      2.times{FactoryGirl.create(:registration, :tournament => @tournament)}
     
       assert_equal 0, @tournament.current_round
       
@@ -66,7 +65,6 @@ class TournamentTest < ActiveSupport::TestCase
     end
 
     should 'not generate round if reached last round' do
-      2.times{FactoryGirl.create(:registration, :tournament => @tournament)}
       3.times{@tournament.generate_pairings}
       
       assert_equal 3, @tournament.pairings.size
@@ -75,6 +73,15 @@ class TournamentTest < ActiveSupport::TestCase
       assert_no_difference(["@tournament.current_round", "@tournament.pairings.size"]) do
         @tournament.generate_pairings
       end
+    end
+
+    should 'add correct table numbers to generate pairings' do
+      4.times{FactoryGirl.create(:registration, :tournament => @tournament)}
+      3.times{@tournament.generate_pairings}
+     
+      pairings = @tournament.pairings.order('tournament_pairings.table ASC')
+      assert_equal 1, pairings.first.table
+      assert_equal 3, pairings.last.table
     end
   end
 end

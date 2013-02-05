@@ -26,10 +26,16 @@ class Tournament < ActiveRecord::Base
     update_round 
     players = tournament_registrations
     players = remove_pausing_pairing(players) if players.size.odd?
-    players.each_slice(2) do |p1, p2|
-      pairings.create(:player1_id => p1.player_id, :player2_id => p2.player_id, :round => current_round)
-    end
+    create_pairings(players)
     true
+  end
+
+  def create_pairings(players)
+    table = 1
+    players.each_slice(2) do |p1, p2|
+      pairings.create(:player1_id => p1.player_id, :player2_id => p2.player_id, :round => current_round, :table => table)
+      table += 1
+    end
   end
 
   def last_round?
