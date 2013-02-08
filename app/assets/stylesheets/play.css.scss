@@ -44,6 +44,16 @@
       border-bottom: solid 1px #dddddd;
     }
   }
+  div.add-results{
+    border-top: solid 1px #dddddd;
+  }
+  td.table_nr{
+    padding: 0px;
+    div{
+      padding: 5px;
+      text-align: center;
+    }
+  }
 }
 
 #global-feedback{
