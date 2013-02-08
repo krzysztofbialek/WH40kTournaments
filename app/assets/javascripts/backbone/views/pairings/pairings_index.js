@@ -17,15 +17,11 @@ PairingsIndex = Backbone.View.extend({
   },
  
   addRound: function(round, index){
-    this.$('tbody').append('<tr><td colspan=2>Runda '+ index +'</td></tr>')
-    round.forEach(this.addOne, this);
+    roundView = new PairingsRound
+    roundView.render(round, index);
+    this.$('table').append(roundView.el);
   },
  
-  addOne: function(pairing){
-    var pairingView = new PairingView({model: pairing});
-    pairingView.render();
-    this.$('tbody').append(pairingView.el);
-  },
 
   errorHandler: function(collection, error){
     alert(error);
