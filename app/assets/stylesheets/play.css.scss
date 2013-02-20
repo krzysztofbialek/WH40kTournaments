@@ -56,6 +56,22 @@
   }
 }
 
+form#new_entry{
+
+  .game-points{
+    float:left;
+    clear:both;
+  }
+
+  .match-points{
+    float:right;
+  }
+  
+  .submit{
+    clear: both
+  }
+}
+
 #global-feedback{
   display: none;
   width: 140px;

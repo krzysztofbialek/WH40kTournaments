@@ -3,8 +3,36 @@
     Stół: <%= table %>
   </div>
   <div class='add-results'>
-    <a href="#"><i class="icon-plus"></i> Dodaj wynik</a>
+    <a href="#modal_<%= table %>" data-toggle="modal"><i class="icon-plus"></i> Dodaj wynik</a>
   </div>
+
+  <div id="modal_<%= table %>" class="modal hide fade" role="dialog" >
+    <form id="new_entry">
+      <div class='game-points'>
+        <label for="player_1_game_points">Małe punkty - <%= player1_name %></label>
+        <input type="number" name="punkty pierwszego gracza" id="player_1_game_points" value='<%= player1_game_points %>' >
+      </div>
+      <div class='match-points'>
+        <label for="player_1_match_points">Duże punkty - <%= player1_name %></label>
+        <input type="number" name="punkty pierwszego gracza" id="player_1_match_points" value='<%= player1_match_points %>' >
+      </div>
+      <div class='game-points'>
+        <label for="player_2_game_points">Małe punkty - <%= player2_name %></label>
+        <input type="number" name="punkty pierwszego gracza" id="player_2_game_points" value=<%= player2_game_points %> >
+        <%= player1_game_points %>
+        <% console.log(player1_game_points) %>
+      </div>
+      <div class='match-points'>
+        <label for="player_2_match_points">Duże punkty - <%= player2_name %></label>
+        <input type="number" name="punkty pierwszego gracza" id="player_2_match_points" value='<%= player2_match_points %>' >
+      </div>
+      <div class='submit'>
+        <input type="submit" value="Dodaj wyniki" >
+      </div>
+    </form>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  </div>
+
 </td>
 <td class='players'>
   <div class='player'>
