@@ -1,9 +1,8 @@
 Pairing = Backbone.Model.extend({
   
-  urlRoot: 'play/pairings',
+  urlRoot: 'play/tournament_pairings',
 
   getRound: function(){
-    console.log(model)
     return this.get('round');
   },
 });

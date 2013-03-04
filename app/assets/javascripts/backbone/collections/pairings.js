@@ -25,12 +25,10 @@ Pairings = Backbone.Collection.extend({
   },
 
   updateRound: function(){
-    console.log('update')
     text = $('.tournament_round').text();
     n = parseInt(text.match(/\d+/));
     text = text.replace(/\d+/, n + 1);
     $('.tournament_round').text(text);
-    console.log(text);
   },
 
 });

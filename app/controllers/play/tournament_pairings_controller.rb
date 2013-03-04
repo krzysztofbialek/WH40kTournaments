@@ -7,4 +7,12 @@ class Play::TournamentPairingsController < ApplicationController
     respond_with pairings
   end
 
+  def update
+    pairing = @tournament.pairings.find(params[:id])
+    if pairing.update_attributes(params[:tournament_pairing].slice(:player1_game_points, :player2_game_points))
+      respond_with :status => 200
+    else
+      respond_with :status => 422
+    end
+  end
 end

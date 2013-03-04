@@ -54,9 +54,12 @@
       text-align: center;
     }
   }
+  .completed{
+    background-color: green;
+  }
 }
 
-form#new_entry{
+form#update_pairing{
 
   .game-points{
     float:left;
