@@ -24,18 +24,42 @@ class Tournament < ActiveRecord::Base
   def generate_pairings
     return false if last_round?
     update_round 
-    players = tournament_registrations
-    players = remove_pausing_pairing(players) if players.size.odd?
-    create_pairings(players)
+    registrations = tournament_registrations
+    if current_round == 1
+      registrations = registrations.shuffle
+    else
+      registrations = sort_players(registrations)
+    end
+    registrations = remove_pausing_pairing(registrations) if registrations.size.odd?
+    create_pairings(registrations)
     true
   end
 
-  def create_pairings(players)
+  def create_pairings(registrations)
     table = 1
-    players.each_slice(2) do |p1, p2|
+    sorted_registrations = prepare_list(registrations)
+    sorted_registrations.each_slice(2) do |p1, p2|
       pairings.create(:player1_id => p1.player_id, :player2_id => p2.player_id, :round => current_round, :table => table)
       table += 1
     end
+  end
+
+  def prepare_list(registrations)
+    sorted_players = []
+    while registrations.any? do
+      p1 = registrations.shift
+      sorted_players << p1
+      index = 0
+      while p1.player.played_with?(registrations[index]) do
+        index += 1
+      end
+      sorted_players << registrations.slice!(index)
+    end
+    sorted_players.compact
+  end
+
+  def sort_players(registrations)
+    registrations.sort_by { |registration| registration.player.points_for_tournament(self) }.reverse 
   end
 
   def last_round?
@@ -50,7 +74,7 @@ class Tournament < ActiveRecord::Base
 
   def remove_pausing_pairing(players)
     pausing_player = players.pop.player
-    pairings.create(:player1_id => pausing_player.id, :pausing => true, :round => current_round)
+    pairings.create(:player1_id => pausing_player.id, :pausing => true, :round => current_round, :player1_game_points => 13, :player2_game_points => 0)
     players
   end
 end

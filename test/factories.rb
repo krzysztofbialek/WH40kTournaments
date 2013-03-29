@@ -29,7 +29,7 @@ FactoryGirl.define do
   factory :pairing, class: TournamentPairing do
     association :tournament, factory: :tournament
     association :player1_id, factory: :player  
-    association :player2_id, factory: :player, league_id: 'WW002'
+    association :player2_id, factory: :player 
   end
 
   factory :player do

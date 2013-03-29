@@ -88,14 +88,21 @@ class TournamentTest < ActiveSupport::TestCase
 
       should 'not generate pairings with same players' do
         
-        2.times{FactoryGirl.create(:registration, :tournament => @tournament)}
+        8.times{FactoryGirl.create(:registration, :tournament => @tournament)}
         player1 = @tournament.tournament_registrations[0].player
         player2 = @tournament.tournament_registrations[1].player
         @tournament.update_attribute('number_of_rounds', 5)
-        5.times{@tournament.generate_pairings}
-    
-        pairings = @tournament.pairings.order('tournament_pairings')
-        assert_equal 1, pairings.where(:player1_id => player1.id, :player2_id => player2.id).count
+        4.times do |i|
+          @tournament.generate_pairings
+          unless i == 0 
+            tp = @tournament.pairings.where(:round => i)
+            tp.each do |p|
+              p.update_attributes(:player1_game_points => rand(10), :player2_game_points => rand(10))
+            end
+          end
+        end
+            
+        assert_equal 1, @tournament.pairings.where(:player1_id => player2.id, :player2_id => player1.id).count +  @tournament.pairings.where(:player1_id => player1.id, :player2_id => player2.id).count
       end
     
     end

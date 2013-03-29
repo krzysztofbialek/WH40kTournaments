@@ -16,21 +16,21 @@
       </div>
       <div class='match-points'>
         <label for="player1_match_points">Duże punkty - <%= player1_name %></label>
-        <input type="number" name="player2_match_points" id="player1_match_points" value='<%= player1_match_points %>' >
+        <input disabled type="number" name="player2_match_points" id="player1_match_points" value='<%= player1_match_points %>' >
       </div>
       <div class='game-points'>
         <label for="player2_game_points">Małe punkty - <%= player2_name %></label>
         <input type="number" name="player2_game_points" id="player2_game_points" value=<%= player2_game_points %> >
         <%= player1_game_points %>
-        <% console.log(player1_game_points) %>
       </div>
       <div class='match-points'>
         <label for="player2_match_points">Duże punkty - <%= player2_name %></label>
-        <input type="number" name="player2_match_points" id="player2_match_points" value='<%= player2_match_points %>' >
+        <input disabled type="number" name="player2_match_points" id="player2_match_points" value='<%= player2_match_points %>' >
       </div>
       <div class='submit'>
         <input type="submit" value="Dodaj wyniki" >
       </div>
+      <div class='errors'></div>
     </form>
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   </div>

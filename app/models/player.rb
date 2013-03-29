@@ -30,6 +30,18 @@ class Player < ActiveRecord::Base
     "#{first_name} '#{nick}' #{last_name}"
   end
 
+  def points_for_tournament(id)
+    player1_pairings.where(:tournament_id => id).sum(:player1_match_points) +
+    player2_pairings.where(:tournament_id => id).sum(:player2_match_points) 
+  end
+
+  def played_with?(registration = nil)
+    return false unless registration.present?
+    tournament = registration.tournament_id
+    player1_pairings.where(:tournament_id => tournament, :player2_id => registration.player_id).any? or
+    player2_pairings.where(:tournament_id => tournament, :player1_id => registration.player_id).any?
+  end
+
   def self.import(file)
     CSV.parse(file) do |row|
       user = Player.find_or_initialize_by_league_id(row[0])

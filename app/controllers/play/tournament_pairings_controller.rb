@@ -12,7 +12,7 @@ class Play::TournamentPairingsController < ApplicationController
     if pairing.update_attributes(params[:tournament_pairing].slice(:player1_game_points, :player2_game_points))
       respond_with :status => 200
     else
-      respond_with :status => 422
+      render :json => {:msg => pairing.errors.full_messages.join(',')}, :status => 422
     end
   end
 end

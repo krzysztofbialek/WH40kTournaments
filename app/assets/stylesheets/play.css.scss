@@ -73,6 +73,9 @@ form#update_pairing{
   .submit{
     clear: both
   }
+  .errors{
+    color: red;
+  }
 }
 
 #global-feedback{

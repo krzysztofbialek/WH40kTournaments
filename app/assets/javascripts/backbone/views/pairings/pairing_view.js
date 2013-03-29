@@ -14,7 +14,7 @@ PairingView = Backbone.View.extend({
 
   render: function(){
     this.$el.html(this.template(this.model.toJSON()));
-    if (this.model.get('player1_match_points') && this.model.get('player2_match_points')){
+    if (this.model.get('player1_match_points') && this.model.get('player2_match_points') || this.model.get('pausing')){
       this.$el.addClass('completed')
     }
     return this
@@ -25,11 +25,13 @@ PairingView = Backbone.View.extend({
     var that = this
     event.preventDefault();
     this.model.save(null,{
-      success: function(results){ 
+      success: function(model, results){ 
         $('#modal_' + id).modal('hide'); 
         that.$el.addClass('completed');
       },
-      error: function(results){alert('hooj')}
+      error: function(model, results){
+        $('#modal_' + id).find('.errors').text(JSON.parse(results.responseText)['msg']);
+      }
     });
   },
 
