@@ -22,9 +22,4 @@ PairingsIndex = Backbone.View.extend({
     this.$('table').append(roundView.el);
   },
  
-
-  errorHandler: function(collection, error){
-    alert(error);
-  },
-
 });

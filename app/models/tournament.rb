@@ -20,6 +20,9 @@ class Tournament < ActiveRecord::Base
     increment!(:current_round)
   end
 
+  def round_completed?
+    pairings.where(:round => current_round).select(&:invalid?).empty?
+  end
 
   def generate_pairings
     return false if last_round?

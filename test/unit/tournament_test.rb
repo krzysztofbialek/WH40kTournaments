@@ -14,6 +14,19 @@ class TournamentTest < ActiveSupport::TestCase
       tournament.update_round
       assert_equal 1, tournament.current_round
     end
+
+    should 'check if round_completed?' do
+      @tournament = FactoryGirl.create(:tournament)
+      4.times{FactoryGirl.create(:registration, :tournament => @tournament)}
+      @tournament.generate_pairings
+      assert !@tournament.round_completed?
+      
+      @tournament.pairings.each do |t| 
+        t.update_attributes(:player1_game_points => 3, :player2_game_points => 5)
+      end
+
+      assert @tournament.round_completed?
+    end
   
   end
 

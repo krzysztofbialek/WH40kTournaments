@@ -30,11 +30,16 @@ class TournamentsController < ApplicationController
  end
 
  def generate_pairings
-   if @tournament.generate_pairings
-     pairings = @tournament.pairings
-     respond_with pairings
+   if @tournament.round_completed?
+      debugger
+     if @tournament.generate_pairings
+       pairings = @tournament.pairings
+       respond_with pairings
+     else
+       render :json => {:msg => 'Aktualne runda jest ostatnią', :code => '400'}, :status => 422
+     end
    else
-     render :json => {:msg => 'Aktualne runda jest ostatnią', :code => '400'}, :status => 422
+     render :json => {:msg => 'Wprowadź wszystkie wyniki', :code => '400'}, :status => 422
    end
  end
 
