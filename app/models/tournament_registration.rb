@@ -14,7 +14,15 @@ class TournamentRegistration < ActiveRecord::Base
   end
 
   def as_json(*args)
-    super(:only => [:army, :id]).merge(:player_name => player.name)
+    super(:only => [:army, :id], :methods => [:current_points, :played_games]).merge(:player_name => player.name, :player_full_name => player.full_name)
+  end
+
+  def current_points
+    player.points_for_tournament(tournament)
+  end
+
+  def played_games
+    tournament.pairings.where('player1_id = ? OR player2_id = ?', player_id, player_id).count
   end
 
 end

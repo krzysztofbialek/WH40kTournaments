@@ -17,14 +17,21 @@ class Player < ActiveRecord::Base
     }
 }
   
-  def pairings
-     player1_pairings + player2_pairings
-  end
+  #def pairings
+  #   player1_pairings + player2_pairings
+  #end
 
 
   #validates_presence_of :nick
   validates_uniqueness_of :league_id, :allow_blank => true
   validates_format_of :league_id, :with => /^[A-Za-z]{2}\d{3}$/, :allow_blank => true
+  def full_name
+    if first_name && last_name
+      "#{first_name} #{last_name}"
+    else
+      nick
+    end
+  end
 
   def name
     "#{first_name} '#{nick}' #{last_name}"

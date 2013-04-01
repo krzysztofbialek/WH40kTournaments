@@ -1,5 +1,5 @@
 .players-list{
-  width: 50%;
+  width: 100%;
   float: left;
   .player-army{
   }
@@ -17,9 +17,7 @@
 
 .play-tournament{
   float: left;
-  width: 40%;
   margin-top: 18px;
-  margin-left: 20px;
 }
 
 .play-tabs{
@@ -27,9 +25,18 @@
   margin: auto;
 }
 
+.left-column{
+  width: 50%;
+  float: left;
+}
+
+.right-column{
+  width: 47%;
+  float: right;
+}
+
 .pairings-list{
   clear: both;
-  width: 50%;
   td.table_nr{
     text-align: center;
     vertical-align: middle;
