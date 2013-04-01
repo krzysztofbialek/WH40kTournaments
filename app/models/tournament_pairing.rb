@@ -9,7 +9,14 @@ class TournamentPairing < ActiveRecord::Base
   validates_numericality_of :player1_game_points, :player2_game_points, :on => :update
 
   before_update :count_match_points
+  after_update :update_registration
 
+  def update_registration
+    registrations = tournament.tournament_registrations.where(:player_id => [player1_id, player2_id])
+    registrations.each_with_index do |reg, i|
+      reg.update_attributes(:current_points => reg.player.points_for_tournament(tournament), :played_games => round )
+    end
+  end
 
   def count_match_points
     if player1_game_points && player2_game_points

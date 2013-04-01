@@ -26,7 +26,8 @@
                 %li
                   = link_to 'Dodaj sekcję', new_tournament_page_path(@tournament)
               %li
-                = link_to 'Rozpocznij turniej', tournament_play_path(@tournament) 
+                - text = @tournament.current_round == 0 ? 'Rozpocznij turniej' : 'Przebieg turnieju'
+                = link_to text , tournament_play_path(@tournament) 
           %ul.nav.pull-right
             %li
               =link_to "Wszystkie turnieje", tournaments_path

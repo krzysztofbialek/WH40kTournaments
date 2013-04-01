@@ -31,7 +31,6 @@ class TournamentsController < ApplicationController
 
  def generate_pairings
    if @tournament.round_completed?
-      debugger
      if @tournament.generate_pairings
        pairings = @tournament.pairings
        respond_with pairings

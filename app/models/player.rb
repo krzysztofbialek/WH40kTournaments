@@ -15,7 +15,7 @@ class Player < ActiveRecord::Base
       FROM tournament_pairings AS tp
       WHERE tp.player1_id = #{id} OR tp.player2_id = #{id}
     }
-}
+  }
   
   #def pairings
   #   player1_pairings + player2_pairings

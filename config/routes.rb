@@ -40,6 +40,7 @@ Dmp40k::Application.routes.draw do
   resources :tournaments do
     namespace :play do
       resources :players
+      resources :results 
       resources :tournaments
       resources :tournament_pairings, :as => 'pairings', :only => [:index, :update]
     end
