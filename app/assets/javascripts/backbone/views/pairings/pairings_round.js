@@ -12,7 +12,7 @@ PairingsRound = Backbone.View.extend({
     this.$el.attr('id', 'round' + index)
     this.$el.append('<tr><td class="round" colspan=2>Runda '+ index +'</td></tr>')
     round.forEach(this.addOne, this);
-    this.$('.round').live('click', this.toggleRound, this)
+    this.$('.round').on('click', this.toggleRound, this)
   },
     
   addOne: function(pairing){

@@ -3,9 +3,9 @@ PairingsIndex = Backbone.View.extend({
   className: 'pairings-list',
   
   initialize: function(){
-    this.collection.on('reset', this.render, this);
-    $(".generate-pairings").live("click", this.collection.generatePairings);
-    $(".generate-new-round").live("click", this.collection.generateNewRound);
+    this.collection.bind('reset', this.render, this);
+    $(document).bind("click", "generate-pairings", this.collection.generatePairings);
+    $(document).bind("click", "generate-new-round", this.collection.generateNewRound);
   },
 
   render: function(){

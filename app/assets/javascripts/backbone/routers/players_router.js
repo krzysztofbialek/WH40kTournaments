@@ -21,10 +21,10 @@ var Dmp40k =  new (Backbone.Router.extend({
   },
  
   index: function(){
-    this.playersList.fetch();
-    this.resultsList.fetch();
+    this.playersList.fetch({reset: true});
+    this.resultsList.fetch({reset: true});
     this.tournament.fetch();
-    this.pairingsList.fetch();
+    this.pairingsList.fetch({reset: true});
   },
   
   getTournamentId: function(){

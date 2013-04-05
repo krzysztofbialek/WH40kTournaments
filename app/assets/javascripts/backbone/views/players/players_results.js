@@ -4,8 +4,8 @@ PlayersResults = Backbone.View.extend({
   
   
   initialize: function(){
-    this.collection.on('add', this.addOne, this);
-    this.collection.on('reset', this.render, this);
+    this.collection.bind('add', this.addOne, this);
+    this.collection.bind('reset', this.render, this);
   },
 
   render: function(){

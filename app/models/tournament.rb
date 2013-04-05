@@ -2,6 +2,7 @@
 
 class Tournament < ActiveRecord::Base
   extend FriendlyId
+  include AASM
   TournamentRanks = ['Lokal', 'Czelendżer', 'Master']
 
   validates_presence_of :name, :start_date, :rank, :city, :number_of_rounds
@@ -15,6 +16,21 @@ class Tournament < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   friendly_id :name, use: :slugged
   #has_many :hostel_bookings, :dependent => :destroy
+
+  aasm :column => 'state' do
+  
+    state :new, :initial => true
+    state :ongoing
+    state :finished
+ 
+    event :start do
+      transitions from: :new, to: :ongoing
+    end
+ 
+    event :finish do
+      transitions from: :ongoing, to: :finished
+    end
+  end
 
   def update_round
     increment!(:current_round)
