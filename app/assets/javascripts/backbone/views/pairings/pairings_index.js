@@ -4,8 +4,7 @@ PairingsIndex = Backbone.View.extend({
   
   initialize: function(){
     this.collection.bind('reset', this.render, this);
-    $(document).bind("click", "generate-pairings", this.collection.generatePairings);
-    $(document).bind("click", "generate-new-round", this.collection.generateNewRound);
+    $('body').on("click", ".generate-new-round", this.collection.generateNewRound);
   },
 
   render: function(){
