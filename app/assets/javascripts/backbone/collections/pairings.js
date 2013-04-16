@@ -20,7 +20,8 @@ Pairings = Backbone.Collection.extend({
       }, this),
       error: function(collection, error){
         alert(JSON.parse(error.responseText).msg);
-      }
+      },
+      reset: true
     });
   },
 

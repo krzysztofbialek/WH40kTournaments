@@ -41,8 +41,12 @@ class Tournament < ActiveRecord::Base
   end
 
   def generate_pairings
-    return false if last_round?
-    update_round 
+    if current_round == 0
+      start!
+    elsif last_round?
+      return false  
+    end
+    update_round
     registrations = tournament_registrations
     if current_round == 1
       registrations = registrations.shuffle
@@ -83,6 +87,10 @@ class Tournament < ActiveRecord::Base
 
   def last_round?
     current_round == number_of_rounds
+  end
+
+  def can_finish?
+    last_round? && round_completed?
   end
   
   def pausing_pairing

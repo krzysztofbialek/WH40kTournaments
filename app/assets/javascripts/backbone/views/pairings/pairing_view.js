@@ -28,7 +28,8 @@ PairingView = Backbone.View.extend({
       success: function(model, results){ 
         $('#modal_' + id).modal('hide'); 
         that.$el.addClass('completed');
-        Dmp40k.resultsList.fetch();
+        Dmp40k.resultsList.fetch({reset: true});
+        Dmp40k.tournament.fetch({reset: true});
       },
       error: function(model, results){
         $('#modal_' + id).find('.errors').text(JSON.parse(results.responseText)['msg']);

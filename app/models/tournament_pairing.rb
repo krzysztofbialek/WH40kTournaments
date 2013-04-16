@@ -10,12 +10,17 @@ class TournamentPairing < ActiveRecord::Base
 
   before_update :count_match_points
   after_update :update_registration
+  after_update :finish_tournament
 
   def update_registration
     registrations = tournament.tournament_registrations.where(:player_id => [player1_id, player2_id])
     registrations.each_with_index do |reg, i|
       reg.update_attributes(:current_points => reg.player.points_for_tournament(tournament), :played_games => round )
     end
+  end
+
+  def finish_tournament
+    tournament.finish! if tournament.can_finish?
   end
 
   def count_match_points

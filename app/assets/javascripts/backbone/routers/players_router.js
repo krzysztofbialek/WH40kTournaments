@@ -10,8 +10,8 @@ var Dmp40k =  new (Backbone.Router.extend({
     this.resultsView = new PlayersResults({collection: this.resultsList});
     this.tournament = new Tournament({id: this.getTournamentId()});
     this.tournamentView = new TournamentView({model: this.tournament});
-    $('.right-column').append(this.tournamentView.el)
     $('.left-column').prepend(this.playersView.el)
+    $('.right-column').append(this.tournamentView.el)
     $('.right-column').append(this.resultsView.el)
     $('.left-column').append(this.pairingsView.el)
   },
@@ -21,9 +21,9 @@ var Dmp40k =  new (Backbone.Router.extend({
   },
  
   index: function(){
-    this.tournament.fetch({reset: true});
     this.playersList.fetch({reset: true});
     this.resultsList.fetch({reset: true});
+    this.tournament.fetch();
     this.pairingsList.fetch({reset: true});
   },
   
