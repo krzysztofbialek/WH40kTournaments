@@ -17,6 +17,7 @@ PairingView = Backbone.View.extend({
     if (this.model.get('player1_match_points') && this.model.get('player2_match_points') || this.model.get('pausing')){
       this.$el.addClass('completed')
     }
+    this.$el.find('.draggable').draggable({ axis: 'y'});
     return this
   },
 

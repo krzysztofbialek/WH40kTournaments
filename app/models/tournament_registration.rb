@@ -28,5 +28,10 @@ class TournamentRegistration < ActiveRecord::Base
     player.points_for_tournament(tournament)
   end
 
+  def final_points
+    player.points_for_tournament(tournament) +
+    extra_points - penalty_points
+  end
+
 
 end

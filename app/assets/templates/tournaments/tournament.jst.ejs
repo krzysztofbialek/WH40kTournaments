@@ -7,7 +7,7 @@
   </tr>
   <tr class='play-start'>
     <% if(state == 'finished'){ %>
-      <th><button class='show-results'>Pokaż wyniki</button></th>
+      <th><button class='show-results'><a href=<%='/tournaments/' + Dmp40k.getTournamentId() + '/results'%>>Pokaż wyniki</a></button></td>
     <% } else { %>
       <th><button class='generate-new-round'>Wygeneruj rundę</button></th>
     <% } %>

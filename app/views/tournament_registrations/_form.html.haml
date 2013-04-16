@@ -5,7 +5,7 @@
     = form_for @tournament_registration, :url => tournament_tournament_registrations_path do |f|
       %p
         = f.label :player_id, "Wybierz gracza"
-        = f.select :player_id, options_from_collection_for_select(@players, "id", "name") 
+        = f.select :player_id, options_from_collection_for_select(@players, "id", "full_name") 
       %p
         = f.label :army, "Armia"
         = f.select :army, options_for_select(Player::Armies), :include_blank => true

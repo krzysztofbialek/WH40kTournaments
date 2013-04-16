@@ -1,0 +1,20 @@
+%h2= "#{@tournament.name} - wyniki"
+%table.table.table-bordered.tablesorter
+  %thead
+    %tr
+      %th
+        Miejsce
+      %th
+        Gracz  
+      %th
+        Armia
+      %th
+        Suma pkt.
+      %th
+        Pkt. dodatkowe
+      %th
+        Pkt. karne
+      %th
+        Pkt. rankingowe
+  %tbody
+    =render :partial => 'result', :collection => @results

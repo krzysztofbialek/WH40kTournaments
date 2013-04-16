@@ -57,6 +57,7 @@ Dmp40k::Application.routes.draw do
     end 
     member do
       get 'generate_pairings'
+      get 'results'
     end
   end
   

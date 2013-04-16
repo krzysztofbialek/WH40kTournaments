@@ -22,7 +22,8 @@ class Tournament < ActiveRecord::Base
     state :new, :initial => true
     state :ongoing
     state :finished
- 
+    state :counted 
+
     event :start do
       transitions from: :new, to: :ongoing
     end
@@ -30,10 +31,20 @@ class Tournament < ActiveRecord::Base
     event :finish do
       transitions from: :ongoing, to: :finished
     end
+
+    event :count do
+      transitions from: :ongoing, to: :finished
+    end
   end
 
   def update_round
     increment!(:current_round)
+  end
+
+  TournamentRanks.each do |meth|
+    define_method("is_#{meth.downcase}?".to_sym) do
+      self.rank == meth
+    end
   end
 
   def round_completed?
@@ -90,11 +101,23 @@ class Tournament < ActiveRecord::Base
   end
 
   def can_finish?
-    last_round? && round_completed?
+    last_round? && round_completed? && !finished?
   end
   
   def pausing_pairing
     pairings.where(:pausing => true)
+  end
+
+  def rank_points
+    base_points = case rank
+    when 'Lokal'
+      20
+    when 'Czelendżer'
+      35
+    when 'Master'
+      50
+    end
+    base_points
   end
 
   private

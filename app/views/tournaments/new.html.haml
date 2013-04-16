@@ -6,6 +6,9 @@
     =f.label 'type'
     =f.select :rank, options_for_select(Tournament::TournamentRanks)
   %p
+    =f.label :number_of_rounds
+    =f.text_field :number_of_rounds
+  %p
     =f.label :start_date
     =f.text_field :start_date
   %p
