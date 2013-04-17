@@ -13,11 +13,23 @@ PairingView = Backbone.View.extend({
   },
 
   render: function(){
+    that = this
     this.$el.html(this.template(this.model.toJSON()));
     if (this.model.get('player1_match_points') && this.model.get('player2_match_points') || this.model.get('pausing')){
       this.$el.addClass('completed')
     }
-    this.$el.find('.draggable').draggable({ axis: 'y'});
+    this.$el.find('.draggable').draggable({ 
+        axis: 'y', 
+        containment: '#round' + this.model.get('round'),
+        helper: function( event ){
+          return $( "<div class='ui-widget-header player'>Przeciągnij aby zamienić z " + $(this).text() + "</div>" );
+        }, 
+    });
+    this.$el.find('.draggable').droppable({ 
+        drop: function( event, ui ){
+          that.model.collection.swapPairings(ui.draggable.data('id'), $(this).data('id'))
+        },  
+    });
     return this
   },
 

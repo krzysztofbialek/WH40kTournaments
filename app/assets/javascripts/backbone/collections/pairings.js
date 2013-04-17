@@ -32,4 +32,8 @@ Pairings = Backbone.Collection.extend({
     $('.tournament_round').text(text);
   },
 
+  swapPairings: function(source, target) {
+    console.log('drop!')
+    alert(source + ' ' + target)
+  },
 });

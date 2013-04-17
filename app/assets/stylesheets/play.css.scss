@@ -66,6 +66,17 @@
   }
 }
 
+.ui-widget-header.player{
+ background-color: #8f8f8f;
+ border-radius: 8px;
+ opacity: 0.8;
+ position: fixed; 
+}
+
+.draggable{
+  display: block;
+}
+
 form#update_pairing{
 
   .game-points{
