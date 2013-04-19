@@ -38,14 +38,14 @@
 <td class='players'>
   <div class='player'>
     <% if(player1_name) { %>
-      <span class='draggable' data-id='<%=player1_id%>'><%= player1_name %></span>
+      <span class='draggable' data-pairing-id='<%= id %>' data-id='<%=player1_id%>'><%= player1_name %></span>
     <% } else {  %>
       pauza
     <% } %>
   </div>
   <div class='player'>
     <% if(player2_name) { %>
-      <span class='draggable' data-id='<%=player2_id%>'><%= player2_name %></span>
+      <span class='draggable' data-pairing-id='<%= id %>' data-id='<%=player2_id%>'><%= player2_name %></span>
     <% } else {  %>
       pauza
     <% } %>

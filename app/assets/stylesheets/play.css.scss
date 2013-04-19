@@ -8,12 +8,17 @@
   }
 }
 
+.modal{
+  width: 700px;
+}
+
 .container-fluid{
   &.play{
     width: 1024px;
     margin: auto;
   }
 }
+
 
 .play-tournament{
   float: left;

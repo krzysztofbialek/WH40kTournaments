@@ -48,7 +48,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def round_completed?
-    pairings.where(:round => current_round).select(&:invalid?).empty?
+    pairings.where(:round => current_round).select{|p| p.invalid?(:update)}.empty?
   end
 
   def generate_pairings

@@ -21,5 +21,5 @@ $(document).ajaxStop(function(){
   $("#global-feedback").fadeOut();
 });
 
-$('.draggable').draggable();
+$('.draggable').not(".completed").draggable();
 

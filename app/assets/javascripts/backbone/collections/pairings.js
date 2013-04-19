@@ -33,7 +33,39 @@ Pairings = Backbone.Collection.extend({
   },
 
   swapPairings: function(source, target) {
-    console.log('drop!')
-    alert(source + ' ' + target)
+    var source_pair = this.get(source.data('pairing-id'))
+    var target_pair = this.get(target.data('pairing-id'))
+  
+    if (source_pair === target_pair) {
+      return true
+    }
+  
+    this.updatePairings(source_pair, target_pair, source, target)
+  
+    source_pair.save()
+    target_pair.save()
+    source_pair.fetch()
+    target_pair.fetch()
   },
+
+  updatePairings: function(source_pair, target_pair, source, target){
+    if (source_pair.get('player1_id') === source.data('id')) {
+      
+      source_pair.set({ 'player1_id': target.data('id') });
+      
+      if (target_pair.get('player1_id') === target.data('id')){
+        target_pair.set({ 'player1_id': source.data('id') });
+      } else {
+        target_pair.set({ 'player2_id': source.data('id') });
+      }
+        
+    } else {
+      source_pair.set({ 'player2_id': target.data('id') });
+      if (target_pair.get('player1_id') === target.data('id')){
+        target_pair.set({ 'player1_id': source.data('id') });
+      } else {
+        target_pair.set({ 'player2_id': source.data('id') });
+      }
+    }
+  }
 });

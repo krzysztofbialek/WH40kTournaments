@@ -8,28 +8,33 @@ PairingView = Backbone.View.extend({
   },
   
   initialize: function(){
+    var that = this
     _.bindAll(this, "render");
-    this.model.bind('sync', this.render);
+    this.model.bind('change:player1_id change:player2_id', that.render, this);
   },
 
   render: function(){
-    that = this
+    var that = this;
     this.$el.html(this.template(this.model.toJSON()));
+    
     if (this.model.get('player1_match_points') && this.model.get('player2_match_points') || this.model.get('pausing')){
-      this.$el.addClass('completed')
+      this.$el.addClass('completed');
     }
-    this.$el.find('.draggable').draggable({ 
-        axis: 'y', 
-        containment: '#round' + this.model.get('round'),
-        helper: function( event ){
-          return $( "<div class='ui-widget-header player'>Przeciągnij aby zamienić z " + $(this).text() + "</div>" );
-        }, 
-    });
-    this.$el.find('.draggable').droppable({ 
-        drop: function( event, ui ){
-          that.model.collection.swapPairings(ui.draggable.data('id'), $(this).data('id'))
-        },  
-    });
+    
+    if (!this.$el.hasClass('completed')){
+      this.$el.find('.draggable').draggable({ 
+          axis: 'y', 
+          containment: '#round' + this.model.get('round'),
+          helper: function( event ){
+            return $( "<div class='ui-widget-header player'>Przeciągnij aby zamienić z " + $(this).text() + "</div>" );
+          }, 
+      });
+      this.$el.find('.draggable').droppable({ 
+          drop: function( event, ui ){
+            that.model.collection.swapPairings(ui.draggable, $(this))
+          },  
+      });
+    }
     return this
   },
 
@@ -56,7 +61,7 @@ PairingView = Backbone.View.extend({
      var value = $("#modal_" + id + " #"+changed.id).val();
      var obj = "{\""+changed.id +"\":\""+value+"\"}";
      var objInst = JSON.parse(obj);
-     this.model.set(objInst);   
+     console.log(this.model.set(objInst));   
      this.update_match_points(value, changed.id)
   },
 
