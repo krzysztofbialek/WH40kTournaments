@@ -9,7 +9,7 @@ class TournamentPairing < ActiveRecord::Base
   validates_numericality_of :player1_game_points, :player2_game_points, :on => :update, :allow_blank => true
 
   before_update :count_match_points
-  after_update :update_registration
+  after_save :update_registration
   after_update :finish_tournament
 
   def update_registration

@@ -125,7 +125,7 @@ class Tournament < ActiveRecord::Base
 
   def remove_pausing_pairing(players)
     pausing_player = players.pop.player
-    pairings.create(:player1_id => pausing_player.id, :pausing => true, :round => current_round, :player1_game_points => 13, :player2_game_points => 0)
+    pairings.create(:player1_id => pausing_player.id, :pausing => true, :round => current_round, :player1_game_points => 5, :player2_game_points => 0, :player1_match_points => 15, :player2_match_points => 0)
     players
   end
 end
