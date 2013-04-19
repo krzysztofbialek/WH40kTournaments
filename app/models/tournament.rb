@@ -120,6 +120,7 @@ class Tournament < ActiveRecord::Base
     base_points
   end
 
+
   private
 
   def remove_pausing_pairing(players)

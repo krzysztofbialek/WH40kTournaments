@@ -1,3 +1,4 @@
+#encoding: utf-8
 class TournamentRegistration < ActiveRecord::Base
 
   belongs_to :tournament
@@ -22,6 +23,23 @@ class TournamentRegistration < ActiveRecord::Base
 
   def as_json(*args)
     super(:only => [:army, :id, :current_points, :played_games, :extra_points, :penalty_points]).merge(:player_name => player.name, :player_full_name => player.full_name)
+  end
+
+  def  self.to_csv(results)
+    CSV.generate(:col_sep => ';') do |csv|
+      csv << ['Miejsce', 'ID Ligowe', 'Imię', 'Nazwisko', 'Armia Miasto', 'Punkty', 'ID Sedziowka']
+      results.each_with_index do |registration, i|
+        csv << [
+                i + 1,
+                registration.player.league_id,
+                registration.player.first_name,
+                registration.player.last_name,
+                registration.army,
+                registration.player.city,
+                registration.final_points
+               ] 
+      end 
+    end 
   end
 
   def current_points

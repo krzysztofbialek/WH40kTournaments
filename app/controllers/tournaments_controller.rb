@@ -1,6 +1,6 @@
 #encoding: utf-8
 class TournamentsController < ApplicationController
-  before_filter :load_tournament, :only => [:show, :generate_pairings, :results]
+  before_filter :load_tournament
 
   respond_to :json
 
@@ -42,7 +42,12 @@ class TournamentsController < ApplicationController
     end
   end
 
+
   def results
     @results = @tournament.tournament_registrations.includes(:player).sort{|a,b| b.current_points <=> a.final_points}
+    respond_to do |format|
+      format.html
+      format.csv { send_data TournamentRegistration.to_csv(@results) }
+    end
   end
 end

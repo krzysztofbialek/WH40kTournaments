@@ -1,4 +1,8 @@
 %h2= "#{@tournament.name} - wyniki"
+-if owner_or_admin?
+  %p.generate_csv
+    %button
+      =link_to 'Wygeneruj plik csv do rankingu', results_tournament_path(@tournament, :format => 'csv')
 %table.table.table-bordered.tablesorter
   %thead
     %tr
