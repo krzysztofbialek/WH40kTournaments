@@ -8,4 +8,4 @@
 //= require jquery-ui.min
 //= require twitter/bootstrap
 //= require jquery.tablesorter.min
-//= require_tree  
+//= require play
