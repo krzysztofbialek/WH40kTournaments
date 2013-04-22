@@ -7,4 +7,5 @@
 //= require jquery-1.7.min
 //= require jquery-ui.min
 //= require twitter/bootstrap
-//= require jquery.tablesorter.min  
+//= require jquery.tablesorter.min
+//= require tree  
