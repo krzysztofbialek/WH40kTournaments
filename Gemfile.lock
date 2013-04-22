@@ -219,5 +219,5 @@ DEPENDENCIES
   sass-rails (~> 3.2.6)
   shoulda
   therubyracer
-  twitter-bootstrap-rails
+  twitter-bootstrap-rails (~> 2.0rc0)
   uglifier (>= 1.0.3)

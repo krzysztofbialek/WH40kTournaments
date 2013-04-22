@@ -8,7 +8,7 @@ gem "rails", "3.2.8"
 gem 'mysql2'
 gem 'haml'
 gem 'haml-rails'
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', "~> 2.0rc0"
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'RedCloth'
 gem 'mercury-rails'
