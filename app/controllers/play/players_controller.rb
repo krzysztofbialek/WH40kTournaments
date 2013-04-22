@@ -14,4 +14,12 @@ class Play::PlayersController < ApplicationController
     end
   end
 
+  def update
+    player = @tournament.tournament_registrations.find(params[:id])
+    if player.update_attributes(params.slice(:extra_points, :penalty_points))
+      respond_with :status => 200
+    else
+      render :json => {:msg => pairing.errors.full_messages.join(',')}, :status => 422
+    end
+  end
 end

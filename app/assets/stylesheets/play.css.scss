@@ -10,6 +10,16 @@
 
 .modal{
   width: 700px;
+  &.results{
+    width: 350px;
+    padding-top: 20px;
+    form{
+      position: relative;
+      width: 215px;
+      margin-top: 20px;
+      margin: auto;
+    }
+  }
 }
 
 .container-fluid{
@@ -69,6 +79,10 @@
   .completed{
     background-color: green;
   }
+}
+
+.add-extra-points{
+  margin-left: 20px;
 }
 
 .ui-widget-header.player{

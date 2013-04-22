@@ -1,13 +1,32 @@
-<th><%= player_name %></th>
-<th class='player-games'>
+<td><%= player_name %></th>
+<td class='player-games'>
   <%= played_games %>
-</th>
-<th class='player-points'>
+</td>
+<td class='player-points'>
   <%= current_points %>
-</th>
-<th class='player-extra'>
+</td>
+<td class='player-extra'>
   <%= extra_points %>
-</th>
-<th class='player-extra'>
+  <a class='add-extra-points' href="#result_modal_<%= id %>" data-toggle="modal"><i class="icon-plus"></i></a>
+</td>
+<td class='player-extra'>
   <%= penalty_points %>
-</th>
+  <a class='add-extra-points' href="#result_modal_<%= id %>" data-toggle="modal"><i class="icon-plus"></i></a>
+  <div id="result_modal_<%= id %>" class="modal results hide fade" role="dialog" >
+    <form id="update_player">
+      <div class='extra-points'>
+        <label for="extra_points">Punkty dodatkowe</label>
+        <input type="number" name="extra_points" id="extra_points" value='<%= extra_points %>' >
+      </div>
+      <div class='penalty-points'>
+        <label for="penalty_points">Punkty karne</label>
+        <input type="number" name="penalty_points" id="penalty_points" value='<%= penalty_points %>' >
+      </div>
+      <div class='submit'>
+        <input type="submit" value="Dodaj punkty" >
+      </div>
+    </form>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  </div>
+</td>
+
