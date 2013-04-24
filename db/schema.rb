@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411230905) do
+ActiveRecord::Schema.define(:version => 20130424134158) do
 
   create_table "hostel_bookings", :force => true do |t|
     t.string   "first_name"
@@ -88,17 +88,18 @@ ActiveRecord::Schema.define(:version => 20130411230905) do
   create_table "tournament_registrations", :force => true do |t|
     t.integer  "tournament_id"
     t.integer  "player_id"
-    t.boolean  "payment_send",   :default => false
-    t.boolean  "roster_send",    :default => false
-    t.boolean  "roster_valid",   :default => false
+    t.boolean  "payment_send",           :default => false
+    t.boolean  "roster_send",            :default => false
+    t.boolean  "roster_valid",           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "army"
     t.string   "player_email"
-    t.integer  "extra_points",   :default => 0
-    t.integer  "penalty_points", :default => 0
-    t.integer  "current_points", :default => 0
-    t.integer  "played_games",   :default => 0
+    t.integer  "extra_points",           :default => 0
+    t.integer  "penalty_points",         :default => 0
+    t.integer  "current_points",         :default => 0
+    t.integer  "played_games",           :default => 0
+    t.integer  "current_victory_points", :default => 0
   end
 
   create_table "tournaments", :force => true do |t|

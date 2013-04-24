@@ -6,7 +6,7 @@ class TournamentPairing < ActiveRecord::Base
 
 
   validates_presence_of :player1_game_points, :player2_game_points, :on => :update, :unless => Proc.new {|p| p.player1_id_changed? || p.player2_id_changed?}
-  validates_numericality_of :player1_game_points, :player2_game_points, :on => :update, :allow_blank => true
+  validates_numericality_of :player1_game_points, :player2_game_points, :greater_than => 0, :on => :update, :allow_blank => true
 
   before_update :count_match_points
   after_save :update_registration
@@ -15,7 +15,7 @@ class TournamentPairing < ActiveRecord::Base
   def update_registration
     registrations = tournament.tournament_registrations.where(:player_id => [player1_id, player2_id])
     registrations.each_with_index do |reg, i|
-      reg.update_attributes(:current_points => reg.player.points_for_tournament(tournament), :played_games => round )
+      reg.update_attributes(:current_points => reg.player.points_for_tournament(tournament), :played_games => round, :current_victory_points => reg.player.game_points_for_tournament(tournament))
     end
   end
 

@@ -11,6 +11,15 @@ PlayersIndex = Backbone.View.extend({
   render: function(){
     this.$el.html(this.template());
     this.collection.forEach(this.addOne, this);
+    $('.players-list .toggle-list').bind('click', function(){
+      $('.players-list table').fadeToggle();
+      if ($(this).hasClass('icon-minus')) { 
+        $(this).text(' ( rozwiń listę )');
+      } else {
+        $(this).text(' ( zwiń listę )');
+      }
+      $(this).toggleClass('icon-plus icon-minus')
+    });
   },
   
   addOne: function(player){

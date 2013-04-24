@@ -2,14 +2,17 @@
 <td class='player-games'>
   <%= played_games %>
 </td>
-<td class='player-points'>
+<td class='player-victory-points'>
+  <%= current_victory_points %>
+</td>
+<td class='player-points' data-points='<%= current_points %>'>
   <%= current_points %>
 </td>
 <td class='player-extra'>
   <%= extra_points %>
   <a class='add-extra-points' href="#result_modal_<%= id %>" data-toggle="modal"><i class="icon-plus"></i></a>
 </td>
-<td class='player-extra'>
+<td class='player-penalty'>
   <%= penalty_points %>
   <a class='add-extra-points' href="#result_modal_<%= id %>" data-toggle="modal"><i class="icon-plus"></i></a>
   <div id="result_modal_<%= id %>" class="modal results hide fade" role="dialog" >

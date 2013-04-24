@@ -41,6 +41,11 @@ class Player < ActiveRecord::Base
     player1_pairings.where(:tournament_id => id).sum(:player1_match_points) +
     player2_pairings.where(:tournament_id => id).sum(:player2_match_points) 
   end
+  
+  def game_points_for_tournament(id)
+    player1_pairings.where(:tournament_id => id).sum(:player1_game_points) +
+    player2_pairings.where(:tournament_id => id).sum(:player2_game_points) 
+  end
 
   def played_with?(registration = nil)
     return false unless registration.present?

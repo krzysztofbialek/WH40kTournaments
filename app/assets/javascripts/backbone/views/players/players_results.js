@@ -1,7 +1,10 @@
 PlayersResults = Backbone.View.extend({
   template: JST['players/results'],
   className: 'players-results',
-  
+
+  events: {
+    'click label.toggle-extra-points' : 'togglePoints'
+  },  
   
   initialize: function(){
     this.collection.bind('add', this.addOne, this);
@@ -18,5 +21,17 @@ PlayersResults = Backbone.View.extend({
     playerResultView.render();
     this.$('tbody').append(playerResultView.el);
   },
+
+  togglePoints: function(){
+    var rows, extra, penalty;
+    rows = $('label.toggle-extra-points').parents('.players-results').find('tr');
+    console.log(rows)
+    $.each(rows, function(i, item){
+      points = item.find('.player-points');
+      extra = parseInt(item.find('.player-extra').text());
+      penalty = parseInt(item.find('.player-penalty').text());
+      points.text(parseInt(points.text()) + extra - penalty);
+    });
+  }
 
 });

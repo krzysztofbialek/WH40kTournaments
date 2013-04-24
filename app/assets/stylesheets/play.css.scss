@@ -6,6 +6,13 @@
   button{
     float: right;
   }
+  .toggle-list{
+    cursor: pointer;
+    
+  }
+  header{
+    padding-bottom: 5px;
+  }
 }
 
 .modal{
@@ -51,7 +58,14 @@
 }
 
 .pairings-list{
+  header{
+    padding-bottom: 5px;
+  }
   clear: both;
+  .toggle-round{
+    margin-left: 10px;
+    cursor: pointer;
+  }
   td.table_nr{
     text-align: center;
     vertical-align: middle;

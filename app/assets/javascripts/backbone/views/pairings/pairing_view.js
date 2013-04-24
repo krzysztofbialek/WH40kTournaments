@@ -64,7 +64,7 @@ PairingView = Backbone.View.extend({
      var value = $("#modal_" + id + " #"+changed.id).val();
      var obj = "{\""+changed.id +"\":\""+value+"\"}";
      var objInst = JSON.parse(obj);
-     console.log(this.model.set(objInst));   
+     this.model.set(objInst, {silent: true});   
      this.update_match_points(value, changed.id)
   },
 
