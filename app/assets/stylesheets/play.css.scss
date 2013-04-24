@@ -87,14 +87,22 @@
 
 .ui-widget-header.player{
  background-color: #8f8f8f;
+ color: #000;
  border-radius: 8px;
  opacity: 0.8;
  position: fixed; 
 }
 
 .draggable{
+  border-radius: 5px;
   display: block;
+  -webkit-transition: background-color .5s linear;
+  -moz-transition: background-color .5s linear;
+  &.draggable-hover{
+    background-color: blue;
+  }
 }
+
 
 form#update_pairing{
 

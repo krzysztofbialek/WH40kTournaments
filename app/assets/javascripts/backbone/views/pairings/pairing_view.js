@@ -31,8 +31,9 @@ PairingView = Backbone.View.extend({
       });
       this.$el.find('.draggable').droppable({ 
           drop: function( event, ui ){
-            that.model.collection.swapPairings(ui.draggable, $(this))
-          },  
+            that.model.collection.swapPairings(ui.draggable, $(this));
+          },
+          hoverClass: "draggable-hover",
       });
     }
     return this

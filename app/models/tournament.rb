@@ -93,7 +93,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def sort_players(registrations)
-    registrations.sort_by { |registration| registration.player.points_for_tournament(self) }.reverse 
+    registrations.sort_by { |registration| registration.current_points }.reverse 
   end
 
   def last_round?
