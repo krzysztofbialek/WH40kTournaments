@@ -10,7 +10,8 @@ PairingView = Backbone.View.extend({
   initialize: function(){
     var that = this
     _.bindAll(this, "render");
-    this.model.bind('change:player1_id change:player2_id', that.render, this);
+    //this.model.bind('change:player1_id change:player2_id', that.render, this);
+    this.model.bind('change', that.render, this);
   },
 
   render: function(){
@@ -32,6 +33,7 @@ PairingView = Backbone.View.extend({
       this.$el.find('.draggable').droppable({ 
           drop: function( event, ui ){
             that.model.collection.swapPairings(ui.draggable, $(this));
+            ui.draggable.detach();
           },
           hoverClass: "draggable-hover",
       });
