@@ -3,7 +3,7 @@ class Play::ResultsController < ApplicationController
   respond_to :json
 
   def index
-    players = @tournament.tournament_registrations.order('current_points DESC')
+    players = @tournament.tournament_registrations.order('current_points DESC, current_victory_points DESC')
     respond_with players 
   end
 

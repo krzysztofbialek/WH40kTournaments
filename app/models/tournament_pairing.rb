@@ -6,7 +6,7 @@ class TournamentPairing < ActiveRecord::Base
 
 
   validates_presence_of :player1_game_points, :player2_game_points, :on => :update, :unless => Proc.new {|p| p.player1_id_changed? || p.player2_id_changed?}
-  validates_numericality_of :player1_game_points, :player2_game_points, :greater_than => 0, :on => :update, :allow_blank => true
+  validates_numericality_of :player1_game_points, :player2_game_points, :greater_thani_or_equal => 0, :on => :update, :allow_blank => true
 
   before_update :count_match_points
   after_save :update_registration
