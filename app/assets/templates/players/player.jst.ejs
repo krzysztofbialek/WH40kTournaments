@@ -1,5 +1,7 @@
 <th><%= player_name %></th>
 <th class='player-army'>
   <%= army %>
-  <button> Usuń gracza </button>
+  <% if (window.currentUser && window.currentUser.admin == 'true'){ %>
+    <button> Usuń gracza </button>
+  <% } %>
 </th>

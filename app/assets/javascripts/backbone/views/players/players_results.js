@@ -3,7 +3,7 @@ PlayersResults = Backbone.View.extend({
   className: 'players-results',
 
   events: {
-    'click label.toggle-extra-points' : 'togglePoints'
+    'click input[type="checkbox"]' : 'togglePoints'
   },  
   
   initialize: function(){
@@ -22,16 +22,23 @@ PlayersResults = Backbone.View.extend({
     this.$('tbody').append(playerResultView.el);
   },
 
-  togglePoints: function(){
-    var rows, extra, penalty;
+  togglePoints: function(event){
+    var rows, extra, penalty, table;
+    table = $('.players-results table')
+    table.tablesorter()
     rows = $('label.toggle-extra-points').parents('.players-results').find('tr');
-    console.log(rows)
-    $.each(rows, function(i, item){
-      points = item.find('.player-points');
-      extra = parseInt(item.find('.player-extra').text());
-      penalty = parseInt(item.find('.player-penalty').text());
-      points.text(parseInt(points.text()) + extra - penalty);
+    $.each(rows, function(i, item){ 
+      that = $(this);
+      points = that.find('.player-points');
+      if (points.data('points') == points.text()){
+        extra = parseInt(that.find('.player-extra').text());
+        penalty = parseInt(that.find('.player-penalty').text());
+        points.text(parseInt(points.text()) + extra - penalty);
+      } else {
+        points.text(points.data('points'));
+      }
     });
+    table.tablesorter( {sortList: [[3,1]]} );
   }
 
 });

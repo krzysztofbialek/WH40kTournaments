@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 %html
 %head
+  -if current_user
+    :javascript
+      window.currentUser = {
+          id : "#{current_user.id}",
+          admin: "#{owner_or_admin?}"
+      }
+
   %title
     =@tournament.name
   =stylesheet_link_tag "application"
@@ -42,15 +49,15 @@
             -else
               %li
                 =link_to 'Zaloguj', login_path
-
-.play-tabs
-  %ul.nav.nav-tabs
-    %li
-      %a{href: "#start", data: {togle: "tab"}}
-        Gracze
-    %li
-      %a{href: "#results", data: {togle: "tab"}}
-        Przebieg turnieju
+/
+  .play-tabs
+    %ul.nav.nav-tabs
+      %li
+        %a{href: "#start", data: {togle: "tab"}}
+          Gracze
+      %li
+        %a{href: "#results", data: {togle: "tab"}}
+          Przebieg turnieju
 .container-fluid.play
   .left-column
   .right-column

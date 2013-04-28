@@ -3,7 +3,12 @@
 class Tournament < ActiveRecord::Base
   extend FriendlyId
   include AASM
-  TournamentRanks = ['Lokal', 'Czelendżer', 'Master']
+  TournamentRanks = ['Lokal', 'Czelendżer', 'Master'] 
+  RankPoints = {
+                'Lokal' => 3,
+                'Czelendżer' => 5,
+                'Master' => 5
+               }
 
   validates_presence_of :name, :start_date, :rank, :city, :number_of_rounds
   validates_numericality_of :number_of_rounds

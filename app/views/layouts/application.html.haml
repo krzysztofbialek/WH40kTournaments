@@ -45,6 +45,8 @@
             -else
               %li
                 =link_to 'Zaloguj', login_path
+              %li
+                =link_to 'Zarejestruj', signup_path
 
 .container-fluid
   -if @tournament && @tournament.try(:name) == 'Arena'

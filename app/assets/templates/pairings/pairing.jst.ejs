@@ -2,7 +2,7 @@
   <div>
     Stół: <%= table %>
   </div>
-  <% if( pausing == false ){ %>
+  <% if( pausing == false && window.currentUser && window.currentUser.admin == 'true'){ %>
     <div class='add-results'>
       <a href="#modal_<%= id %>" data-toggle="modal"><i class="icon-plus"></i> Dodaj wynik</a>
     </div>
