@@ -50,4 +50,10 @@ class TournamentsController < ApplicationController
       format.csv { send_data TournamentRegistration.to_csv(@results) }
     end
   end
+
+  def current_round
+    @pairings = @tournament.pairings.where(:round => @tournament.current_round).order('tournament_pairings.table ASC')
+    render :layout => 'play'
+  end
+
 end

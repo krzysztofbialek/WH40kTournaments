@@ -11,5 +11,6 @@
     <% } else if (window.currentUser && window.currentUser.admin == 'true'){ %>
       <th><button class='generate-new-round'>Wygeneruj rundę</button></th>
     <% } %>
+    <button class='show-results'><a href=<%='/tournaments/' + Dmp40k.getTournamentId() + '/current_round'%>>Pokaż pary aktualnej rundy</a></button>
   </tr>
 </table>

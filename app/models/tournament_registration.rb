@@ -36,7 +36,7 @@ class TournamentRegistration < ActiveRecord::Base
                 registration.player.last_name,
                 registration.army,
                 registration.player.city,
-                registration.final_points
+                registration.player.nick,
                ] 
       end 
     end 

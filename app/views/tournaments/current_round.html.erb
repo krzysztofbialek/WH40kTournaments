@@ -1,0 +1,22 @@
+<table class='table table-bordered current_round'>
+  <thead>
+    <th>
+      Stół
+    </th>
+    <th>
+      Gracz 1
+    </th>
+    <th>
+      Gracz 2
+    </th>
+  </thead>
+  <tbody>
+    <% @pairings.each do |p| %>
+      <tr>
+        <td><%= p.table %></td>
+        <td><%= p.player1.full_name rescue 'pauza' %></td>
+        <td><%= p.player2.full_name rescue 'pauza'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

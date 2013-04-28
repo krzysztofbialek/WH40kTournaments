@@ -58,6 +58,7 @@ Dmp40k::Application.routes.draw do
     member do
       get 'generate_pairings'
       get 'results'
+      get 'current_round'
       get 'generate_rank_csv'
     end
   end
