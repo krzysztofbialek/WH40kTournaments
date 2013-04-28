@@ -1,15 +1,17 @@
 %tr
-  %th
+  %td
     =result_counter + 1
-  %th
+  %td
     =result.player.full_name
-  %th
+  %td
     =result.army
-  %th
+  %td
+    =result.victory_points
+  %td
     =result.final_points
-  %th
+  %td
     =result.extra_points
-  %th
+  %td
     =result.penalty_points
-  %th
+  %td
     =rank_points(@tournament, result)
