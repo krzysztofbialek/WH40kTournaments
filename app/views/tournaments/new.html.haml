@@ -1,18 +1,18 @@
 =form_for @tournament do |f|
   %p
-    =f.label :name
+    =f.label 'Nazwa'
     =f.text_field :name
   %p
-    =f.label 'type'
+    =f.label 'Typ'
     =f.select :rank, options_for_select(Tournament::TournamentRanks)
   %p
-    =f.label :number_of_rounds
+    =f.label 'Ilość rund'
     =f.text_field :number_of_rounds
   %p
-    =f.label :start_date
+    =f.label 'Data rozpoczęcia'
     =f.text_field :start_date
   %p
-    =f.label :city
+    =f.label 'Miasto'
     =f.text_field :city
   %p
     =f.submit 'Utwórz turniej', :class => 'btn'
