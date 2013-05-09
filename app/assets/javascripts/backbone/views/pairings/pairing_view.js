@@ -18,11 +18,14 @@ PairingView = Backbone.View.extend({
     var that = this;
     this.$el.html(this.template(this.model.toJSON()));
     
-    if (this.model.get('player1_match_points') && this.model.get('player2_match_points') || this.model.get('pausing')){
+    if (this.model.get('player1_match_points') || this.model.get('player2_match_points') || this.model.get('pausing')){
       this.$el.addClass('completed');
     }
+    if (this.model.get('pausing')){
+      this.$el.addClass('pausing')
+    }
     
-    if (!this.$el.hasClass('completed')){
+    if (!this.$el.hasClass('completed') || this.$el.hasClass('pausing') ){
       this.$el.find('.draggable').draggable({ 
           axis: 'y', 
           containment: '#round' + this.model.get('round'),
