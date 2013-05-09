@@ -10,7 +10,7 @@ class TournamentTest < ActiveSupport::TestCase
     end 
 
     should 'increment current round with "update_round"' do
-      tournament = Tournament.new
+      tournament = FactoryGirl.create(:tournament)
       tournament.update_round
       assert_equal 1, tournament.current_round
     end
@@ -104,9 +104,10 @@ class TournamentTest < ActiveSupport::TestCase
         8.times{FactoryGirl.create(:registration, :tournament => @tournament)}
         player1 = @tournament.tournament_registrations[0].player
         player2 = @tournament.tournament_registrations[1].player
-        @tournament.update_attribute('number_of_rounds', 5)
-        4.times do |i|
+        @tournament.update_attribute('number_of_rounds', 3)
+        3.times do |i|
           @tournament.generate_pairings
+          @tournament.pairings.where(:round => i + 1).each { |p| puts p.inspect}
           unless i == 0 
             tp = @tournament.pairings.where(:round => i)
             tp.each do |p|
@@ -114,8 +115,10 @@ class TournamentTest < ActiveSupport::TestCase
             end
           end
         end
+        puts @tournament.pairings.where(:player1_id => player2.id, :player2_id => player1.id).map(&:id) 
+        puts @tournament.pairings.where(:player1_id => player1.id, :player2_id => player2.id).map(&:id)
             
-        assert_equal 1, @tournament.pairings.where(:player1_id => player2.id, :player2_id => player1.id).count +  @tournament.pairings.where(:player1_id => player1.id, :player2_id => player2.id).count
+        assert_equal 1, @tournament.pairings.where(:player1_id => player2.id, :player2_id => player1.id).count + @tournament.pairings.where(:player1_id => player1.id, :player2_id => player2.id).count
       end
     
     end

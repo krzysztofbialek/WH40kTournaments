@@ -21,7 +21,7 @@
   %tbody
     -@registrations.each_with_index do |reg, i|
       =render :partial => 'registration', :locals => {:reg => reg, :i => i}
--if logged_in?
+-if owner_or_admin? && @tournament.new? 
   =render :partial => 'form'
 :javascript
   $(document).ready(function() 
