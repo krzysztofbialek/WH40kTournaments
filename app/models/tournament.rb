@@ -11,7 +11,7 @@ class Tournament < ActiveRecord::Base
                }
 
   validates_presence_of :name, :start_date, :rank, :city, :number_of_rounds
-  validates_numericality_of :number_of_rounds
+  validates_numericality_of :number_of_rounds, :greater_than => 0
   validates_uniqueness_of :name
   
   belongs_to :user

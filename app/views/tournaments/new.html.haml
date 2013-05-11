@@ -1,4 +1,6 @@
 =form_for @tournament do |f|
+  -@tournament.errors.full_messages.each do |msg|
+    %li= msg 
   %p
     =f.label 'Nazwa'
     =f.text_field :name
@@ -10,7 +12,7 @@
     =f.text_field :number_of_rounds
   %p
     =f.label 'Data rozpoczęcia'
-    =f.text_field :start_date
+    =f.text_field :start_date, :placeholder => "RRRR/MM/DD"
   %p
     =f.label 'Miasto'
     =f.text_field :city
