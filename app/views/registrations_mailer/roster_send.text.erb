@@ -1,0 +1,14 @@
+Witaj <%= @player.name %>
+
+Twoja rozpiska na turniej <%= @tournament.name %> została przyjęta. 
+
+Data:<%= @tournament.start_date.strftime('%d/%m/%Y') %> 
+Miasto:<%= @tournament.city %>
+
+Link do strony turnieju: <%= tournament_url(@tournament) %>
+
+Do zobaczenia na turnieju!
+
+Ekipa
+
+WH40k-tournaments.com

@@ -1,6 +1,8 @@
 #encoding: utf-8
 class TournamentRegistration < ActiveRecord::Base
 
+  MONITORED_ATTRS = ['roster_send', 'roster_valid', 'payment_send']
+
   belongs_to :tournament
   belongs_to :player
   has_many :pairings, :class_name => 'TournamentPairing', :finder_sql => Proc.new {
@@ -15,10 +17,18 @@ class TournamentRegistration < ActiveRecord::Base
   validates_uniqueness_of :player_email, :scope => :tournament_id, :allow_blank => true
 
   after_create :notify_player, :unless => Proc.new{ self.player_email.blank? }
+  after_update :notify_player_of_change, :unless => Proc.new{ self.player_email.blank? }
 
 
   def notify_player
     RegistrationsMailer.tournament_signup_confirmation(self).deliver
+  end
+
+  def notify_player_of_change
+    change = (self.changed & MONITORED_ATTRS).first
+    if self.send(change)
+      RegistrationsMailer.tournament_change_confirmation(self, change).deliver    
+    end
   end
 
   def as_json(*args)
