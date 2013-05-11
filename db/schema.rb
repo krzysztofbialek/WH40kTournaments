@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424134158) do
+ActiveRecord::Schema.define(:version => 20130511205915) do
 
   create_table "hostel_bookings", :force => true do |t|
     t.string   "first_name"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20130424134158) do
     t.integer  "current_points",         :default => 0
     t.integer  "played_games",           :default => 0
     t.integer  "current_victory_points", :default => 0
+    t.datetime "paid_at"
   end
 
   create_table "tournaments", :force => true do |t|

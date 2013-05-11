@@ -4,7 +4,7 @@ class TournamentRegistrationsController < ApplicationController
   before_filter :load_tournament, :load_pages
 
   def index
-    @registrations = @tournament.tournament_registrations.includes([:player]).order('created_at ASC ')
+    @registrations = @tournament.tournament_registrations.includes([:player]).order('paid_at DESC, created_at ASC ')
     @tournament_registration = @tournament.tournament_registrations.new
     @players = Player.find(:all, :order => ('last_name ASC'))
     @player = Player.new
@@ -43,7 +43,13 @@ class TournamentRegistrationsController < ApplicationController
   
   def toggle_payment
     reg = TournamentRegistration.find(params[:id])
-    reg.payment_send? ? reg.payment_send = false : reg.payment_send = true
+    if reg.payment_send 
+      reg.payment_send = false 
+      reg.paid_at = nil
+    else
+      reg.payment_send = true
+      reg.paid_at = Time.now
+    end
     reg.save
     redirect_to :back
   end
