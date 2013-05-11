@@ -2,7 +2,7 @@
 class Admin::PlayersController < AdminController
 
   def index
-    @players = Player.all
+    @players = Player.order('league_id')
   end
 
   def destroy

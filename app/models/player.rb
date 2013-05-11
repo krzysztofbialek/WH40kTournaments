@@ -56,7 +56,6 @@ class Player < ActiveRecord::Base
 
   def self.import(file)
     CSV.parse(file) do |row|
-      rescue next
       user = Player.find_or_initialize_by_league_id(row[0])
       user.update_attributes(  :first_name => row[1], 
                                :last_name => row[2],
