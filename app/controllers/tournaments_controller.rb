@@ -12,7 +12,7 @@ class TournamentsController < ApplicationController
   end
 
   def index
-    @tournaments = Tournament.all
+    @tournaments = Tournament.all(:order => 'start_date DESC')
   end
 
   def new
