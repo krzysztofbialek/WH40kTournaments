@@ -4,7 +4,7 @@ class TournamentRegistrationsController < ApplicationController
   before_filter :load_tournament, :load_pages
 
   def index
-    @registrations = @tournament.tournament_registrations.includes([:player]).order('paid_at DESC, created_at ASC ')
+    @registrations = @tournament.tournament_registrations.includes([:player]).order('paid_at is NULL, paid_at ASC, created_at ASC')
     @tournament_registration = @tournament.tournament_registrations.new
     @players = Player.find(:all, :order => ('last_name ASC'))
     @player = Player.new
