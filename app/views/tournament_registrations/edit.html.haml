@@ -2,10 +2,10 @@
   = form_for @registration, :url => tournament_tournament_registration_path(@tournament, @registration) do |f|
     %p
       = f.label :player_id, "Wybierz gracza"
-      = f.select :player_id, options_from_collection_for_select(Player.all, "id", "name") 
+      = f.select :player_id, options_from_collection_for_select(Player.all, "id", "name", @registration.player.id )
     %p
       = f.label :army, "Armia"
-      = f.select :army, options_for_select(Player::Armies) 
+      = f.select :army, options_for_select(Player::Armies, @registration.army) 
     %p
       = f.label :payment_send, "Przedpłata"
       = f.check_box :payment_send
