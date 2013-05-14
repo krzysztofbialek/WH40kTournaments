@@ -8,6 +8,13 @@ class RegistrationsMailer < ActionMailer::Base
     mail( :to => reg.player_email, :subject => 'Twoje zgłoszenie zostało przyjęte')
   end
 
+  def notify_about_new_post(post, reg)
+    @tournament = reg.tournament
+    @post = post
+    @player = reg.player
+    mail( :to => reg.player_email, :subject => "Dodano nowy post dla turnieju: #{@tournament.name}")
+  end 
+
   def tournament_change_confirmation(reg, change)
     @tournament = reg.tournament
     @player = reg.player

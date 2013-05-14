@@ -125,6 +125,13 @@ class Tournament < ActiveRecord::Base
     base_points
   end
 
+  def self.past
+    where('start_date < ?', Time.now)
+  end
+  
+  def self.upcomming
+    where('start_date > ?', Time.now)
+  end
 
   private
 

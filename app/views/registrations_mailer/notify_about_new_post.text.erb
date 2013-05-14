@@ -1,0 +1,16 @@
+Witaj <%= @player.full_name %>
+
+Dodano nowy post dla turnieju <%= @tournament.name %> .
+
+Możesz go zobaczyć klikając na link: <%= tournament_post_url(@tournament, @post)%> 
+
+Data:<%= @tournament.start_date.strftime('%d/%m/%Y') %> 
+Miasto:<%= @tournament.city %>
+
+Link do strony turnieju: <%= tournament_url(@tournament) %>
+
+Do zobaczenia na turnieju!
+
+Ekipa
+
+WH40k-tournaments.com
