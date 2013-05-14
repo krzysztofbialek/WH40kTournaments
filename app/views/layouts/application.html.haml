@@ -21,7 +21,7 @@
                 - @pages.each do |page|
                   -if page.persisted?
                     %li
-                      =link_to page.title, tournament_page_path(@tournament, page)
+                      =link_to raw(page.title), tournament_page_path(@tournament, page)
               -if owner_or_admin?
                 %li
                   = link_to 'Dodaj sekcję', new_tournament_page_path(@tournament)

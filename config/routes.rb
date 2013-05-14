@@ -20,8 +20,6 @@ Dmp40k::Application.routes.draw do
 
   match '/admin' => 'admin#index'
 
-  match '/tournaments/:id/pages/:id' => 'pages#update', :via => 'post'
-
   resources :players do
     resources :tournament_registrations 
   end
@@ -48,7 +46,9 @@ Dmp40k::Application.routes.draw do
     end
     resource :play
     resources :posts
-    resources :pages
+    resources :pages do
+      member { post :mercury_update }
+    end
     resources :tournament_registrations, :path => "registrations" do
       member do
         get 'toggle_payment', :as => 'toggle_payment'
