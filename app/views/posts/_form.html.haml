@@ -27,7 +27,8 @@
     =redcloth('# one')
     =redcloth('# two')
   .input
-    = f.text_area :body, :class => 'text_area'
+    = f.text_area :body, {:class => "tinymce text_area", :rows => 40, :cols => 160}
+    = tinymce
 .clearfix
   = f.label :user_id, t("activerecord.attributes.post.user_id", :default => "User"), :class => :label
 
