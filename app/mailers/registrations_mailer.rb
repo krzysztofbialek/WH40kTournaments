@@ -9,6 +9,7 @@ class RegistrationsMailer < ActionMailer::Base
   end
 
   def notify_about_new_post(post, reg)
+    return true if reg.player_email.blank?
     @tournament = reg.tournament
     @post = post
     @player = reg.player
