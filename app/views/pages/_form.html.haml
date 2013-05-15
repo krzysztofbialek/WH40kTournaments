@@ -9,7 +9,8 @@
 .clearfix
   = f.label :content, t("activerecord.attributes.page.content", :default => "Content"), :class => :label
   .input
-    = f.text_area :content, :class => 'text_area span4'
+    = f.text_area :content, {:class => "tinymce", :rows => 40, :cols => 160}
+    = tinymce
 .clearfix
 
 .form-actions

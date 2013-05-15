@@ -10,3 +10,4 @@
 //= require twitter/bootstrap
 //= require jquery.tablesorter.min
 //= require tournaments
+//= require tinymce-jquery
