@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
 
   def notify_players
     return true if !tournament.new?
-    players = tournament.tournament_registrations.where(:email != nil)
+    players = tournament.tournament_registrations.where('player_email is not NULL')
     players.each do |p|
       RegistrationsMailer.notify_about_new_post(self, p).deliver
     end
