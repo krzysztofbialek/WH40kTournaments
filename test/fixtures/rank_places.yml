@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  player_id: 1
+  place: 1
+  total_points: 1
+  masters_count: 1
+  challengers_count: 1
+  locals_count: 1
+  leagues_count: 1
+
+two:
+  player_id: 1
+  place: 1
+  total_points: 1
+  masters_count: 1
+  challengers_count: 1
+  locals_count: 1
+  leagues_count: 1
