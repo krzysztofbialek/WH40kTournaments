@@ -48,33 +48,36 @@
               %li
                 =link_to 'Zarejestruj', signup_path
 
-.container-fluid
-  -if @tournament && @tournament.try(:name) == 'Arena'
-    .row.header--arena
+  .container-fluid
+    -if @tournament && @tournament.try(:name) == 'Arena'
+      .row.header--arena
 
-  -else
-    .row.header
-  .row{:style => "width:1024px;margin:auto"}
-    .span2
-      =render :partial => "shared/fb"
-    .span6
-      - flash.each do |name, msg|
-        = content_tag :div, msg, :id => "flash_#{name}"
+    -else
+      .row.header
+    .row{:style => "width:1024px;margin:auto"}
+      .span2
+        =render :partial => "shared/fb"
+      .span6
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}"
 
-      = yield 
-/   .span2
-/      .banner
-/        %h2
-/          Sponsorzy
-/        %p
-/          =link_to image_tag("PuppetsWar.jpg"), "http://puppetswar.com"
-/        %p
-/          =link_to image_tag("bitspudlo.png"), "http://bitsbox.eu"
-/        %p
-/          =link_to image_tag("MaxMini.jpg"), "http://maxmini.eu"
-/        %p
-/          =link_to image_tag("MicroArt.png"), "http://microartstudio.com"
-/        %p
-/          =link_to image_tag("warfaber.png"), "http://warfaber.pl"
-/        %p
-/          =link_to image_tag("mediateka.png"), "http://mediateka.waw.pl" 
+        = yield 
+  /   .span2
+  /      .banner
+  /        %h2
+  /          Sponsorzy
+  /        %p
+  /          =link_to image_tag("PuppetsWar.jpg"), "http://puppetswar.com"
+  /        %p
+  /          =link_to image_tag("bitspudlo.png"), "http://bitsbox.eu"
+  /        %p
+  /          =link_to image_tag("MaxMini.jpg"), "http://maxmini.eu"
+  /        %p
+  /          =link_to image_tag("MicroArt.png"), "http://microartstudio.com"
+  /        %p
+  /          =link_to image_tag("warfaber.png"), "http://warfaber.pl"
+  /        %p
+  /          =link_to image_tag("mediateka.png"), "http://mediateka.waw.pl"
+  .navbar.navbar-fixed-bottom
+    .navbar-inner.footer
+      Copyright 2013 Krzysztof 'Zły' Białek, powered by Rails & Heroku  

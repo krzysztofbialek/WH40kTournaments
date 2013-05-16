@@ -49,24 +49,19 @@
             -else
               %li
                 =link_to 'Zaloguj', login_path
-/
-  .play-tabs
-    %ul.nav.nav-tabs
-      %li
-        %a{href: "#start", data: {togle: "tab"}}
-          Gracze
-      %li
-        %a{href: "#results", data: {togle: "tab"}}
-          Przebieg turnieju
-.container-fluid.play
-  .left-column
-  .right-column
-  = yield 
+  
+  .container-fluid.play
+    .left-column
+    .right-column
+    = yield 
 
-#global-feedback
-  = image_tag "ajax-loader.gif"
-  %span.text
-    loading...
+  #global-feedback
+    = image_tag "ajax-loader.gif"
+    %span.text
+      loading...
 
+  .navbar.navbar-fixed-bottom
+    .navbar-inner.footer
+      Copyright 2013 Krzysztof 'Zły' Białek, powered by Rails & Heroku  
 .footer-js
   =javascript_include_tag "play"
