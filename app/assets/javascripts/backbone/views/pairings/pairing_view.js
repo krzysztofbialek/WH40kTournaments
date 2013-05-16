@@ -76,11 +76,16 @@ PairingView = Backbone.View.extend({
     var modal = "#modal_" + this.model.id
     var match_field1 =  $(modal + ' #player1_match_points')
     var match_field2 =  $(modal + ' #player2_match_points')
-    points1 = this.model.get('player1_game_points')
-    points2 = this.model.get('player2_game_points')
+    points1 = parseInt(this.model.get('player1_game_points')) || 0
+    points2 = parseInt(this.model.get('player2_game_points')) || 0
     points = [points1, points2]
+    console.log(points1)
+    console.log(points2)
     var diff = Math.abs(points1 - points2)
+    console.log(diff)
     var won = _.indexOf(points,_.max(points)) + 1
+    console.log(points)
+    console.log(won)
     if( diff >= 10 ){
       winner_points = 20
     } else {
