@@ -26,7 +26,7 @@
                 %li
                   = link_to 'Dodaj sekcję', new_tournament_page_path(@tournament)
               %li
-                - text = @tournament.current_round == 0 ? 'Rozpocznij turniej' : 'Przebieg turnieju'
+                - text = @tournament.current_round == 0 && owner_or_admin? ? 'Rozpocznij turniej' : 'Przebieg turnieju'
                 = link_to text , tournament_play_path(@tournament)
               -if @tournament.finished?
                 %li

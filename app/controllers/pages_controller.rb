@@ -66,7 +66,7 @@ class PagesController < ApplicationController
       render text: ""
 
     else
-      @tournament = Tournament.find(params[:tournament])
+      @tournament = Tournament.find(params[:tournament_id])
       @page = @tournament.pages.find(params[:id])
       if @page.update_attributes(params[:page])
         redirect_to tournament_page_path(@tournament, @page), notice: 'Sekcja została uaktualniona.'
