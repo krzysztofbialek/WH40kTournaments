@@ -11,10 +11,10 @@
     <% } else if (window.currentUser && window.currentUser.admin == 'true'){ %>
       <th>
         <button class='generate-new-round btn'>Wygeneruj rundę</button>
-        <a class='show-results btn' href=<%='/tournaments/' + Dmp40k.getTournamentId() + '/current_round'%>>Pokaż pary aktualnej rundy</a>
+        <a class='show-results btn' href=<%='/tournaments/' + Dmp40k.getTournamentId() + '/current_round'%> target="_blank">Pokaż pary aktualnej rundy</a>
       </th>
     <% } else { %>
-      <th><a class='show-results btn' href=<%='/tournaments/' + Dmp40k.getTournamentId() + '/current_round'%>>Pokaż pary aktualnej rundy</a></th>
+      <th><a class='show-results btn' href=<%='/tournaments/' + Dmp40k.getTournamentId() + '/current_round'%> target="_blank">Pokaż pary aktualnej rundy</a></th>
     <% } %>
   </tr>
 </table>
