@@ -10,16 +10,16 @@
     <th>Ligi</th>
   <thead>
   <tbody>
-    <% @places.each do |p| %>
+    <% @places.each_with_index do |p, i| %>
       <tr>
-       <td>p.place</td>
-       <td>p.player.full_name</td>
-       <td>p.total_points</td>
-       <td>p.total_tournaments</td>
-       <td>p.masters_count</td>
-       <td>p.challengers_count</td>
-       <td>p.locals_count</td>
-       <td>p.leagues_count</td>
+       <td><%= i + 1 %></td>
+       <td><%= p.player.full_name %></td>
+       <td><%= p.total_points %></td>
+       <td><%= p.total_tournaments %></td>
+       <td><%= p.masters_count %></td>
+       <td><%= p.challengers_count %></td>
+       <td><%= p.locals_count %></td>
+       <td><%= p.leagues_count %></td>
       </tr>
     <% end %>
   </tbody>

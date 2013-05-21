@@ -19,6 +19,7 @@ class Tournament < ActiveRecord::Base
   has_many :pages, :dependent => :destroy
   has_many :tournament_registrations, :dependent => :destroy
   has_many :posts, :dependent => :destroy
+  has_many :played_tournaments, :dependent => :destroy
   friendly_id :name, use: :slugged
   #has_many :hostel_bookings, :dependent => :destroy
 
@@ -140,6 +141,7 @@ class Tournament < ActiveRecord::Base
                                 place: i+1,
                                 points: reg.current_points)
       end
+      self.count!
     end 
   end
 

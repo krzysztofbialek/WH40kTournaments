@@ -65,6 +65,7 @@ Dmp40k::Application.routes.draw do
         post 'import'
       end
     end
+    
     resources :tournaments do
       member { post 'add_to_rank' }
     end

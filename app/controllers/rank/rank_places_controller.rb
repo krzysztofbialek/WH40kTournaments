@@ -2,7 +2,7 @@
 class Rank::RankPlacesController < AdminController
 
   def index
-    @places = RankPlace.includes(:player)
+    @places = RankPlace.includes(:player).order('total_points DESC')
   end
 
 end
