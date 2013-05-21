@@ -31,5 +31,4 @@ class PlayedTournament < ActiveRecord::Base
   
     points = (base.to_f * (registrations.size + 1 - place) / registrations.size).ceil + extra_points
   end
-
 end

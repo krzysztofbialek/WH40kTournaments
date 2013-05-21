@@ -99,11 +99,22 @@ class Tournament < ActiveRecord::Base
   end
 
   def check_round
-    if current_round == 0
-      start!
+    transaction do
+      if current_round == 0
+        start!
+      elsif last_round?
+        return false  
+      end
       update_round
-    else
-      update_round
+      registrations = tournament_registrations
+      if current_round == 1
+        registrations = registrations.shuffle
+      else
+        registrations = sort_players(registrations)
+      end
+      registrations = remove_pausing_pairing(registrations) if registrations.size.odd?
+      create_pairings(registrations)
+      true
     end
   end
 
@@ -191,6 +202,19 @@ class Tournament < ActiveRecord::Base
   def self.upcomming
     where('start_date > ?', Time.now)
   end
+  
+  def add_to_rank
+    regs = sort_players(tournament_registrations)
+    transaction do
+      regs.each_with_index do |reg, i|
+        PlayedTournament.create(player_id: reg.player_id, 
+                                tournament_id: self.id,
+                                place: i+1,
+                                points: reg.current_points)
+      end
+    end 
+  end
+
 
   private
 
