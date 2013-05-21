@@ -212,6 +212,7 @@ class Tournament < ActiveRecord::Base
                                 place: i+1,
                                 points: reg.current_points)
       end
+      self.count!
     end 
   end
 
