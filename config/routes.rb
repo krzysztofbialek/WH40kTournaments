@@ -65,7 +65,10 @@ Dmp40k::Application.routes.draw do
         post 'import'
       end
     end
-    root :to => 'admin#index'
+    resources :tournaments do
+      member { post 'add_to_rank' }
+    end
+    root :to => 'tournaments#index'
   end
 
   namespace :rank do

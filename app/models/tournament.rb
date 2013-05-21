@@ -38,7 +38,11 @@ class Tournament < ActiveRecord::Base
     end
 
     event :count do
-      transitions from: :ongoing, to: :finished
+      transitions from: :finished, to: :counted
+    end
+    
+    event :uncount do
+      transitions from: :counted, to: :finished
     end
   end
 
@@ -57,21 +61,23 @@ class Tournament < ActiveRecord::Base
   end
 
   def generate_pairings
-    if current_round == 0
-      start!
-    elsif last_round?
-      return false  
+    transaction do
+      if current_round == 0
+        start!
+      elsif last_round?
+        return false  
+      end
+      update_round
+      registrations = tournament_registrations
+      if current_round == 1
+        registrations = registrations.shuffle
+      else
+        registrations = sort_players(registrations)
+      end
+      registrations = remove_pausing_pairing(registrations) if registrations.size.odd?
+      create_pairings(registrations)
+      true
     end
-    update_round
-    registrations = tournament_registrations
-    if current_round == 1
-      registrations = registrations.shuffle
-    else
-      registrations = sort_players(registrations)
-    end
-    registrations = remove_pausing_pairing(registrations) if registrations.size.odd?
-    create_pairings(registrations)
-    true
   end
 
   def create_pairings(registrations)
@@ -123,6 +129,18 @@ class Tournament < ActiveRecord::Base
       50
     end
     base_points
+  end
+
+  def add_to_rank
+    regs = sort_players(tournament_registrations)
+    transaction do
+      regs.each_with_index do |reg, i|
+        PlayedTournament.create(player_id: reg.player_id, 
+                                tournament_id: self.id,
+                                place: i+1,
+                                points: reg.current_points)
+      end
+    end 
   end
 
 

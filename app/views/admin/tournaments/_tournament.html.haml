@@ -1,0 +1,17 @@
+%tr
+  %th
+    = "#{i + 1}"
+  %th
+    =link_to t.name, tournament_posts_path(t)
+  %th
+    =t.city
+  %th
+    =t.rank
+  %th
+    =t.start_date.to_date
+  %th
+    =t.state
+  %th
+    =link_to "", edit_admin_tournament_path(t), :class => 'icon-edit', :title => 'Edytuj'
+    =link_to "", admin_tournament_path(t), :class => 'icon-remove', :method => :delete, :confirm => "Are you sure?", :title => 'Usuń zgłoszenie'
+    =link_to "", add_to_rank_admin_tournament_path(t), :class => 'icon-ok', :method => :post,  :confirm => "Czy na pewno chcesz dodać turniej do rankingu?", :title => 'Zalicz do rankingu'

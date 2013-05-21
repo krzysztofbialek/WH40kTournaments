@@ -26,7 +26,8 @@ class TournamentRegistration < ActiveRecord::Base
 
   def notify_player_of_change
     change = (self.changed & MONITORED_ATTRS).first
-    if self.send(change)
+    
+    if change &&  self.send(change)
       RegistrationsMailer.tournament_change_confirmation(self, change).deliver    
     end
   end

@@ -1,0 +1,25 @@
+%table.table.table-bordered.tablesorter
+  %thead
+    %tr
+      %th
+        Lp.
+      %th
+        Nazwa turnieju
+      %th
+        Ranga
+      %th
+        Miasto
+      %th
+        Data
+      %th
+        Status
+      %th
+        Akcje
+  %tbody
+    -@tournaments.each_with_index do |t, i|
+      =render :partial => 'tournament', :locals => {:t => t, :i => i}
+-if logged_in?
+  %div
+    %h3=link_to 'Utwórz nowy turniej', new_tournament_path
+ 
+
