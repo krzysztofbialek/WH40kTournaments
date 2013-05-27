@@ -31,7 +31,7 @@ Dmp40k::Application.configure do
     :address => "smtp.sendgrid.net",  
     :domain => "wh40k-tournaments.com",
     :port => 587,   
-    :user_name => "wh40k-tournaments",   
+    :user_name => ENV['SENDGRID_USERNAME'],
     :password => ENV['SENDGRID_PASS'],   
     :authentication => :plain,
     :enable_starttls_auto => true
