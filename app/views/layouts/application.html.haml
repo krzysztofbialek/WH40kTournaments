@@ -28,7 +28,7 @@
               %li
                 - text = @tournament.current_round == 0 && owner_or_admin? ? 'Rozpocznij turniej' : 'Przebieg turnieju'
                 = link_to text , tournament_play_path(@tournament)
-              -if @tournament.counted? || tournament.finished? 
+              -if @tournament.counted? || @tournament.finished? 
                 %li
                   = link_to 'Wyniki', results_tournament_path(@tournament)
           %ul.nav.pull-right
