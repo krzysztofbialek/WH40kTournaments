@@ -3,6 +3,8 @@ class TournamentRegistration < ActiveRecord::Base
 
   MONITORED_ATTRS = ['roster_send', 'roster_valid', 'payment_send']
 
+  acts_as_paranoid 
+
   belongs_to :tournament
   belongs_to :player
   has_many :pairings, :class_name => 'TournamentPairing', :finder_sql => Proc.new {

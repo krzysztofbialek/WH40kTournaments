@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513120806) do
+ActiveRecord::Schema.define(:version => 20130528084417) do
 
   create_table "hostel_bookings", :force => true do |t|
     t.string   "first_name"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(:version => 20130513120806) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "played_tournaments", :force => true do |t|
+    t.integer  "player_id"
+    t.integer  "tournament_id"
+    t.integer  "place"
+    t.integer  "points"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "players", :force => true do |t|
@@ -49,6 +58,18 @@ ActiveRecord::Schema.define(:version => 20130513120806) do
     t.datetime "updated_at"
     t.integer  "tournament_id"
     t.string   "slug"
+  end
+
+  create_table "rank_places", :force => true do |t|
+    t.integer  "player_id"
+    t.integer  "place"
+    t.integer  "total_points"
+    t.integer  "masters_count"
+    t.integer  "challengers_count"
+    t.integer  "locals_count"
+    t.integer  "leagues_count"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "team_registrations", :force => true do |t|
@@ -101,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20130513120806) do
     t.integer  "played_games",           :default => 0
     t.integer  "current_victory_points", :default => 0
     t.datetime "paid_at"
+    t.datetime "deleted_at"
   end
 
   create_table "tournaments", :force => true do |t|

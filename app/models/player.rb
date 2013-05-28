@@ -2,7 +2,7 @@ class Player < ActiveRecord::Base
   require 'csv'
 
   Armies = ['Grey Knights', 'Eldars', 'Space Marines', 'Chaos Space Marines', 'Space Wolves',
-             'Imperial Guard', 'Chaos Demons', 'Blood Angels', 'Dark Angels',
+             'Imperial Guard', 'Chaos Daemons', 'Blood Angels', 'Dark Angels',
              'Orks', 'Dark Eldars', 'Black Templars', 'Sister of Battle',
              'Tyranids', 'Necrons', 'Tau']
 

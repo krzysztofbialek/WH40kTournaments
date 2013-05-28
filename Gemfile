@@ -14,6 +14,7 @@ gem 'RedCloth'
 gem 'mercury-rails'
 gem "friendly_id", "~> 4.0.9"
 gem "aasm"
+gem "acts_as_paranoid"
 gem 'tinymce-rails'
 
 # Gems used only for assets and not required
