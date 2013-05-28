@@ -20,6 +20,9 @@ Dmp40k::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.assets.initialize_on_precompile = false
+
+
   config.assets.precompile += %w( mercury_overrides.js mercury.js mercury.css mercury_overrides.css ) 
 
   config.action_mailer.default_url_options = { :host => 'wh40k-tournaments.com' }
