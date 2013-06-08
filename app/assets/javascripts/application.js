@@ -4,10 +4,12 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require jquery-1.7.min
+//= require jquery
 //= require jquery-ui.min
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jquery.tablesorter.min
+//= require typeahead.min
 //= require tournaments
+//= require team_registrations
 //= require tinymce-jquery

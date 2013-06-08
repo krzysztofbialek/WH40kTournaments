@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 class Player < ActiveRecord::Base
   require 'csv'
 
@@ -65,4 +67,7 @@ class Player < ActiveRecord::Base
     end
   end
 
+  def as_json(*args)
+    super(:only => :id ).merge(:value => full_name)
+  end
 end
