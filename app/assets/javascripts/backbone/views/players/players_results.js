@@ -13,11 +13,12 @@ PlayersResults = Backbone.View.extend({
 
   render: function(){
     this.$el.html(this.template());
-    this.collection.forEach(this.addOne, this);
+    this.collection.forEach(function(element, index){
+      this.addOne(element, index)}, this);
   },
   
-  addOne: function(player){
-    var playerResultView = new PlayerResultView({model: player});
+  addOne: function(player, index){
+    var playerResultView = new PlayerResultView({model: player, index: index});
     playerResultView.render();
     this.$('tbody').append(playerResultView.el);
   },

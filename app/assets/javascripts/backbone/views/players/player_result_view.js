@@ -14,6 +14,7 @@ PlayerResultView = Backbone.View.extend({
   
   render: function(){
     this.$el.attr('id', this.model.id).html(this.template(this.model.toJSON()));
+    console.log(this)
     return this
   },
   
