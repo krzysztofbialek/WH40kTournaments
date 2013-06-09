@@ -10,7 +10,7 @@
       <th><button class='show-results'><a href=<%='/tournaments/' + Dmp40k.getTournamentId() + '/results'%>>Pokaż wyniki</a></button></td>
     <% } else if (window.currentUser && window.currentUser.admin == 'true'){ %>
       <th>
-        <button class='generate-new-round btn'>Wygeneruj rundę</button>
+        <a class='generate-new-round btn'>Wygeneruj rundę</button>
         <a class='show-results btn' href=<%='/tournaments/' + Dmp40k.getTournamentId() + '/current_round'%> target="_blank">Pokaż pary aktualnej rundy</a>
       </th>
     <% } else { %>
