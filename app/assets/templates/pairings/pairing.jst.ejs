@@ -6,6 +6,10 @@
     <div class='add-results'>
       <a href="#modal_<%= id %>" data-toggle="modal"><i class="icon-plus"></i> Dodaj wynik</a>
     </div>
+  <% } else { %>
+    <div class='add-results'>
+      <a href="#show_modal_<%= id %>" data-toggle="modal"><i class="icon-plus"></i> Zobacz wynik</a>
+    </div>
   <% } %>
 
   <div id="modal_<%= id %>" class="modal hide fade" role="dialog" >
@@ -34,6 +38,30 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   </div>
 
+  <div id="show_modal_<%= id %>" class="modal small hide fade" role="dialog" >
+    <div class='show-pairing'>
+      <div class='player-1'>
+        <p class='game-points'>
+          <label for="player1_game_points">Małe punkty - <%= player1_name %></label>
+          <input type="number" name="player1_game_points" disabled='true' id="player1_game_points" value='<%= player1_game_points %>' >
+        </p>
+        <p class='match-points'>
+          <label for="player1_match_points">Duże punkty - <%= player1_name %></label>
+          <input disabled type="number" name="player2_match_points" id="player1_match_points" value='<%= player1_match_points %>' >
+        </p>
+      </div>
+      <div class='player-2'>
+        <p class='game-points'>
+          <label for="player2_game_points">Małe punkty - <%= player2_name %></label>
+          <input type="number" name="player2_game_points" disabled='true' id="player2_game_points" value=<%= player2_game_points %> >
+        </p>
+        <p class='match-points'>
+          <label for="player2_match_points">Duże punkty - <%= player2_name %></label>
+          <input disabled type="number" name="player2_match_points" id="player2_match_points" value='<%= player2_match_points %>' >
+        </p>
+      </div>
+    </div>
+  </div>
 </td>
 <td class='players'>
   <div class='player'>
