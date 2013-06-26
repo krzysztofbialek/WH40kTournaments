@@ -13,11 +13,12 @@ PlayersResults = Backbone.View.extend({
 
   render: function(){
     this.$el.html(this.template());
-    this.collection.forEach(this.addOne, this);
+    this.collection.forEach(function(element, index){
+      this.addOne(element, index)}, this);
   },
   
-  addOne: function(player){
-    var playerResultView = new PlayerResultView({model: player});
+  addOne: function(player, index){
+    var playerResultView = new PlayerResultView({model: player, index: index});
     playerResultView.render();
     this.$('tbody').append(playerResultView.el);
   },
@@ -38,7 +39,15 @@ PlayersResults = Backbone.View.extend({
         points.text(points.data('points'));
       }
     });
-    table.tablesorter( {sortList: [[3,1], [2,1]]} );
+    table.tablesorter( {sortList: [[4,1], [3,1]] });
+    this.addIndex()
+  },
+
+  addIndex: function(){
+    var rows = $('.lp')
+    $.each(rows, function(i, item){
+      $(this).text(i+1)
+    });
   }
 
 });

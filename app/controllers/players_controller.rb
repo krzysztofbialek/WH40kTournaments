@@ -3,6 +3,10 @@ class PlayersController < ApplicationController
 
   before_filter :load_tournament
 
+  def index
+    render json: Player.all
+  end
+  
   def create
     player = Player.new(params[:player])
     if player.save

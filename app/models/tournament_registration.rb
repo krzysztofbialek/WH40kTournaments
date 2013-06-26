@@ -3,6 +3,8 @@ class TournamentRegistration < ActiveRecord::Base
 
   MONITORED_ATTRS = ['roster_send', 'roster_valid', 'payment_send']
 
+  acts_as_paranoid 
+
   belongs_to :tournament
   belongs_to :player
   has_many :pairings, :class_name => 'TournamentPairing', :finder_sql => Proc.new {
@@ -26,9 +28,10 @@ class TournamentRegistration < ActiveRecord::Base
 
   def notify_player_of_change
     change = (self.changed & MONITORED_ATTRS).first
-    
-    if change &&  self.send(change)
-      RegistrationsMailer.tournament_change_confirmation(self, change).deliver    
+    if change
+      if self.send(change)
+        RegistrationsMailer.tournament_change_confirmation(self, change).deliver    
+      end
     end
   end
 
@@ -58,7 +61,7 @@ class TournamentRegistration < ActiveRecord::Base
   end
   
   def final_points
-    player.points_for_tournament(tournament) + extra_points - penalty_points
+    current_points + extra_points - penalty_points
   end
 
 end

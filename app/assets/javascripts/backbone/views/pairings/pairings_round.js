@@ -10,9 +10,14 @@ PairingsRound = Backbone.View.extend({
   render: function(round, index){
     this.$el.html(this.template());
     this.$el.attr('id', 'round' + index)
-    this.$el.append('<tr><td class="round" colspan=2>Runda '+ index + '<i class="icon-minus toggle-round"> (zwiń rundę)</i></td></tr>')
     round.forEach(this.addOne, this);
-    this.$('.toggle-round').on('click', this.toggleRound, this)
+    this.$('.toggle-round').on('click', this.toggleRound, this);
+    if (this.$('.completed').size() === this.$('tr').size() ){
+      this.$el.prepend('<tr><td class="round" colspan=2>Runda '+ index + '<i class="icon-plus toggle-round"> (rozwiń rundę)</i></td></tr>')
+      this.$('.completed').hide();
+    } else {
+      this.$el.prepend('<tr><td class="round" colspan=2>Runda '+ index + '<i class="icon-minus toggle-round"> (zwiń rundę)</i></td></tr>')
+    }
   },
     
   addOne: function(pairing){

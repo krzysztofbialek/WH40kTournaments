@@ -14,12 +14,12 @@
       <tr>
        <td><%= i + 1 %></td>
        <td><%= p.player.full_name %></td>
-       <td><%= p.total_points %></td>
-       <td><%= p.total_tournaments %></td>
-       <td><%= p.masters_count %></td>
-       <td><%= p.challengers_count %></td>
-       <td><%= p.locals_count %></td>
-       <td><%= p.leagues_count %></td>
+       <td><%= p.total_points || 0 %></td>
+       <td><%= p.total_tournaments || 0 %></td>
+       <td><%= p.masters_count || 0%></td>
+       <td><%= p.challengers_count || 0 %></td>
+       <td><%= p.locals_count || 0 %></td>
+       <td><%= p.leagues_count || 0 %></td>
       </tr>
     <% end %>
   </tbody>

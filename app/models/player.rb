@@ -1,8 +1,10 @@
+#encoding: utf-8
+
 class Player < ActiveRecord::Base
   require 'csv'
 
   Armies = ['Grey Knights', 'Eldars', 'Space Marines', 'Chaos Space Marines', 'Space Wolves',
-             'Imperial Guard', 'Chaos Demons', 'Blood Angels', 'Dark Angels',
+             'Imperial Guard', 'Chaos Daemons', 'Blood Angels', 'Dark Angels',
              'Orks', 'Dark Eldars', 'Black Templars', 'Sister of Battle',
              'Tyranids', 'Necrons', 'Tau']
 
@@ -67,4 +69,7 @@ class Player < ActiveRecord::Base
     end
   end
 
+  def as_json(*args)
+    super(:only => :id ).merge(:value => full_name)
+  end
 end

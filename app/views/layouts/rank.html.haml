@@ -11,26 +11,6 @@
     .navbar-inner
       .container
         .nav-colapse
-          %ul.nav
-            -if @tournament && @tournament.persisted?
-              %li
-                =link_to 'Blog', tournament_posts_path(@tournament)
-              %li
-                =link_to 'Zgłoszenia', tournament_tournament_registrations_path(@tournament)
-              - if @pages
-                - @pages.each do |page|
-                  -if page.persisted?
-                    %li
-                      =link_to raw(page.title), tournament_page_path(@tournament, page)
-              -if owner_or_admin?
-                %li
-                  = link_to 'Dodaj sekcję', new_tournament_page_path(@tournament)
-              %li
-                - text = @tournament.current_round == 0 && owner_or_admin? ? 'Rozpocznij turniej' : 'Przebieg turnieju'
-                = link_to text , tournament_play_path(@tournament)
-              -if @tournament.counted? || @tournament.finished? 
-                %li
-                  = link_to 'Wyniki', results_tournament_path(@tournament)
           %ul.nav.pull-right
             %li
               =link_to "Wszystkie turnieje", tournaments_path
@@ -49,14 +29,17 @@
                 =link_to 'Zarejestruj', signup_path
 
   .container-fluid
-    -if @tournament && @tournament.try(:name) == 'Arena'
-      .row.header--arena
-
-    -else
-      .row.header
+    .row.header
     .row{:style => "width:1024px;margin:auto"}
       .span2
-        =render :partial => "shared/fb"
+        %ul.nav.nav-tabs.nav-stacked
+          %li
+            =link_to 'Wszyscy gracze', rank_root_path
+          %li
+            =link_to 'Top 10' , '#'
+          %li
+            =link_to 'Turnieje', '#'
+
       .span6
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"

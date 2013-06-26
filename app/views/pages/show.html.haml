@@ -1,11 +1,13 @@
 %label{:class => "label"}= t("activerecord.attributes.page.title", :default => t("activerecord.labels.name", :default => "Tytuł")) + ":"
-%p= @page.title
+%h3
+  %span{id: "page_name", class: "mercury-region", :data => { mercury: "full", type:"editable"}}= raw @page.title
 %label{:class => "label"}= t("activerecord.attributes.page.content", :default => t("activerecord.labels.body", :default => "Treść")) + ":"
-%p.mercury-region{data: {mercury: "full", type: "editable", tournament: "#{@tournament.id}"}}
+%p.mercury-region{id: "page_content", data: {mercury: "full", type: "editable", tournament: "#{@tournament.id}"}}
   = raw(@page.content)
 
 -if logged_in? && (current_user == @tournament.user || current_user.admin?)
   .form-actions
     = link_to "Back", tournament_posts_path(@tournament), :class => 'btn'
-    = link_to "Edit", '/editor/' + "tournaments/#{@tournament.id}/pages/#{@page.id}", :class => 'btn', :tournament => 1
+    = link_to "Edit", '/editor/' + "tournaments/#{@tournament.id}/pages/#{@page.id}", :class => 'btn', save_url: mercury_update_tournament_page_path(@tournament, @page)
+    = link_to "New Edit", edit_tournament_page_path(@tournament, @page), :class => 'btn'
     = link_to "Delete", tournament_page_path(@tournament, @page), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn'

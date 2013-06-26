@@ -9,7 +9,7 @@ Dmp40k::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -20,7 +20,8 @@ Dmp40k::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  config.assets.precompile += %w( mercury_overrides.js mercury.js mercury.css mercury_overrides.css ) 
+  config.assets.initialize_on_precompile = false
+
 
   config.action_mailer.default_url_options = { :host => 'wh40k-tournaments.com' }
 
@@ -31,7 +32,7 @@ Dmp40k::Application.configure do
     :address => "smtp.sendgrid.net",  
     :domain => "wh40k-tournaments.com",
     :port => 587,   
-    :user_name => "wh40k-tournaments",   
+    :user_name => ENV['SENDGRID_USERNAME'],
     :password => ENV['SENDGRID_PASS'],   
     :authentication => :plain,
     :enable_starttls_auto => true

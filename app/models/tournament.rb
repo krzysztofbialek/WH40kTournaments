@@ -105,7 +105,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def sort_players(registrations)
-    registrations.sort_by { |registration| registration.current_points }.reverse 
+    registrations.sort_by { |registration| [registration.current_points, registration.current_victory_points] }.reverse 
   end
 
   def last_round?
@@ -145,6 +145,13 @@ class Tournament < ActiveRecord::Base
     end 
   end
 
+  def self.past
+    where('start_date < ?', Time.now)
+  end
+  
+  def self.upcomming
+    where('start_date > ?', Time.now)
+  end
 
   private
 

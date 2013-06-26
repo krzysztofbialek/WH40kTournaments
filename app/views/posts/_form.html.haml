@@ -1,33 +1,12 @@
 .clearfix
-  = f.label :name, t("activerecord.attributes.post.name", :default => "Name"), :class => :label
+  = f.label :name, 'Tytuł', :class => :label
   .input
     = f.text_field :name, :class => 'text_field'
 .clearfix
-  = f.label :body, t("activerecord.attributes.post.body", :default => "Body"), :class => :label
-  %p.rc_info
-    h1. Give RedCloth a try!
-    %br
-    A *simple* paragraph with
-    %br
-    a line break, some _emphasis_ and a "link":http://redcloth.org
-    %br
-    * an item
-    %br
-    * and another
-    %br
-    \# one
-    %br
-    \# two
-  %p.rc_info
-    =redcloth("h1. Give RedCloth a try!")
-    =redcloth('A *simple* paragraph with')
-    =redcloth('a line break, some _emphasis_ and a "link":http://redcloth.org')
-    =redcloth('* an item')
-    =redcloth('* and another')
-    =redcloth('# one')
-    =redcloth('# two')
+  = f.label :body, 'Treść', :class => :label
   .input
-    = f.text_area :body, :class => 'text_area'
+    = f.text_area :body, {:class => "tinymce text_area", :rows => 40, :cols => 160}
+    = tinymce
 .clearfix
   = f.label :user_id, t("activerecord.attributes.post.user_id", :default => "User"), :class => :label
 

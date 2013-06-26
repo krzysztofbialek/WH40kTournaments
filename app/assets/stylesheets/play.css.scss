@@ -27,6 +27,15 @@
       margin: auto;
     }
   }
+  &.small{
+    width: initial;
+    .player-1{
+      float: left;
+    }
+    .player-2{
+      float: right;
+    }
+  }
 }
 
 .container-fluid{

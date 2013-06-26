@@ -41,6 +41,7 @@ class TournamentRegistrationsController < ApplicationController
     end
   end
   
+
   def toggle_payment
     reg = TournamentRegistration.find(params[:id])
     if reg.payment_send 

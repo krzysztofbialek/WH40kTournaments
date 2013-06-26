@@ -1,6 +1,8 @@
 Witaj <%= @player.full_name %>
 
-Twoja rozpiska na turniej <%= @tournament.name %> została przyjęta. 
+Dodano nowy post dla turnieju <%= @tournament.name %> .
+
+Możesz go zobaczyć klikając na link: <%= tournament_post_url(@tournament, @post)%> 
 
 Data:<%= @tournament.start_date.strftime('%d/%m/%Y') %> 
 Miasto:<%= @tournament.city %>

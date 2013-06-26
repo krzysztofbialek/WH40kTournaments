@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 class PagesController < ApplicationController
   before_filter :load_tournament, :except => ['update']
   before_filter :load_pages
@@ -33,7 +35,7 @@ class PagesController < ApplicationController
     else
       @page = @tournament.pages.new(params[:page])
       if @page.save
-        redirect_to tournament_page_path(@tournament, @page), notice: 'Page was successfully created.'
+        redirect_to tournament_page_path(@tournament, @page), notice: 'Sekcja została dodana.'
       else
         render :new
       end
@@ -43,23 +45,31 @@ class PagesController < ApplicationController
   def edit
     @page = @tournament.pages.find(params[:id])
   end
+
+  def destroy
+    page = @tournament.pages.find(params[:id])
+    if page.destroy
+      redirect_to tournament_path(@tournament), notice: 'Sekcja usunięta.'
+    else
+      redirect_to tournament_page_path(@tournament, @page), notice: 'Nie można usunąć sekcji.'
+    end
+  end
   
   def update
     if params[:content]
-      value =  ActiveSupport::JSON.decode(params[:content])["undefined"]["value"]
-      tournament = ActiveSupport::JSON.decode(params[:content])["undefined"]["data"]["tournament"]
-      tournament = Tournament.find(tournament)
+      tournament = Tournament.find(params[:tournament_id])
       page = tournament.pages.find(params[:id])
-      page.update_attributes(:content => value)
-
+      page.title = params[:content][:page_name][:value]
+      page.content = params[:content][:page_content][:value]
+      page.save!
       
-      render text: "success"
+      render text: ""
 
     else
-      @tournament = Tournament.find(params[:tournament])
+      @tournament = Tournament.find(params[:tournament_id])
       @page = @tournament.pages.find(params[:id])
       if @page.update_attributes(params[:page])
-        redirect_to tournament_page_path(@tournament, @page), notice: 'Page was successfully updated.'
+        redirect_to tournament_page_path(@tournament, @page), notice: 'Sekcja została uaktualniona.'
       else
         render :edit
       end
