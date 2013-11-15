@@ -36,7 +36,6 @@ gem 'jquery-rails'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
-# gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -48,7 +47,8 @@ group :development do
   gem "debugger"
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem "letter_opener", :group => :development
+  gem "letter_opener"
+  gem "quiet_assets"
 end
 
 group :test do
@@ -62,4 +62,5 @@ end
 
 group :production do
   gem 'pg'
+  gem 'unicorn'
 end
