@@ -2,6 +2,7 @@
 %html
 %head
   %title
+  %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
   =stylesheet_link_tag "application"
   =javascript_include_tag "application"
   =csrf_meta_tags
@@ -48,16 +49,16 @@
               %li
                 =link_to 'Zarejestruj', signup_path
 
-  .container-fluid
+  .container
     -if @tournament && @tournament.try(:name) == 'Arena'
       .row.header--arena
 
     -else
       .row.header
-    .row{:style => "width:1024px;margin:auto"}
-      .span2
-        =render :partial => "shared/fb"
-      .span6
+    .row
+      /.span2
+      / =render :partial => "shared/fb"
+      .span12
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
 

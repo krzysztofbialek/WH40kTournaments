@@ -10,11 +10,16 @@ body{
   color: #666;
   line-height: 38px;
 }
-  
+
+.center { 
+  float: none; 
+  margin-left: auto; 
+  margin-right: auto; 
+}
+
 .row.header{
   height: 300px;
   background: url(logo2.png) no-repeat center;
-  width: 1024px;
   margin: auto;
   border-bottom: 1px solid #333;
   margin-bottom: 20px

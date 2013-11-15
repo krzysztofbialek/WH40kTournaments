@@ -4,7 +4,7 @@
 -else
   %h3
     Nie ma jeszcze żandych wpisów
-
--if logged_in? && (current_user == @tournament.user || current_user.admin?)
-  = link_to "Dodaj post", new_tournament_post_path(@tournament), :class => 'btn'
+.span8.center
+  -if logged_in? && (current_user == @tournament.user || current_user.admin?)
+    = link_to "Dodaj post", new_tournament_post_path(@tournament), :class => 'btn'
 
