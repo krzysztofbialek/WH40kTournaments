@@ -4,10 +4,15 @@ class TournamentRegistrationsController < ApplicationController
   before_filter :load_tournament, :load_pages
 
   def index
-    @registrations = @tournament.tournament_registrations.includes([:player]).order('paid_at is NULL, paid_at ASC, created_at ASC')
-    @tournament_registration = @tournament.tournament_registrations.new
-    @players = Player.find(:all, :order => ('last_name ASC'))
-    @player = Player.new
+    if @tournament.for_teams?
+      @registrations = @tournament.team_registrations.order('paid_at is NULL, paid_at ASC, created_at ASC')
+      @team_registration = @tournament.team_registrations.new
+    else
+      @registrations = @tournament.tournament_registrations.includes([:player]).order('paid_at is NULL, paid_at ASC, created_at ASC')
+      @tournament_registration = @tournament.tournament_registrations.new
+      @players = Player.find(:all, :order => ('last_name ASC'))
+      @player = Player.new
+    end 
   end
 
   def create
@@ -20,7 +25,11 @@ class TournamentRegistrationsController < ApplicationController
   end
 
   def edit
-    @registration = TournamentRegistration.find(params[:id])
+    if @tournament.for_teams?
+      @team_registration = @tournament.team_registrations.find(params[:id])
+    else
+      @registration = @tournament.tournament_registrations.find(params[:id])
+    end
   end
   
   def update

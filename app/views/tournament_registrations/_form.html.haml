@@ -2,7 +2,10 @@
   .add_team.span3
     %p
       Dodaj zgłoszenie
-    = form_for @tournament_registration, :url => tournament_tournament_registrations_path do |f|
+    -if @tournament_registration.new_record? 
+      = form_for @tournament_registration, :url => tournament_tournament_registrations_path do |f|
+    -else
+      = form_for @tournament_registration, :url => tournament_tournament_registration_path(@tournament_registration) do |f|
       %p
         = f.label :player_id, "Wybierz gracza"
         = f.hidden_field :player_id, class: 'player-id'

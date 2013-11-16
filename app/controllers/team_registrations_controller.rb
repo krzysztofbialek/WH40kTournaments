@@ -1,3 +1,4 @@
+#encoding: utf-8
 class TeamRegistrationsController < ApplicationController
   
   before_filter :load_tournament, :load_pages
@@ -8,39 +9,36 @@ class TeamRegistrationsController < ApplicationController
   end 
 
   def destroy
-    reg = TeamRegistration.find(params[:id])   
+    reg = @tournament.team_registrations.find(params[:id])   
     if reg.destroy
-      redirect_to team_registrations_path, :notice => "registration deleted"
+      redirect_to tournament_tournament_registrations_path(@tournament), :notice => "Zgłoszenie usunięte"
     end
   end
-
-
-  def toggle_payment
-    reg = TeamRegistration.find(params[:id])
-    reg.payment? ? reg.payment = false : reg.payment = true
-    reg.save
-    redirect_to team_registrations_path
+  
+  def create
+    registration = @tournament.team_registrations.new(params[:team_registration])
+    if registration.save
+      redirect_to :back, :notice => "Dodano zgłoszenie"
+    else
+      redirect_to :back, :alert => "Nie udało się dodać zgłoszenia"
+    end
   end
   
-  def toggle_accept
-    reg = TeamRegistration.find(params[:id])
-    reg.accepted_at? ? reg.accepted_at = nil : reg.accepted_at = Time.now
-    reg.accepted? ? reg.accepted = nil : reg.accepted = true
+  def update
+    @team_registration = @tournament.team_registrations.find(params[:id])
+    if @team_registration.update_attributes(params[:team_registration])
+      redirect_to tournament_tournament_registrations_path(@tournament), :notice => "Zgłoszenie uaktualnione"
+    else
+      render :edit, :alert => "Nie udało się uaktualnić zgłoszenia"
+    end
+  end
+  
+  def toggle
+    reg = @tournament.team_registrations.find(params[:id])
+    val = reg.send(params[:action_type])
+    reg.send("#{params[:action_type]}=", !val)
     reg.save
-    redirect_to team_registrations_path
+    redirect_to :back, notice: 'Zgłoszenie uaktualnione'
   end
 
-  def toggle_rosters
-    reg = TeamRegistration.find(params[:id])
-    reg.rosters? ? reg.rosters = false : reg.rosters = true
-    reg.save
-    redirect_to team_registrations_path
-  end
-
-  def toggle_rosters_validation
-    reg = TeamRegistration.find(params[:id])
-    reg.rosters_valid? ? reg.rosters_valid = false : reg.rosters_valid = true
-    reg.save
-    redirect_to team_registrations_path
-  end
 end 

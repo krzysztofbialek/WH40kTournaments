@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131115142730) do
+ActiveRecord::Schema.define(:version => 20131116155507) do
 
   create_table "hostel_bookings", :force => true do |t|
     t.string   "first_name"
@@ -73,14 +73,20 @@ ActiveRecord::Schema.define(:version => 20131115142730) do
   end
 
   create_table "team_registrations", :force => true do |t|
-    t.integer  "team_id"
-    t.boolean  "payment",       :default => false
-    t.boolean  "rosters",       :default => false
-    t.boolean  "rosters_valid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "accepted_at"
-    t.boolean  "accepted",      :default => false
+    t.integer  "tournament_id"
+    t.boolean  "payment_send",           :default => false
+    t.boolean  "roster_send",            :default => false
+    t.boolean  "roster_valid",           :default => false
+    t.string   "name"
+    t.string   "city"
+    t.integer  "penalty_points",         :default => 0
+    t.integer  "current_points",         :default => 0
+    t.integer  "played_games",           :default => 0
+    t.integer  "current_victory_points", :default => 0
+    t.datetime "paid_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "teams", :force => true do |t|
