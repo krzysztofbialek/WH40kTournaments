@@ -13,7 +13,8 @@ class Tournament < ActiveRecord::Base
   validates_presence_of :name, :start_date, :rank, :city, :number_of_rounds
   validates_numericality_of :number_of_rounds, :greater_than => 0
   validates_uniqueness_of :name
-  
+  validates_presence_of :team_members_count, :if => Proc.new { |t| t.for_teams? }
+
   belongs_to :user
   has_many :pairings, :class_name => "TournamentPairing", :dependent => :destroy
   has_many :pages, :dependent => :destroy
