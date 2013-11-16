@@ -1,0 +1,24 @@
+%tr
+  %th
+    = "#{i + 1}"
+  %th
+    =reg.name
+  %th
+    =reg.city
+  %th
+    =reg.payment_send? ? "tak" : "nie"
+    -if owner_or_admin?
+      =link_to "", toggle_tournament_team_registration_path(@tournament, reg, action_type: 'payment_send'), :style => "margin-left:8px", :class => "#{reg.payment_send? ? 'icon-remove' : 'icon-ok'}"
+  %th
+    =reg.roster_send? ? "tak" : "nie"
+    -if owner_or_admin?
+      =link_to "", toggle_tournament_team_registration_path(@tournament, reg, action_type: 'roster_send'), :style => "margin-left:8px", :class => "#{reg.roster_send? ? 'icon-remove' : 'icon-ok'}"
+  %th
+    =reg.roster_valid? ? "tak" : "nie"
+    -if owner_or_admin?
+      =link_to "", toggle_tournament_team_registration_path(@tournament, reg, action_type: 'roster_valid'), :style => "margin-left:8px", :class => "#{reg.roster_valid? ? 'icon-remove' : 'icon-ok'}"
+  -if owner_or_admin?
+    %th
+      =link_to "", edit_tournament_tournament_registration_path(@tournament, reg), :class => 'icon-edit', :title => 'Edytuj'
+      
+      =link_to "", tournament_team_registration_path(@tournament, reg), :class => 'icon-remove', :method => :delete, :confirm => "Are you sure?", :title => 'Usuń zgłoszenie'

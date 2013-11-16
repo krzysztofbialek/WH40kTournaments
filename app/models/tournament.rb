@@ -19,6 +19,7 @@ class Tournament < ActiveRecord::Base
   has_many :pairings, :class_name => "TournamentPairing", :dependent => :destroy
   has_many :pages, :dependent => :destroy
   has_many :tournament_registrations, :dependent => :destroy
+  has_many :team_registrations, :dependent => :destroy
   has_many :posts, :dependent => :destroy
   friendly_id :name, use: :slugged
   #has_many :hostel_bookings, :dependent => :destroy

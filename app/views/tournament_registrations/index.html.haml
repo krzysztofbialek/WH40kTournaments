@@ -4,11 +4,12 @@
       %th
         Lp.
       %th
-        Gracz  
+        =@tournament.for_teams? ? 'Drużyna' : 'Gracz'  
       %th
         Miasto
-      %th
-        Armia
+      - unless @tournament.for_teams?
+        %th
+          Armia
       %th
         Przedpłata
       %th
@@ -20,9 +21,12 @@
           Akcja
   %tbody
     -@registrations.each_with_index do |reg, i|
-      =render :partial => 'registration', :locals => {:reg => reg, :i => i}
+      =render :partial => @tournament.for_teams? ? 'team_registration' : 'registration', :locals => {:reg => reg, :i => i}
 -if owner_or_admin? #&& @tournament.new? 
-  =render :partial => 'form'
+  -if @tournament.for_teams
+    =render :partial => 'team_form'
+  -else
+    =render :partial => 'form'
 :javascript
   $(document).ready(function() 
     { 
