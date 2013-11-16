@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
 
   def index
-    @teams = Teams.all
+    @teams = Team.all
   end
   
   def destroy
