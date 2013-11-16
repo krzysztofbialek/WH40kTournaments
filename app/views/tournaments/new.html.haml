@@ -4,13 +4,19 @@
   %p
     =f.label 'Nazwa'
     =f.text_field :name
-  %p
+    
     =f.label 'Typ'
     =f.select :rank, options_for_select(Tournament::TournamentRanks)
   %p
+    =f.label 'Turniej drużynowy(także parowy)'
+    =f.check_box :for_teams
+    
+    =f.label 'Ilość graczy w drużynie'
+    =f.text_field :team_members_count
+  %p
     =f.label 'Ilość rund'
     =f.text_field :number_of_rounds
-  %p
+    
     =f.label 'Data rozpoczęcia'
     =f.text_field :start_date, class: "datepicker"
   %p
