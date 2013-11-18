@@ -13,6 +13,11 @@
     %p
       = f.label :city, 'Miasto'
       = f.text_field :city
+    %p
+      -@team_registration.team_registration_players.each_with_index do |player, index|
+        = f.fields_for :team_registration_players, player do |p|
+          =p.label "Gracz nr #{ index + 1 }"
+          =p.text_field :player_id
     -if @team_registration.new_record?
       %button{:type => 'submit'}
         Wyślij zgłoszenie
