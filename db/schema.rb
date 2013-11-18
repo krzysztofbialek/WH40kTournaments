@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131116155507) do
+ActiveRecord::Schema.define(:version => 20131118185542) do
 
   create_table "hostel_bookings", :force => true do |t|
     t.string   "first_name"
@@ -70,6 +70,13 @@ ActiveRecord::Schema.define(:version => 20131116155507) do
     t.integer  "leagues_count"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "team_registration_players", :force => true do |t|
+    t.integer  "team_registration_id"
+    t.integer  "player_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "team_registrations", :force => true do |t|
