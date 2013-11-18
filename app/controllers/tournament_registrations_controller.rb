@@ -7,6 +7,7 @@ class TournamentRegistrationsController < ApplicationController
     if @tournament.for_teams?
       @registrations = @tournament.team_registrations.order('paid_at is NULL, paid_at ASC, created_at ASC')
       @team_registration = @tournament.team_registrations.new
+      @tournament.team_members_count.times { @team_registration.team_registration_players.build }
     else
       @registrations = @tournament.tournament_registrations.includes([:player]).order('paid_at is NULL, paid_at ASC, created_at ASC')
       @tournament_registration = @tournament.tournament_registrations.new
