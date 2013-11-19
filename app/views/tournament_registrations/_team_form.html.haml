@@ -17,8 +17,8 @@
       -@team_registration.team_registration_players.each_with_index do |player, index|
         = f.fields_for :team_registration_players, player do |p|
           = p.label "Gracz nr #{ index + 1 }"
-          = p.hidden_field :player_id, class: 'player-id'
-          = text_field_tag :player, params[:player_id] || nil , class: 'typeahead'
+          = p.hidden_field :player_id, class: "player-id_#{index}"
+          = text_field_tag :player, params[:player_id] || nil , class: 'typeahead', data: { index: index }
           = p.label :army, "Armia"
           = p.select :army, options_for_select(Player::Armies), :include_blank => true
     -if @team_registration.new_record?

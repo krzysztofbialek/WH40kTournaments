@@ -3,6 +3,8 @@
     = "#{i + 1}"
   %th
     =reg.name
+    %a{ class: 'btn players-popover right', data: {content: players_for(reg), html: true, placement: 'top'}}
+      Gracze
   %th
     =reg.city
   %th
