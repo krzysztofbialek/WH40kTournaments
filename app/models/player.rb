@@ -37,6 +37,10 @@ class Player < ActiveRecord::Base
       nick
     end
   end
+  
+  def full_name_with_id
+    "#{league_id} - #{full_name}"
+  end
 
   def name
     "#{first_name} '#{nick}' #{last_name}"
@@ -71,6 +75,6 @@ class Player < ActiveRecord::Base
   end
 
   def as_json(*args)
-    super(:only => :id ).merge(:value => full_name)
+    super(:only => :id ).merge(:value => full_name_with_id)
   end
 end

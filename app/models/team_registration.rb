@@ -4,6 +4,7 @@ class TeamRegistration < ActiveRecord::Base
 
   belongs_to :tournament  
   has_many :team_registration_players
+  has_many :players, through: :team_registration_players
 
   accepts_nested_attributes_for :team_registration_players
 end

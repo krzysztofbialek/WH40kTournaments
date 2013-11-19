@@ -17,7 +17,6 @@ class TeamRegistrationsController < ApplicationController
   
   def create
     registration = @tournament.team_registrations.new(params[:team_registration])
-    debugger
     if registration.save
       redirect_to :back, :notice => "Dodano zgłoszenie"
     else
