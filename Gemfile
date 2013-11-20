@@ -16,6 +16,7 @@ gem "friendly_id", "~> 4.0.9"
 gem "aasm"
 gem "acts_as_paranoid"
 gem 'tinymce-rails'
+gem 'active_model_serializers'
 
 # Gems used only for assets and not required
 # in production environments by default.

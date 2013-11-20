@@ -35,9 +35,6 @@ class TournamentRegistration < ActiveRecord::Base
     end
   end
 
-  def as_json(*args)
-    super(:only => [:army, :id, :current_points, :current_victory_points, :played_games, :extra_points, :penalty_points]).merge(:player_name => player.name, :player_full_name => player.full_name )
-  end
 
   def  self.to_csv(results)
     CSV.generate(:col_sep => ';') do |csv|

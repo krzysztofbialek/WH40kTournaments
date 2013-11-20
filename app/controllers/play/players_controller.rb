@@ -3,8 +3,12 @@ class Play::PlayersController < ApplicationController
   respond_to :json
 
   def index
-    players = @tournament.tournament_registrations
-    respond_with players 
+    if @tournament.for_teams
+      players = @tournament.team_registrations
+    else
+      players = @tournament.tournament_registrations
+    end
+    render :json => players
   end
 
   def destroy
