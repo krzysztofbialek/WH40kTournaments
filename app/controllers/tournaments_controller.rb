@@ -7,7 +7,7 @@ class TournamentsController < ApplicationController
   def show
     respond_to do |format|
       format.html{ redirect_to tournament_posts_path(@tournament) }
-    format.json{ respond_with @tournament }
+    format.json{ render json: @tournament }
     end
   end
 
