@@ -17,6 +17,7 @@ gem "acts_as_paranoid"
 gem 'tinymce-rails'
 gem 'mercury-rails'
 gem 'active_model_serializers'
+gem 'gon', '~> 3.0.5'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -66,4 +67,5 @@ end
 group :production do
   gem 'pg'
   gem 'unicorn'
+  gem 'newrelic_rpm'
 end
