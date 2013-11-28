@@ -4,8 +4,8 @@ var Dmp40k =  new (Backbone.Router.extend({
   initialize: function() {
     this.pairingsList = new Pairings();
     this.pairingsView = new PairingsIndex({collection: this.pairingsList});
-    this.playersList = new Players();
     this.resultsList = new Results();
+    this.playersList = new Players();
     this.playersView = new PlayersIndex({collection: this.playersList});
     this.resultsView = new PlayersResults({collection: this.resultsList});
     this.tournament = new Tournament({id: this.getTournamentId()});
