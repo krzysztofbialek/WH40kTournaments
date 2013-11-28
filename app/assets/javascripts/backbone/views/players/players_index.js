@@ -1,5 +1,6 @@
 PlayersIndex = Backbone.View.extend({
   template: JST['players/index'],
+  template1: JST['teams/index'],
   className: 'players-list',
   
   
@@ -9,7 +10,11 @@ PlayersIndex = Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.html(this.template());
+    if (gon.for_teams) {
+      this.$el.html(this.template1());
+    } else {
+      this.$el.html(this.template());
+    }
     this.collection.forEach(this.addOne, this);
     $('.players-list .toggle-list').bind('click', function(){
       $('.players-list table').fadeToggle();
