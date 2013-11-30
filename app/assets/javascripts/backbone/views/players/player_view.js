@@ -1,5 +1,6 @@
 PlayerView = Backbone.View.extend({
   template: JST['players/player'],
+  template1: JST['teams/team'],
   tagName: 'tr',
   
   events: {
@@ -14,7 +15,11 @@ PlayerView = Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.attr('id', this.model.id).html(this.template(this.model.toJSON()));
+    if (gon.for_teams) {
+      this.$el.attr('id', this.model.id).html(this.template1(this.model.toJSON()));
+    } else {
+      this.$el.attr('id', this.model.id).html(this.template(this.model.toJSON()));
+    }
     return this
   },
   
