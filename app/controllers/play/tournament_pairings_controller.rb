@@ -8,7 +8,11 @@ class Play::TournamentPairingsController < ApplicationController
   end
 
   def index
-    @pairings = @tournament.pairings.order('tournament_pairings.table ASC')
+    if @tournament.for_teams?
+      @pairings = @tournament.team_pairings.order('tournament_team_pairings.table ASC')
+    else
+      @pairings = @tournament.pairings.order('tournament_pairings.table ASC')
+    end
     render json: @pairings, root: false
   end
 

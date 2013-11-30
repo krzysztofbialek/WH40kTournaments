@@ -1,5 +1,6 @@
 PairingView = Backbone.View.extend({
   template: JST['pairings/pairing'],
+  template1: JST['pairings/team_pairing'],
   tagName: 'tr',
   
   events: {
@@ -16,7 +17,11 @@ PairingView = Backbone.View.extend({
 
   render: function(){
     var that = this;
-    this.$el.html(this.template(this.model.toJSON()));
+    if (gon.for_teams) {
+      this.$el.html(this.template1(this.model.toJSON()));
+    } else {
+      this.$el.html(this.template(this.model.toJSON()));
+    }
     
     if (this.model.get('player1_match_points') || this.model.get('player2_match_points') || this.model.get('pausing')){
       this.$el.addClass('completed');

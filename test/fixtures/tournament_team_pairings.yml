@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tournament_id: 1
+  team1_id: 1
+  team2_id: 1
+  team1_match_points: 1
+  team2_match_points: 1
+  team1_game_points: 1
+  team2_game_points: 1
+  table: 1
+  pausing: false
+  round: 1
+
+two:
+  tournament_id: 1
+  team1_id: 1
+  team2_id: 1
+  team1_match_points: 1
+  team2_match_points: 1
+  team1_game_points: 1
+  team2_game_points: 1
+  table: 1
+  pausing: false
+  round: 1
