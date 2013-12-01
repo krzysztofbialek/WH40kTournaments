@@ -17,6 +17,16 @@ class TeamRegistration < ActiveRecord::Base
     team2_pairings.where(:tournament_id => tournament, :team1_id => registration.id).any?
   end
   
+  def points_for_tournament(id)
+    team1_pairings.where(:tournament_id => id).sum(:team1_match_points) +
+    team2_pairings.where(:tournament_id => id).sum(:team2_match_points) 
+  end
+  
+  def game_points_for_tournament(id)
+    team1_pairings.where(:tournament_id => id).sum(:team1_game_points) +
+    team2_pairings.where(:tournament_id => id).sum(:team2_game_points) 
+  end
+  
   def as_json(*args)
     super(:only => [:id, :current_points, :current_victory_points, :played_games, :extra_points, :penalty_points]).merge(:player_name => name, :player_full_name => name, :army => '' )
   end

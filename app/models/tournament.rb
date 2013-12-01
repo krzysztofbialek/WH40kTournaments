@@ -56,7 +56,11 @@ class Tournament < ActiveRecord::Base
   end
 
   def round_completed?
-    pairings.where(:round => current_round).select{|p| p.invalid?(:update)}.empty?
+    if for_teams?
+      team_pairings.where(:round => current_round).select{|p| p.invalid?(:update)}.empty?
+    else
+      pairings.where(:round => current_round).select{|p| p.invalid?(:update)}.empty?
+    end
   end
 
   def get_pairings
@@ -71,9 +75,8 @@ class Tournament < ActiveRecord::Base
     check_round
     update_round
     registrations = prepare_registrations
-   
     create_pairings(registrations)
-    true
+    return true
   end
   
   def prepare_registrations
@@ -84,6 +87,7 @@ class Tournament < ActiveRecord::Base
       registrations = sort_players(registrations)
     end
     registrations = remove_pausing_pairing(registrations) if registrations.size.odd?
+    registrations
 
   end
 

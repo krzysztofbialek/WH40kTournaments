@@ -1,3 +1,4 @@
+
 .players-list{
   width: 100%;
   float: left;
@@ -80,6 +81,9 @@
   }
   td.players{
     padding: 0px;
+  }
+  td.separate{
+    background: url(image-path('stripped.jpg')) 0px 47px;
   }
   div.player{
     padding: 5px;
