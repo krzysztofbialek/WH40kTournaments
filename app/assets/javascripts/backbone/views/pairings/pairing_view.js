@@ -23,7 +23,9 @@ PairingView = Backbone.View.extend({
       this.$el.html(this.template(this.model.toJSON()));
     }
     
-    if (this.model.get('player1_match_points') || this.model.get('player2_match_points') || this.model.get('pausing')){
+    if (this.model.get('player1_match_points') || this.model.get('player2_match_points') 
+        || this.model.get('pausing') || this.model.get('team1_match_points') 
+        || this.model.get('team2_match_points')){
       this.$el.addClass('completed');
     }
     if (this.model.get('pausing')){
@@ -73,7 +75,9 @@ PairingView = Backbone.View.extend({
      var obj = "{\""+changed.id +"\":\""+value+"\"}";
      var objInst = JSON.parse(obj);
      this.model.set(objInst, {silent: true});   
-     this.update_match_points(value, changed.id)
+     if (!gon.for_teams){
+       this.update_match_points(value, changed.id)
+     }
   },
 
   update_match_points: function(val, field_id){
@@ -84,13 +88,8 @@ PairingView = Backbone.View.extend({
     points1 = parseInt(this.model.get('player1_game_points')) || 0
     points2 = parseInt(this.model.get('player2_game_points')) || 0
     points = [points1, points2]
-    console.log(points1)
-    console.log(points2)
     var diff = Math.abs(points1 - points2)
-    console.log(diff)
     var won = _.indexOf(points,_.max(points)) + 1
-    console.log(points)
-    console.log(won)
     if( diff >= 10 ){
       winner_points = 20
     } else {
