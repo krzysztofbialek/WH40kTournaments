@@ -3,7 +3,7 @@ class Play::ResultsController < ApplicationController
 
   def index
     if @tournament.for_teams?
-      @players = @tournament.team_registrations.order('current_points DESC')
+      @players = @tournament.team_registrations.order('current_points DESC, current_victory_points DESC')
     else
       @players = @tournament.tournament_registrations.order('current_points DESC, current_victory_points DESC')
     end
