@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
   before_filter :load_tournament
 
   def index
-    render json: Player.all
+    render json: Player.all, root: false
   end
   
   def create
