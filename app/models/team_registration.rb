@@ -27,7 +27,30 @@ class TeamRegistration < ActiveRecord::Base
     team2_pairings.where(:tournament_id => id).sum(:team2_game_points) 
   end
   
-  def as_json(*args)
-    super(:only => [:id, :current_points, :current_victory_points, :played_games, :extra_points, :penalty_points]).merge(:player_name => name, :player_full_name => name, :army => '' )
+  def final_points
+    current_points + extra_points - penalty_points
+  end
+
+  def armies
+    team_registration_players.collect{|r| r.army}.join(',')
+  end  
+  
+  def  self.to_csv(results)
+    CSV.generate(:col_sep => ';') do |csv|
+      csv << ['Miejsce', 'ID Ligowe', 'Imię', 'Nazwisko', 'Armia Miasto', 'Punkty', 'ID Sedziowka']
+      results.each_with_index do |r, i|
+        r.team_registration_players.each do |trp|
+          csv << [
+                  i + 1,
+                  trp.player.league_id,
+                  trp.player.first_name,
+                  trp.player.last_name,
+                  trp.army,
+                  trp.player.city,
+                  trp.player.nick,
+                 ] 
+        end 
+      end
+    end 
   end
 end

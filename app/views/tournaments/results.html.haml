@@ -8,10 +8,16 @@
     %tr
       %th
         Miejsce
-      %th
-        Gracz  
-      %th
-        Armia
+      -if @tournament.for_teams?
+        %th
+          Drużyna  
+        %th
+          Armie
+      -else
+        %th
+          Gracz  
+        %th
+          Armia
       %th
         VP
       %th

@@ -1,7 +1,11 @@
 module TournamentsHelper
   
   def rank_points(tournament, result)
-    registrations = tournament.tournament_registrations.sort{|a,b| b.final_points <=> a.final_points}
+    if tournament.for_teams?
+      registrations = tournament.team_registrations.sort{|a,b| b.final_points <=> a.final_points}
+    else
+      registrations = tournament.tournament_registrations.sort{|a,b| b.final_points <=> a.final_points}
+    end
     base = (registrations.size < 15 && tournament.is_lokal?) ? 5 + registrations.size : tournament.rank_points
     place = registrations.index(result) + 1
     rank = Tournament::RankPoints[tournament.rank]
