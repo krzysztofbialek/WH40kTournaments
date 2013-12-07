@@ -7,7 +7,7 @@ $ ->
     input = $(this)
 
     input.typeahead
-      name: "players_with_ids",
+      name: "league_players",
       prefetch: "/players.json",
       limit: 10
 

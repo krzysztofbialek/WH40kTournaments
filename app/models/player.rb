@@ -73,7 +73,4 @@ class Player < ActiveRecord::Base
     end
   end
 
-  def as_json(*args)
-    super(:only => :id ).merge(:value => full_name_with_id)
-  end
 end
