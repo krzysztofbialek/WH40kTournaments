@@ -52,7 +52,11 @@ class TournamentsController < ApplicationController
   end
 
   def current_round
-    @pairings = @tournament.pairings.where(:round => @tournament.current_round).order('tournament_pairings.table ASC')
+    if @tournament.for_teams?
+      @pairings = @tournament.team_pairings.where(:round => @tournament.current_round).order('tournament_team_pairings.table ASC')
+    else
+      @pairings = @tournament.pairings.where(:round => @tournament.current_round).order('tournament_pairings.table ASC')
+    end
     render :layout => 'play'
   end
 

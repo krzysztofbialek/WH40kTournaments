@@ -18,8 +18,13 @@
     <% @pairings.each do |p| %>
       <tr>
         <td><%= p.table %></td>
-        <td><%= p.player1.full_name rescue 'pauza' %></td>
-        <td><%= p.player2.full_name rescue 'pauza'%></td>
+        <% if @tournament.for_teams? %>
+          <td><%= p.team1.name rescue 'pauza' %></td>
+          <td><%= p.team2.name rescue 'pauza'%></td>
+        <% else %>
+          <td><%= p.player1.full_name rescue 'pauza' %></td>
+          <td><%= p.player2.full_name rescue 'pauza'%></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
