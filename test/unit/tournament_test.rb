@@ -82,7 +82,6 @@ class TournamentTest < ActiveSupport::TestCase
       
       assert_equal 3, @tournament.pairings.size
       assert_equal 3, @tournament.current_round
-    
       assert_no_difference(["@tournament.current_round", "@tournament.pairings.size"]) do
         @tournament.generate_pairings
       end

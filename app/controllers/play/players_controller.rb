@@ -4,11 +4,11 @@ class Play::PlayersController < ApplicationController
 
   def index
     if @tournament.for_teams
-      players = @tournament.team_registrations
+      @players = @tournament.team_registrations
     else
-      players = @tournament.tournament_registrations
+      @players = @tournament.tournament_registrations
     end
-    render :json => players
+    render :json => @players, root: false 
   end
 
   def destroy
