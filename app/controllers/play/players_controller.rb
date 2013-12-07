@@ -19,7 +19,11 @@ class Play::PlayersController < ApplicationController
   end
 
   def update
-    player = @tournament.tournament_registrations.find(params[:id])
+    if @tournament.for_teams?
+      player = @tournament.team_registrations.find(params[:id])
+    else
+      player = @tournament.tournament_registrations.find(params[:id])
+    end
     if player.update_attributes(params.slice(:extra_points, :penalty_points))
       respond_with :status => 200
     else
