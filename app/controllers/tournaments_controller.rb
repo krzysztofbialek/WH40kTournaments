@@ -44,10 +44,20 @@ class TournamentsController < ApplicationController
 
 
   def results
-    @results = @tournament.tournament_registrations.includes(:player).sort_by{|r| [r.final_points, r.current_points, r.current_victory_points ]}.reverse
+    if @tournament.for_teams?
+      @results = @tournament.team_registrations.includes(:players).sort_by{|r| [r.final_points, r.current_points, r.current_victory_points ]}.reverse
+    else
+      @results = @tournament.tournament_registrations.includes(:player).sort_by{|r| [r.final_points, r.current_points, r.current_victory_points ]}.reverse
+    end
     respond_to do |format|
       format.html
-      format.csv { send_data TournamentRegistration.to_csv(@results) }
+      format.csv do
+        if @tournament.for_teams?
+          send_data TeamRegistration.to_csv(@results) 
+        else
+          send_data TournamentRegistration.to_csv(@results) 
+        end
+      end
     end
   end
 
