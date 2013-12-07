@@ -1,0 +1,81 @@
+<td class='table_nr'>
+  <div>
+    Stół: <%= table %>
+  </div>
+  <% if( !pausing && window.currentUser && window.currentUser.admin == 'true'){ %>
+    <div class='add-results'>
+      <a href="#modal_<%= id %>" data-toggle="modal"><i class="icon-plus"></i> Dodaj wynik</a>
+    </div>
+  <% } else { %>
+    <div class='add-results'>
+      <a href="#show_modal_<%= id %>" data-toggle="modal"><i class="icon-plus"></i> Zobacz wynik</a>
+    </div>
+  <% } %>
+
+  <div id="modal_<%= id %>" class="modal hide fade" role="dialog" >
+    <form id="update_pairing">
+      <div class='game-points'>
+        <label for="team1_game_points">Małe punkty - <%= team1_name %></label>
+        <input type="number" name="team1_game_points" id="team1_game_points" value='<%= team1_game_points %>' >
+      </div>
+      <div class='match-points'>
+        <label for="team1_match_points">Duże punkty - <%= team1_name %></label>
+        <input type="number" name="team2_match_points" id="team1_match_points" value='<%= team1_match_points %>' >
+      </div>
+      <div class='game-points'>
+        <label for="team2_game_points">Małe punkty - <%= team2_name %></label>
+        <input type="number" name="team2_game_points" id="team2_game_points" value=<%= team2_game_points %> >
+      </div>
+      <div class='match-points'>
+        <label for="team2_match_points">Duże punkty - <%= team2_name %></label>
+        <input type="number" name="team2_match_points" id="team2_match_points" value='<%= team2_match_points %>' >
+      </div>
+      <div class='submit'>
+        <input type="submit" value="Dodaj wyniki" >
+      </div>
+      <div class='errors'></div>
+    </form>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  </div>
+
+  <div id="show_modal_<%= id %>" class="modal small hide fade" role="dialog" >
+    <div class='show-pairing'>
+      <div class='player-1'>
+        <p class='game-points'>
+          <label for="team1_game_points">Małe punkty - <%= team1_name %></label>
+          <input type="number" name="team1_game_points" disabled='true' id="player1_game_points" value='<%= team1_game_points %>' >
+        </p>
+        <p class='match-points'>
+          <label for="team1_match_points">Duże punkty - <%= team1_name %></label>
+          <input disabled type="number" name="team2_match_points" id="player1_match_points" value='<%= team1_match_points %>' >
+        </p>
+      </div>
+      <div class='player-2'>
+        <p class='game-points'>
+          <label for="team2_game_points">Małe punkty - <%= team2_name %></label>
+          <input type="number" name="team2_game_points" disabled='true' id="team2_game_points" value=<%= team2_game_points %> >
+        </p>
+        <p class='match-points'>
+          <label for="team2_match_points">Duże punkty - <%= team2_name %></label>
+          <input disabled type="number" name="team2_match_points" id="team2_match_points" value='<%= team2_match_points %>' >
+        </p>
+      </div>
+    </div>
+  </div>
+</td>
+<td class='players'>
+  <div class='player''>
+    <% if(team1_name) { %>
+      <span class='draggable' data-pairing-id='<%= id %>' data-id='<%=team1_id%>'><%= team1_name %></span>
+    <% } else {  %>
+      pauza
+    <% } %>
+  </div>
+  <div class='player'>
+    <% if(team2_name) { %>
+      <span class='draggable' data-pairing-id='<%= id %>' data-id='<%=team2_id%>'><%= team2_name %></span>
+    <% } else {  %>
+      pauza
+    <% } %>
+  </div>
+</td>

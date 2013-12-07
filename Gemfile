@@ -16,6 +16,8 @@ gem "friendly_id", "~> 4.0.9"
 gem "aasm"
 gem "acts_as_paranoid"
 gem 'tinymce-rails'
+gem 'active_model_serializers'
+gem 'gon', '~> 3.0.5'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,7 +38,6 @@ gem 'jquery-rails'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
-# gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -48,12 +49,14 @@ group :development do
   gem "debugger"
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem "letter_opener", :group => :development
+  gem "letter_opener"
+  gem "quiet_assets"
 end
 
 group :test do
   # Pretty printed test output
   #gem 'turn', :require => false
+  gem "debugger"
   gem 'mocha'
   gem 'shoulda'
   gem 'factory_girl_rails'
@@ -62,4 +65,6 @@ end
 
 group :production do
   gem 'pg'
+  gem 'unicorn'
+  gem 'newrelic_rpm'
 end

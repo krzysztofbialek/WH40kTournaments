@@ -24,6 +24,7 @@ PairingsRound = Backbone.View.extend({
     var pairingView = new PairingView({model: pairing});
     pairingView.render();
     this.$el.append(pairingView.el);
+    this.$el.append('<tr><td colspan="2" class="separate"></td></tr>');
   },
 
   toggleRound: function(){

@@ -16,6 +16,7 @@ class TournamentRegistration < ActiveRecord::Base
   }
 
   validates_uniqueness_of :player_id, :scope => :tournament_id
+  validates_presence_of :player_id
   validates_uniqueness_of :player_email, :scope => :tournament_id, :allow_blank => true
 
   after_create :notify_player, :unless => Proc.new{ self.player_email.blank? }
@@ -27,17 +28,13 @@ class TournamentRegistration < ActiveRecord::Base
   end
 
   def notify_player_of_change
-    change = (self.changed & MONITORED_ATTRS).first
-    if change
+    if change = (self.changed & MONITORED_ATTRS).first
       if self.send(change)
         RegistrationsMailer.tournament_change_confirmation(self, change).deliver    
       end
     end
   end
 
-  def as_json(*args)
-    super(:only => [:army, :id, :current_points, :current_victory_points, :played_games, :extra_points, :penalty_points]).merge(:player_name => player.name, :player_full_name => player.full_name )
-  end
 
   def  self.to_csv(results)
     CSV.generate(:col_sep => ';') do |csv|

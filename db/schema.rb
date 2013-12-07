@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528084417) do
+ActiveRecord::Schema.define(:version => 20131130190411) do
 
   create_table "hostel_bookings", :force => true do |t|
     t.string   "first_name"
@@ -72,15 +72,30 @@ ActiveRecord::Schema.define(:version => 20130528084417) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "team_registration_players", :force => true do |t|
+    t.integer  "team_registration_id"
+    t.integer  "player_id"
+    t.string   "army"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
   create_table "team_registrations", :force => true do |t|
-    t.integer  "team_id"
-    t.boolean  "payment",       :default => false
-    t.boolean  "rosters",       :default => false
-    t.boolean  "rosters_valid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "accepted_at"
-    t.boolean  "accepted",      :default => false
+    t.integer  "tournament_id"
+    t.boolean  "payment_send",           :default => false
+    t.boolean  "roster_send",            :default => false
+    t.boolean  "roster_valid",           :default => false
+    t.string   "name"
+    t.string   "city"
+    t.integer  "penalty_points",         :default => 0
+    t.integer  "current_points",         :default => 0
+    t.integer  "played_games",           :default => 0
+    t.integer  "current_victory_points", :default => 0
+    t.datetime "paid_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.integer  "extra_points",           :default => 0
   end
 
   create_table "teams", :force => true do |t|
@@ -125,6 +140,21 @@ ActiveRecord::Schema.define(:version => 20130528084417) do
     t.datetime "deleted_at"
   end
 
+  create_table "tournament_team_pairings", :force => true do |t|
+    t.integer  "tournament_id"
+    t.integer  "team1_id"
+    t.integer  "team2_id"
+    t.integer  "team1_match_points"
+    t.integer  "team2_match_points"
+    t.integer  "team1_game_points"
+    t.integer  "team2_game_points"
+    t.integer  "table"
+    t.boolean  "pausing"
+    t.integer  "round"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "tournaments", :force => true do |t|
     t.string   "name"
     t.string   "rank"
@@ -134,9 +164,11 @@ ActiveRecord::Schema.define(:version => 20130528084417) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "slug"
-    t.integer  "current_round",    :default => 0
+    t.integer  "current_round",      :default => 0
     t.integer  "number_of_rounds"
     t.string   "state"
+    t.boolean  "for_teams"
+    t.integer  "team_members_count"
   end
 
   add_index "tournaments", ["slug"], :name => "index_tournaments_on_slug"

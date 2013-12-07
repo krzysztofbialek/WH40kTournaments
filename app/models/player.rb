@@ -9,6 +9,8 @@ class Player < ActiveRecord::Base
              'Tyranids', 'Necrons', 'Tau']
 
   has_many :tournament_registrations, :dependent => :nullify
+  has_many :team_registration_players, :dependent => :nullify
+  has_many :team_regisrations, :through => :team_registration_players, :dependent => :nullify
   has_many :player1_pairings, :class_name => 'TournamentPairing', :foreign_key => 'player1_id'
   has_many :player2_pairings, :class_name => 'TournamentPairing', :foreign_key => 'player2_id'
   has_many :pairings, :class_name => 'TournamentPairing', :finder_sql => Proc.new {
@@ -33,6 +35,10 @@ class Player < ActiveRecord::Base
     else
       nick
     end
+  end
+  
+  def full_name_with_id
+    "#{league_id} - #{full_name}"
   end
 
   def name
@@ -68,6 +74,6 @@ class Player < ActiveRecord::Base
   end
 
   def as_json(*args)
-    super(:only => :id ).merge(:value => full_name)
+    super(:only => :id ).merge(:value => full_name_with_id)
   end
 end

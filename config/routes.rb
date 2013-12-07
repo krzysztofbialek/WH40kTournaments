@@ -49,6 +49,13 @@ Dmp40k::Application.routes.draw do
     resources :pages do
       member { post :mercury_update }
     end
+    
+    resources :team_registrations do
+      member do
+        get 'toggle'
+      end
+    end
+      
     resources :tournament_registrations, :path => "registrations" do
       collection do
         get 'players'
@@ -57,7 +64,6 @@ Dmp40k::Application.routes.draw do
         get 'toggle_payment', :as => 'toggle_payment'
         get 'toggle_rosters'
         get 'toggle_rosters_validation'
-        get 'toggle_accept'
       end
     end 
     member do

@@ -7,10 +7,12 @@ $ ->
     input = $(this)
 
     input.typeahead
-      name: "players",
+      name: "players_with_ids",
       prefetch: "/players.json",
       limit: 10
 
     input.on "typeahead:selected typeahead:autocompleted", (e, datum) ->
-      $('.player-id').val(datum.id)
+      $('.player-id_' + input.data('index')).val(datum.id)
+  
+  $(".players-popover").popover({html: true})
 

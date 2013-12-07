@@ -5,6 +5,7 @@ class PlaysController < ApplicationController
   layout "play"
 
   def show
+    gon.for_teams = @tournament.for_teams?
   end
 
 end

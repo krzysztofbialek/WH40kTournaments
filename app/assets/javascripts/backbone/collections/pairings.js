@@ -40,8 +40,12 @@ Pairings = Backbone.Collection.extend({
       return true
     }
   
-    this.updatePairings(source_pair, target_pair, source, target)
-  
+    if ( gon.for_teams ) {
+      this.updateTeamPairings(source_pair, target_pair, source, target)
+    } else {
+      this.updatePairings(source_pair, target_pair, source, target)
+    }
+
     source_pair.save()
     target_pair.save()
     source_pair.fetch()
@@ -65,6 +69,27 @@ Pairings = Backbone.Collection.extend({
         target_pair.set({ 'player1_id': source.data('id') });
       } else {
         target_pair.set({ 'player2_id': source.data('id') });
+      }
+    }
+  },
+  
+  updateTeamPairings: function(source_pair, target_pair, source, target){
+    if (source_pair.get('team1_id') === source.data('id')) {
+      
+      source_pair.set({ 'team1_id': target.data('id') });
+      
+      if (target_pair.get('team_id') === target.data('id')){
+        target_pair.set({ 'team1_id': source.data('id') });
+      } else {
+        target_pair.set({ 'team2_id': source.data('id') });
+      }
+        
+    } else {
+      source_pair.set({ 'team2_id': target.data('id') });
+      if (target_pair.get('team1_id') === target.data('id')){
+        target_pair.set({ 'team1_id': source.data('id') });
+      } else {
+        target_pair.set({ 'team2_id': source.data('id') });
       }
     }
   }
