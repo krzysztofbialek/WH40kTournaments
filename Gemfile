@@ -56,6 +56,7 @@ end
 group :test do
   # Pretty printed test output
   #gem 'turn', :require => false
+  gem "debugger"
   gem 'mocha'
   gem 'shoulda'
   gem 'factory_girl_rails'

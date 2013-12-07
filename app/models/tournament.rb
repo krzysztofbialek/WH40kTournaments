@@ -72,8 +72,8 @@ class Tournament < ActiveRecord::Base
   end
 
   def generate_pairings
+    return false if last_round?
     check_round
-    update_round
     registrations = prepare_registrations
     create_pairings(registrations)
     return true
@@ -94,8 +94,9 @@ class Tournament < ActiveRecord::Base
   def check_round
     if current_round == 0
       start!
-    elsif last_round?
-      return false  
+      update_round
+    else
+      update_round
     end
   end
 
@@ -127,7 +128,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def player_or_team(registration)
-    if registration.class.name == 'Player'
+    if registration.class.name == 'TournamentRegistration'
       registration.player
     else
       registration
@@ -175,7 +176,7 @@ class Tournament < ActiveRecord::Base
 
   def remove_pausing_pairing(players)
     pausing_player = players.pop
-    create_pausing_pairings(player)
+    create_pausing_pairing(pausing_player)
     players
   end
 

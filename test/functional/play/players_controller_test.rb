@@ -6,7 +6,7 @@ class Play::PlayersControllerTest < ActionController::TestCase
     tournament = FactoryGirl.create(:tournament)
     player = FactoryGirl.create(:registration, :tournament => tournament)
     get :index, :tournament_id => tournament.id, :format => :json
-    assert_equal tournament.tournament_registrations.to_json, response.body
+    assert_equal tournament.tournament_registrations.map{|t| TournamentRegistrationSerializer.new(t, root: false)}.to_json, response.body
   end
 
 end

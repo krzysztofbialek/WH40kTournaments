@@ -3,8 +3,12 @@ class Play::TournamentPairingsController < ApplicationController
   respond_to :json
 
   def show
-    pairing = TournamentPairing.find(params[:id])
-    respond_with pairing
+    if @tournament.for_teams?
+      @pairing = @tournament.team_pairings.find(params[:id])
+    else
+      @pairing = @tournament.pairings.find(params[:id])
+    end
+      render json: @pairing, root: false
   end
 
   def index
