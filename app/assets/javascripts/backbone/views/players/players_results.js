@@ -39,7 +39,7 @@ PlayersResults = Backbone.View.extend({
         points.text(points.data('points'));
       }
     });
-    table.tablesorter( {sortList: [[4,1], [3,1]] });
+    table.tablesorter( {sortList: [[3,1], [4,1]] });
     this.addIndex()
   },
 
