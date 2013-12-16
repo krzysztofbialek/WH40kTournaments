@@ -37,3 +37,5 @@
       %p
         %button{:type => 'submit'}
           Uaktualnij zgłoszenie
+
+= render partial: 'player_form' if @team_registration.new_record?
