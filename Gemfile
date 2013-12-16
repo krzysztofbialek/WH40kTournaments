@@ -47,6 +47,7 @@ gem 'jquery-rails'
 
 group :development do
   gem "debugger"
+  gem 'webrick', '1.3.1' 
   gem 'better_errors'
   gem 'binding_of_caller'
   gem "letter_opener"
