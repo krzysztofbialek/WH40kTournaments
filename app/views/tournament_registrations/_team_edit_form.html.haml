@@ -15,7 +15,7 @@
       = f.text_field :city
     %p
       -@team_registration.team_registration_players.each_with_index do |player, index|
-        = f.fields_for :team_registraion_players, player do |p|
+        = f.fields_for :team_registration_players, player do |p|
           = p.label "Gracz nr #{ index + 1 }"
           = p.hidden_field :player_id, class: "player-id_#{index}"
           = text_field_tag :player, player.player.full_name_with_id || nil , class: 'typeahead', data: { index: index }

@@ -1,0 +1,29 @@
+.add_player
+  %p
+    Dodaj nowego gracza
+  = form_for @player do |f|
+    %p
+      = f.label :league_id, "ID ligowe"
+      = f.text_field :league_id
+    %p
+      = f.label :first_name, "Imię"
+      = f.text_field :first_name
+    %p
+      = f.label :last_name, "Nazwisko"
+      = f.text_field :last_name
+    %p
+      = f.label :nick, "Nick"
+      = f.text_field :nick
+    %p
+      = f.label :city, "Miasto"
+      = f.text_field :city
+    %p
+      %label
+        Armia
+      = select_tag :army, options_for_select(Player::Armies), :include_blank => true 
+      = hidden_field_tag :tournament_id, @tournament.id
+        
+    %p  
+      %button{:type => 'submit'}
+        Dodaj gracza
+    
