@@ -1,0 +1,39 @@
+-if @team_registration.new_record? 
+  - url = tournament_team_registrations_path
+-else
+  - url = tournament_team_registration_path(@tournament, @team_registration)
+
+.add_team.span3
+  %p
+    Dodaj zgłoszenie
+  = form_for @team_registration, :url => url do |f|
+    %p
+      = f.label :name, 'Nazwa drużyny'
+      = f.text_field :name
+    %p
+      = f.label :city, 'Miasto'
+      = f.text_field :city
+    %p
+      -@team_registration.team_registration_players.each_with_index do |player, index|
+        = f.fields_for :team_registraion_players, player do |p|
+          = p.label "Gracz nr #{ index + 1 }"
+          = p.hidden_field :player_id, class: "player-id_#{index}"
+          = text_field_tag :player, player.player.full_name_with_id || nil , class: 'typeahead', data: { index: index }
+          = p.label :army, "Armia"
+          = p.select :army, options_for_select(Player::Armies, selected: player.army), :include_blank => true
+    -if @team_registration.new_record?
+      %button{:type => 'submit'}
+        Wyślij zgłoszenie
+    -else
+      %p
+        = f.label :payment_send, "Przedpłata"
+        = f.check_box :payment_send
+      %p
+        = f.label :roster_send, "Rozpiska"
+        = f.check_box :roster_send
+      %p
+        = f.label :roster_valid, "Rozpiska poprawne?"
+        = f.check_box :roster_valid
+      %p
+        %button{:type => 'submit'}
+          Uaktualnij zgłoszenie
