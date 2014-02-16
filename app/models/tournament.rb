@@ -73,10 +73,12 @@ class Tournament < ActiveRecord::Base
 
   def generate_pairings
     return false if last_round?
-    check_round
-    registrations = prepare_registrations
-    create_pairings(registrations)
-    return true
+    transaction do
+      check_round
+      registrations = prepare_registrations
+      create_pairings(registrations)
+      return true
+    end
   end
   
   def prepare_registrations
@@ -182,7 +184,9 @@ class Tournament < ActiveRecord::Base
 
   def create_pausing_pairing(player)
     if player.class.name == 'TournamentRegistration'
-      pairings.create(:player1_id => player.player.id, :pausing => true, :round => current_round, :player1_game_points => 5, :player2_game_points => 0, :player1_match_points => 15, :player2_match_points => 0)
+      pairings.create(:player1_id => player.player.id, :pausing => true, :round => current_round, 
+                      :player1_game_points => pause_victory_points, :player2_game_points => 0, 
+                      :player1_match_points => pause_game_points, :player2_match_points => 0)
     else
       team_pairings.create(:team1_id => player.id, :pausing => true, :round => current_round, :team1_game_points => 5, :team2_game_points => 0, :team1_match_points => 15, :team2_match_points => 0)
     end
