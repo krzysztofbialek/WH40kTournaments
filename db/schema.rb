@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131130190411) do
+ActiveRecord::Schema.define(:version => 20140216142817) do
 
   create_table "hostel_bookings", :force => true do |t|
     t.string   "first_name"
@@ -164,11 +164,13 @@ ActiveRecord::Schema.define(:version => 20131130190411) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "slug"
-    t.integer  "current_round",      :default => 0
+    t.integer  "current_round",        :default => 0
     t.integer  "number_of_rounds"
     t.string   "state"
     t.boolean  "for_teams"
     t.integer  "team_members_count"
+    t.integer  "pause_victory_points", :default => 5
+    t.integer  "pause_game_points",    :default => 15
   end
 
   add_index "tournaments", ["slug"], :name => "index_tournaments_on_slug"
