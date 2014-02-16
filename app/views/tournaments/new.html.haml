@@ -16,6 +16,12 @@
   %p
     =f.label 'Ilość rund'
     =f.text_field :number_of_rounds
+
+    =f.label 'Duże punkty za pauzę'
+    =f.text_field :pause_game_points
+
+    =f.label 'Małes punkty za pauzę'
+    =f.text_field :pause_victory_points
     
     =f.label 'Data rozpoczęcia'
     =f.text_field :start_date, class: "datepicker"

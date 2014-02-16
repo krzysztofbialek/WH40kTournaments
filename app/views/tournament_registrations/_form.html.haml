@@ -9,8 +9,8 @@
   = form_for @tournament_registration, :url => url do |f|
     %p
       = f.label :player_id, "Wybierz gracza"
-      = f.hidden_field :player_id, class: 'player-id'
-      = text_field_tag :player, params[:player_id] || nil , class: 'typeahead'
+      = f.hidden_field :player_id, class: 'player-id_0'
+      = text_field_tag :player, params[:player_id] || nil , class: 'typeahead', data: { index: 0 }
     %p
       = f.label :army, "Armia"
       = f.select :army, options_for_select(Player::Armies), :include_blank => true
