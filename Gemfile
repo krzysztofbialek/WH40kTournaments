@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem "rails", "3.2.8"
+gem "rails", "3.2.13"
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -47,7 +47,7 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :development do
-  gem "debugger"
+  gem "byebug"
   gem 'webrick', '1.3.1' 
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -57,9 +57,7 @@ group :development do
 end
 
 group :test do
-  # Pretty printed test output
-  #gem 'turn', :require => false
-  gem "debugger"
+  gem "byebug"
   gem 'mocha'
   gem 'shoulda'
   gem 'factory_girl_rails'
