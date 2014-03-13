@@ -13,7 +13,7 @@
     <% @places.each_with_index do |p, i| %>
       <tr>
        <td><%= i + 1 %></td>
-       <td><%= p.player.full_name %></td>
+       <td><%= link_to p.player.full_name, rank_player_result_path(p) %></td>
        <td><%= p.total_points %></td>
        <td><%= p.total_tournaments %></td>
        <td><%= p.masters_count %></td>

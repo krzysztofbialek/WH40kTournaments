@@ -74,6 +74,9 @@ Dmp40k::Application.routes.draw do
     end
   end
   
+
+  
+
   namespace :admin do
     resources :players do
       collection do
@@ -83,11 +86,13 @@ Dmp40k::Application.routes.draw do
     
     resources :tournaments do
       member { post 'add_to_rank' }
-    end
+    end  
+  
     root :to => 'tournaments#index'
   end
 
   namespace :rank do
+    resources :rank_places, path: 'player_results', as: 'player_results'
     root :to => 'rank_places#index'
   end
 

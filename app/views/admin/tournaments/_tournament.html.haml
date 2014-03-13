@@ -14,4 +14,5 @@
   %th
     =link_to "", edit_admin_tournament_path(t), :class => 'icon-edit', :title => 'Edytuj'
     =link_to "", admin_tournament_path(t), :class => 'icon-remove', :method => :delete, :confirm => "Are you sure?", :title => 'Usuń zgłoszenie'
-    =link_to "", add_to_rank_admin_tournament_path(t), :class => 'icon-ok', :method => :post,  :confirm => "Czy na pewno chcesz dodać turniej do rankingu?", :title => 'Zalicz do rankingu'
+    -unless t.counted?
+      =link_to "", add_to_rank_admin_tournament_path(t), :class => 'icon-ok', :method => :post,  :confirm => "Czy na pewno chcesz dodać turniej do rankingu?", :title => 'Zalicz do rankingu'
