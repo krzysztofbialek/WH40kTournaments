@@ -1,3 +1,19 @@
 .nav > li > a:visited {
   color: black;
+
+.rank-sidebar, .rank-place-sidebar{
+  width: 180px;
+  height: 100%;
+  float: left;
+  border: 1px solid #dddddd;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.rank-places-table, .rank-place-table{
+  float: left;
+  max-width: 745px; 
 }

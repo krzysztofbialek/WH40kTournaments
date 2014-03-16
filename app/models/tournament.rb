@@ -210,7 +210,11 @@ class Tournament < ActiveRecord::Base
         PlayedTournament.create(player_id: reg.player_id, 
                                 tournament_id: self.id,
                                 place: i+1,
-                                points: reg.current_points)
+                                points: reg.current_points,
+                                registration_id: reg.id)
+      end
+      regs.each do |reg|
+        reg.player.rank_place.update_place
       end
       self.count!
     end 

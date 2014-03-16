@@ -5,7 +5,7 @@ class PlayedTournament < ActiveRecord::Base
   belongs_to :tournament
   belongs_to :player
   has_one :rank_place, through: :player
-
+  belongs_to :tournament_registration, foreign_key: 'registration_id'
   after_create :update_rank_place
 
   def update_rank_place

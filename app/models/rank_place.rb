@@ -8,6 +8,24 @@ class RankPlace < ActiveRecord::Base
     player.tournament_registrations.count
   end 
 
+  def won_games_count
+    player.player1_pairings.where('player1_match_points > 10').size +
+    player.player2_pairings.where('player2_match_points > 10').size
+  end
+
+  def lost_games_count
+    player.player1_pairings.where('player1_match_points < 10').size +
+    player.player2_pairings.where('player2_match_points < 10').size
+  end
+
+  def tied_games_count
+    player.player1_pairings.where('player1_match_points = 10').size +
+    player.player2_pairings.where('player2_match_points = 10').size
+  end
+
+  def update_place
+
+  end
 end
 
 

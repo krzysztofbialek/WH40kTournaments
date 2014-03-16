@@ -1,4 +1,11 @@
-<table class='table table-stripped table-bordered'>
+<div class='rank-sidebar'>
+  <ul class='rank-sidebar-links'>
+    <%= link_to 'Wszyscy gracze', rank_root_path %>
+    <%= link_to 'Top 10', rank_root_path(sort: 'top') %>
+  </ul>
+</div>
+
+<table class='table table-stripped table-bordered rank-places-table'>
   <thead>
     <th>Miejsce</th>
     <th>Gracz</th>

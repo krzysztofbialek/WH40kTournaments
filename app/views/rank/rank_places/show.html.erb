@@ -1,0 +1,45 @@
+<div class='rank-place-sidebar'>
+  <div class='rank-place-sidebar-player'>
+    <p>Gracz: <%= @place.player.full_name %></p>
+    <p>Miejsce: <%= @place.place %></p>
+    <p>Punkty rankingowe: <%= @place.total_points %></p>
+  </div>
+  <div class='rank-place-sidebar-tournaments'>
+    <p>Mastery: <%= @place.masters_count || 0 %></p>
+    <p>Czelendżery: <%= @place.challengers_count || 0 %></p>
+    <p>Lokale: <%= @place.locals_count || 0 %></p>
+    <p>Ligi: <%= @place.leagues_count || 0 %></p>
+  </div>
+  <div class='rank-place-sidebar-games'>
+    <p>Wygrane: <%= @place.won_games_count %></p>
+    <p>Przegrane: <%= @place.lost_games_count %></p>
+    <p>Remisy: <%= @place.tied_games_count %></p>
+  </div>
+
+</div>
+
+<table class='table table-stripped table-bordered rank-place-table'>
+  <thead>
+    <th>Turniej</th>
+    <th>Miasto</th>
+    <th>Data</th>
+    <th>Typ</th>
+    <th>Armia</th>
+    <th>Lokata</th>
+    <th>Punkty</th>
+  <thead>
+  <tbody>
+    <% @tournaments.each do |t| %> 
+      <tr>
+       <td><%= t.tournament.name %></td>
+       <td><%= t.tournament.city %></td>
+       <td><%= t.tournament.start_date.strftime("%d-%m-%Y") %></td>
+       <td><%= t.tournament.rank %></td>
+       <td><%= t.tournament_registration.try(:army) %></td>
+       <td><%= t.place %></td>
+       <td><%= t.points %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
