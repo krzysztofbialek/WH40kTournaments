@@ -99,22 +99,11 @@ class Tournament < ActiveRecord::Base
   end
 
   def check_round
-    transaction do
-      if current_round == 0
-        start!
-      elsif last_round?
-        return false  
-      end
+    if current_round == 0
+      start!
       update_round
-      registrations = tournament_registrations
-      if current_round == 1
-        registrations = registrations.shuffle
-      else
-        registrations = sort_players(registrations)
-      end
-      registrations = remove_pausing_pairing(registrations) if registrations.size.odd?
-      create_pairings(registrations)
-      true
+    else
+      update_round
     end
   end
 
