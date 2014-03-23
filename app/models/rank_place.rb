@@ -3,10 +3,12 @@ class RankPlace < ActiveRecord::Base
 
   belongs_to :player
   has_many :played_tournaments, through: :player
+  has_many :player1_pairings, through: :player
+  has_many :player2_pairings, through: :player
 
   def total_tournaments
     player.tournament_registrations.count
-  end 
+  end
 
   def won_games_count
     player.player1_pairings.where('player1_match_points > 10').size +

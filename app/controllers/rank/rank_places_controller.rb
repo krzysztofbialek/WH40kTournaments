@@ -5,6 +5,9 @@ class Rank::RankPlacesController < AdminController
 
   def index
     @places = RankPlace.includes(:player).order('total_points DESC')
+    if params['sort'] == 'top'
+      @places = @places.limit(10)
+    end
   end
 
   def show

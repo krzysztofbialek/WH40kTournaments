@@ -18,6 +18,7 @@ gem 'tinymce-rails'
 gem 'mercury-rails'
 gem 'active_model_serializers'
 gem 'gon', '~> 3.0.5'
+gem 'simple_form'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -48,12 +49,13 @@ gem 'jquery-rails'
 
 group :development do
   gem "byebug"
-  gem 'webrick', '1.3.1' 
+  gem 'webrick', '1.3.1'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem "letter_opener", :group => :development
   gem "thin"
   gem "quiet_assets"
+  gem 'rack-mini-profiler'
 end
 
 group :test do
