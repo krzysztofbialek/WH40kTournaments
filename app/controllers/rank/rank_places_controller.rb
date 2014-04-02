@@ -15,4 +15,10 @@ class Rank::RankPlacesController < AdminController
     @tournaments = @place.played_tournaments.order('points ASC')
   end
 
+  def upload_results
+    @tournament = Tournament.new(params[:tournament])
+    if params[:results].present? && params[:results][:upload].present?
+      @file = Tournament.import(params[:results][:upload].read)
+    end
+  end
 end

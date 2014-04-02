@@ -1,5 +1,6 @@
 .nav > li > a:visited {
   color: black;
+}
 
 .rank-sidebar, .rank-place-sidebar{
   width: 180px;
@@ -15,5 +16,11 @@
 
 .rank-places-table, .rank-place-table{
   float: left;
-  max-width: 745px; 
+  max-width: 915px;
 }
+
+.ui-datepicker-inline{
+  display: none;
+}
+
+#ui-datepicker-div { display: none; }

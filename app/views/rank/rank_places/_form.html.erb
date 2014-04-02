@@ -1,0 +1,8 @@
+<%= simple_form_for @tournament, :url => url_for(:action => 'upload_results', :controller => 'rank/rank_places'), :html => {:class => 'form-horizonta' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :rank, collection: Tournament::TournamentRanks %>
+  <%= f.input :start_date, as: :datepicker %>
+  <%= f.input :city %>
+  <%= f.input :results, as: :file, label: 'Wyniki w csv' %>
+  <%= f.submit 'Wgraj wyniki', class: 'btn' %>
+<% end %>

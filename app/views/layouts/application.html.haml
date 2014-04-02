@@ -29,14 +29,16 @@
               %li
                 - text = @tournament.current_round == 0 && owner_or_admin? ? 'Rozpocznij turniej' : 'Przebieg turnieju'
                 = link_to text , tournament_play_path(@tournament)
-              -if @tournament.counted? || @tournament.finished? 
+              -if @tournament.counted? || @tournament.finished?
                 %li
                   = link_to 'Wyniki', results_tournament_path(@tournament)
           %ul.nav.pull-right
             %li
+              =link_to "Ranking", rank_root_path
+            %li
               =link_to "Wszystkie turnieje", tournaments_path
             -if logged_in?
-              -if current_user.admin? 
+              -if current_user.admin?
                 %li
                   =link_to 'Panel admina', '/admin'
               %li
@@ -62,7 +64,7 @@
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
 
-        = yield 
+        = yield
   /   .span2
   /      .banner
   /        %h2
@@ -81,4 +83,4 @@
   /          =link_to image_tag("mediateka.png"), "http://mediateka.waw.pl"
   .navbar.navbar-fixed-bottom
     .navbar-inner.footer
-      Copyright 2013 Krzysztof 'Zły' Białek, powered by Rails & Heroku  
+      Copyright 2013 Krzysztof 'Zły' Białek, powered by Rails & Heroku

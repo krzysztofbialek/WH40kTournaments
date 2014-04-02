@@ -1,5 +1,5 @@
 Dmp40k::Application.routes.draw do
-  
+
   mount Mercury::Engine => '/'
 
   Mercury::Engine.routes
@@ -21,7 +21,7 @@ Dmp40k::Application.routes.draw do
   match '/admin' => 'admin#index'
 
   resources :players do
-    resources :tournament_registrations 
+    resources :tournament_registrations
   end
 
   resources :sessions
@@ -36,11 +36,11 @@ Dmp40k::Application.routes.draw do
     end
   end
 
-  
+
   resources :tournaments do
     namespace :play do
       resources :players
-      resources :results 
+      resources :results
       resources :tournaments
       resources :tournament_pairings, :as => 'pairings', :only => [:index, :update, :show]
     end
@@ -49,13 +49,13 @@ Dmp40k::Application.routes.draw do
     resources :pages do
       member { post :mercury_update }
     end
-    
+
     resources :team_registrations do
       member do
         get 'toggle'
       end
     end
-      
+
     resources :tournament_registrations, :path => "registrations" do
       collection do
         get 'players'
@@ -65,7 +65,7 @@ Dmp40k::Application.routes.draw do
         get 'toggle_rosters'
         get 'toggle_rosters_validation'
       end
-    end 
+    end
     member do
       get 'generate_pairings'
       get 'results'
@@ -73,9 +73,9 @@ Dmp40k::Application.routes.draw do
       get 'generate_rank_csv'
     end
   end
-  
 
-  
+
+
 
   namespace :admin do
     resources :players do
@@ -83,16 +83,21 @@ Dmp40k::Application.routes.draw do
         post 'import'
       end
     end
-    
+
     resources :tournaments do
       member { post 'add_to_rank' }
-    end  
-  
+    end
+
     root :to => 'tournaments#index'
   end
 
+
   namespace :rank do
+
     resources :rank_places, path: 'player_results', as: 'player_results'
+
+    match 'upload_results', to: 'rank_places#upload_results'
+
     root :to => 'rank_places#index'
   end
 

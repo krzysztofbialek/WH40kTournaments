@@ -15,7 +15,7 @@
             %li
               =link_to "Wszystkie turnieje", tournaments_path
             -if logged_in?
-              -if current_user.admin? 
+              -if current_user.admin?
                 %li
                   =link_to 'Panel admina', '/admin'
               %li
@@ -31,20 +31,20 @@
   .container-fluid
     .row.header
     .row{:style => "width:1024px;margin:auto"}
-      .span2
-        %ul.nav.nav-tabs.nav-stacked
-          %li
-            =link_to 'Wszyscy gracze', rank_root_path
-          %li
-            =link_to 'Top 10' , '#'
-          %li
-            =link_to 'Turnieje', '#'
 
-      .span6
+      %ul.nav.nav-tabs
+        %li{class: current_page?(rank_root_path) && params[:sort].blank? ? 'active' : ''}
+          =link_to 'Wszyscy gracze', rank_root_path
+        %li{class: current_page?(rank_root_path(sort: 'top')) ? 'active' : ''}
+          =link_to 'Top 10' , rank_root_path(sort: 'top')
+        %li{class: current_page?(rank_upload_results_path) ? 'active' : ''}
+          =link_to 'Wgraj wyniki', rank_upload_results_path
+
+      .span10
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
 
-        = yield 
+        = yield
   /   .span2
   /      .banner
   /        %h2
@@ -63,4 +63,4 @@
   /          =link_to image_tag("mediateka.png"), "http://mediateka.waw.pl"
   .navbar.navbar-fixed-bottom
     .navbar-inner.footer
-      Copyright 2013 Krzysztof 'Zły' Białek, powered by Rails & Heroku  
+      Copyright 2013 Krzysztof 'Zły' Białek, powered by Rails & Heroku

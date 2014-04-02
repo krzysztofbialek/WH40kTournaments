@@ -1,3 +1,31 @@
+
+
+<table class='table table-stripped table-bordered rank-place-table'>
+  <thead>
+    <th>Turniej</th>
+    <th>Miasto</th>
+    <th>Data</th>
+    <th>Typ</th>
+    <th>Armia</th>
+    <th>Lokata</th>
+    <th>Punkty</th>
+  <thead>
+  <tbody>
+    <% @tournaments.each do |t| %>
+      <tr>
+       <td><%= t.tournament.name %></td>
+       <td><%= t.tournament.city %></td>
+       <td><%= t.tournament.start_date.strftime("%d-%m-%Y") %></td>
+       <td><%= t.tournament.rank %></td>
+       <td><%= t.tournament_registration.try(:army) %></td>
+       <td><%= t.place %></td>
+       <td><%= t.points %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
 <div class='rank-place-sidebar'>
   <div class='rank-place-sidebar-player'>
     <p>Gracz: <%= @place.player.full_name %></p>
@@ -17,29 +45,3 @@
   </div>
 
 </div>
-
-<table class='table table-stripped table-bordered rank-place-table'>
-  <thead>
-    <th>Turniej</th>
-    <th>Miasto</th>
-    <th>Data</th>
-    <th>Typ</th>
-    <th>Armia</th>
-    <th>Lokata</th>
-    <th>Punkty</th>
-  <thead>
-  <tbody>
-    <% @tournaments.each do |t| %> 
-      <tr>
-       <td><%= t.tournament.name %></td>
-       <td><%= t.tournament.city %></td>
-       <td><%= t.tournament.start_date.strftime("%d-%m-%Y") %></td>
-       <td><%= t.tournament.rank %></td>
-       <td><%= t.tournament_registration.try(:army) %></td>
-       <td><%= t.place %></td>
-       <td><%= t.points %></td>
-      </tr>
-    <% end %>
-  </tbody>
-
-</table>

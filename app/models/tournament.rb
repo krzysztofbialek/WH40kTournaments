@@ -3,12 +3,14 @@
 class Tournament < ActiveRecord::Base
   extend FriendlyId
   include AASM
-  TournamentRanks = ['Lokal', 'Czelendżer', 'Master'] 
+  TournamentRanks = ['Lokal', 'Czelendżer', 'Master']
   RankPoints = {
                 'Lokal' => 3,
                 'Czelendżer' => 5,
                 'Master' => 5
                }
+
+  attr_accessor :results
 
   validates_presence_of :name, :start_date, :rank, :city, :number_of_rounds
   validates_numericality_of :number_of_rounds, :greater_than => 0
@@ -27,16 +29,16 @@ class Tournament < ActiveRecord::Base
   #has_many :hostel_bookings, :dependent => :destroy
 
   aasm :column => 'state' do
-  
+
     state :new, :initial => true
     state :ongoing
     state :finished
-    state :counted 
+    state :counted
 
     event :start do
       transitions from: :new, to: :ongoing
     end
- 
+
     event :finish do
       transitions from: :ongoing, to: :finished
     end
@@ -44,7 +46,7 @@ class Tournament < ActiveRecord::Base
     event :count do
       transitions from: :finished, to: :counted
     end
-    
+
     event :uncount do
       transitions from: :counted, to: :finished
     end
@@ -85,7 +87,7 @@ class Tournament < ActiveRecord::Base
       return true
     end
   end
-  
+
   def prepare_registrations
     registrations = for_teams? ? team_registrations : tournament_registrations
     if current_round == 1
@@ -144,7 +146,7 @@ class Tournament < ActiveRecord::Base
 
 
   def sort_players(registrations)
-    registrations.sort_by { |registration| [registration.current_points, registration.current_victory_points] }.reverse 
+    registrations.sort_by { |registration| [registration.current_points, registration.current_victory_points] }.reverse
   end
 
   def last_round?
@@ -154,7 +156,7 @@ class Tournament < ActiveRecord::Base
   def can_finish?
     last_round? && round_completed? && !finished?
   end
-  
+
   def pausing_pairing
     pairings.where(:pausing => true)
   end
@@ -175,28 +177,28 @@ class Tournament < ActiveRecord::Base
     regs = sort_players(tournament_registrations)
     transaction do
       regs.each_with_index do |reg, i|
-        PlayedTournament.create(player_id: reg.player_id, 
+        PlayedTournament.create(player_id: reg.player_id,
                                 tournament_id: self.id,
                                 place: i+1,
                                 points: reg.current_points)
       end
       self.count!
-    end 
+    end
   end
 
   def self.past
     where('start_date < ?', Time.now)
   end
-  
+
   def self.upcomming
     where('start_date > ?', Time.now)
   end
-  
+
   def add_to_rank
     regs = sort_players(tournament_registrations)
     transaction do
       regs.each_with_index do |reg, i|
-        PlayedTournament.create(player_id: reg.player_id, 
+        PlayedTournament.create(player_id: reg.player_id,
                                 tournament_id: self.id,
                                 place: i+1,
                                 points: reg.current_points,
@@ -206,9 +208,22 @@ class Tournament < ActiveRecord::Base
         reg.player.rank_place.update_place
       end
       self.count!
-    end 
+    end
   end
 
+  def imported_results
+    Tournament.import(results.read)
+  end
+
+  def self.import(file)
+    rows = []
+    CSV.parse(file, headers: true, col_sep: ';') do |row|
+      puts row
+      break if row[0].match(/Runda/)
+      rows << [row[0], row[1], row[2], row[3], row[4], row[5], row[6]]
+    end
+    rows
+  end
 
   private
 
@@ -220,8 +235,8 @@ class Tournament < ActiveRecord::Base
 
   def create_pausing_pairing(player)
     if player.class.name == 'TournamentRegistration'
-      pairings.create(:player1_id => player.player.id, :pausing => true, :round => current_round, 
-                      :player1_game_points => pause_victory_points, :player2_game_points => 0, 
+      pairings.create(:player1_id => player.player.id, :pausing => true, :round => current_round,
+                      :player1_game_points => pause_victory_points, :player2_game_points => 0,
                       :player1_match_points => pause_game_points, :player2_match_points => 0)
     else
       team_pairings.create(:team1_id => player.id, :pausing => true, :round => current_round, :team1_game_points => 5, :team2_game_points => 0, :team1_match_points => 15, :team2_match_points => 0)
