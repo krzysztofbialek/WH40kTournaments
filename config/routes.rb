@@ -97,6 +97,7 @@ Dmp40k::Application.routes.draw do
     resources :rank_places, path: 'player_results', as: 'player_results'
 
     match 'upload_results', to: 'rank_places#upload_results'
+    match 'preview_tournament', to: 'rank_places#preview_tournament'
 
     root :to => 'rank_places#index'
   end

@@ -1,8 +1,15 @@
-<%= simple_form_for @tournament, :url => url_for(:action => 'upload_results', :controller => 'rank/rank_places'), :html => {:class => 'form-horizonta' } do |f| %>
+<%= simple_form_for @tournament, :url => url_for(:action => 'preview_tournament', :controller => 'rank/rank_places'), :html => {:class => "form-horizontal" } do |f| %>
   <%= f.input :name %>
   <%= f.input :rank, collection: Tournament::TournamentRanks %>
   <%= f.input :start_date, as: :datepicker %>
   <%= f.input :city %>
+  <%= f.input :number_of_rounds %>
   <%= f.input :results, as: :file, label: 'Wyniki w csv' %>
+  <%= f.input :results_cache, as: :hidden %>
+  <%= f.input :results_required, as: :hidden, :input_html => { :value => 'validate' } %>
+
+
   <%= f.submit 'Wgraj wyniki', class: 'btn' %>
+  </br>
+
 <% end %>

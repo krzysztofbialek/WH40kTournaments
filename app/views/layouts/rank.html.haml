@@ -37,7 +37,7 @@
           =link_to 'Wszyscy gracze', rank_root_path
         %li{class: current_page?(rank_root_path(sort: 'top')) ? 'active' : ''}
           =link_to 'Top 10' , rank_root_path(sort: 'top')
-        %li{class: current_page?(rank_upload_results_path) ? 'active' : ''}
+        %li{class: request.path == '/rank/upload_results' ? 'active' : ''}
           =link_to 'Wgraj wyniki', rank_upload_results_path
 
       .span10
@@ -63,4 +63,4 @@
   /          =link_to image_tag("mediateka.png"), "http://mediateka.waw.pl"
   .navbar.navbar-fixed-bottom
     .navbar-inner.footer
-      Copyright 2013 Krzysztof 'Zły' Białek, powered by Rails & Heroku
+      Copyright 2014 Krzysztof 'Zły' Białek, powered by Rails & Heroku

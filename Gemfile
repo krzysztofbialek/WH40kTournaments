@@ -19,6 +19,7 @@ gem 'mercury-rails'
 gem 'active_model_serializers'
 gem 'gon', '~> 3.0.5'
 gem 'simple_form'
+gem 'carrierwave'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -13,3 +13,4 @@
 //= require tournaments
 //= require team_registrations
 //= require tinymce-jquery
+//= require rank

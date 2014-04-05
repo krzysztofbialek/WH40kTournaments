@@ -3,6 +3,9 @@
 class Tournament < ActiveRecord::Base
   extend FriendlyId
   include AASM
+
+  mount_uploader :results, ResultsUploader
+
   TournamentRanks = ['Lokal', 'Czelendżer', 'Master']
   RankPoints = {
                 'Lokal' => 3,
@@ -10,12 +13,13 @@ class Tournament < ActiveRecord::Base
                 'Master' => 5
                }
 
-  attr_accessor :results
 
-  validates_presence_of :name, :start_date, :rank, :city, :number_of_rounds
+  attr_accessor :results_required
+  validates_presence_of :name, :rank, :city, :number_of_rounds #add date
   validates_numericality_of :number_of_rounds, :greater_than => 0
   validates_uniqueness_of :name
   validates_presence_of :team_members_count, :if => Proc.new { |t| t.for_teams? }
+  validates_presence_of :results, :if => Proc.new { |t| t.results_required.present? }
 
   belongs_to :user
   has_many :pairings, :class_name => "TournamentPairing", :dependent => :destroy
@@ -28,12 +32,15 @@ class Tournament < ActiveRecord::Base
   friendly_id :name, use: :slugged
   #has_many :hostel_bookings, :dependent => :destroy
 
+  after_create :import_results
+
   aasm :column => 'state' do
 
     state :new, :initial => true
     state :ongoing
     state :finished
     state :counted
+    state :imported
 
     event :start do
       transitions from: :new, to: :ongoing
@@ -44,12 +51,41 @@ class Tournament < ActiveRecord::Base
     end
 
     event :count do
-      transitions from: :finished, to: :counted
+      transitions from: [:finished, :imported], to: :counted
     end
 
     event :uncount do
       transitions from: :counted, to: :finished
     end
+  end
+
+  def import_results
+    return true unless results.present?
+
+    CSV.parse(results.read, headers: true, col_sep: ';') do |row|
+      puts row
+      create_registration(row)
+      break if row[0].match(/Runda/)
+    end
+
+    self.update_column(:state, 'imported')
+  end
+
+  def create_registration(row)
+    reg = self.tournament_registrations.create(
+          player_id: Player.find_or_create_by_league_id(row[1]).id,
+          army: row[4],
+          current_points: row[6],
+          current_victory_points: row[6],
+          extra_points: 0,
+          penalty_points: 0)
+
+    # self.played_tournaments.create(
+    #       player_id: reg.player_id,
+    #       place: row[0],
+    #       points: row[6],
+    #       registration_id: reg.id)
+
   end
 
   def update_round

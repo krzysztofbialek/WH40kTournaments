@@ -16,6 +16,8 @@
               =link_to "Gracze", admin_players_path
             %li
               =link_to "Turnieje", admin_tournaments_path
+            %li
+              =link_to "Ranking", rank_root_path
           %ul.nav.pull-right
             %li
               =link_to current_user.username, ""
@@ -28,7 +30,7 @@
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
 
-      = yield 
+      = yield
 /   .span2
 /      .banner
 /        %h2
@@ -44,4 +46,4 @@
 /        %p
 /          =link_to image_tag("warfaber.png"), "http://warfaber.pl"
 /        %p
-/          =link_to image_tag("mediateka.png"), "http://mediateka.waw.pl" 
+/          =link_to image_tag("mediateka.png"), "http://mediateka.waw.pl"

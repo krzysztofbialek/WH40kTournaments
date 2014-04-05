@@ -17,8 +17,13 @@ class Rank::RankPlacesController < AdminController
 
   def upload_results
     @tournament = Tournament.new(params[:tournament])
-    if params[:results].present? && params[:results][:upload].present?
-      @file = Tournament.import(params[:results][:upload].read)
+  end
+
+  def preview_tournament
+    @tournament = Tournament.new(params[:tournament])
+    unless @tournament.valid?
+      render :upload_results
     end
+    @tournament.results_required = false
   end
 end

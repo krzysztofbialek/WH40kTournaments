@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
   $('.datepicker, .input.datepicker').datepicker(
-    dateFormat: "yy/mm/dd"
+    dateFormat: "yy-mm-dd"
     altField: $(this).next()
     onSelect: (e) ->
       $('.hasDatepicker').val(e)

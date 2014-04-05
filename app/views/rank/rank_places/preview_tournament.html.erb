@@ -1,0 +1,33 @@
+<%= render partial: 'form' %>
+
+
+<% if @tournament.results.present? %>
+
+  <table class='table table-stripped table-bordered'>
+    <thead>
+      <th>Miejsce</th>
+      <th>Id ligowe</th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Armia</th>
+      <th>Miasto</th>
+      <th>Punkty</th>
+    <thead>
+    <tbody>
+      <% @tournament.imported_results.each_with_index do |p, i| %>
+        <tr>
+         <td><%= i + 1 %></td>
+         <td><%= p[1] %></td>
+         <td><%= p[2].force_encoding('utf-8') %></td>
+         <td><%= p[3].force_encoding('utf-8') %></td>
+         <td><%= p[4].force_encoding('utf-8') %></td>
+         <td><%= p[5].force_encoding('utf-8') %></td>
+         <td><%= p[6].force_encoding('utf-8') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+  <a class='btn final_results'>Dodaj turniej</a>
+<% end %>
