@@ -1,5 +1,5 @@
 #coding: utf-8
-class Rank::RankPlacesController < AdminController
+class Rank::RankPlacesController <ApplicationController
 
   layout 'rank'
 
