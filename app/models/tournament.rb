@@ -3,6 +3,7 @@
 class Tournament < ActiveRecord::Base
   extend FriendlyId
   include AASM
+  include TournamentsHelper
 
   mount_uploader :results, ResultsUploader
 
@@ -15,7 +16,7 @@ class Tournament < ActiveRecord::Base
 
 
   attr_accessor :results_required
-  validates_presence_of :name, :rank, :city, :number_of_rounds #add date
+  validates_presence_of :name, :rank, :start_date, :city, :number_of_rounds #add date
   validates_numericality_of :number_of_rounds, :greater_than => 0
   validates_uniqueness_of :name
   validates_presence_of :team_members_count, :if => Proc.new { |t| t.for_teams? }
@@ -64,8 +65,9 @@ class Tournament < ActiveRecord::Base
 
     CSV.parse(results.read, headers: true, col_sep: ';') do |row|
       puts row
-      create_registration(row)
       break if row[0].match(/Runda/)
+      create_registration(row)
+
     end
 
     self.update_column(:state, 'imported')
@@ -77,6 +79,7 @@ class Tournament < ActiveRecord::Base
           army: row[4],
           current_points: row[6],
           current_victory_points: row[6],
+          played_games: self.number_of_rounds,
           extra_points: 0,
           penalty_points: 0)
 
@@ -209,19 +212,6 @@ class Tournament < ActiveRecord::Base
     base_points
   end
 
-  def add_to_rank
-    regs = sort_players(tournament_registrations)
-    transaction do
-      regs.each_with_index do |reg, i|
-        PlayedTournament.create(player_id: reg.player_id,
-                                tournament_id: self.id,
-                                place: i+1,
-                                points: reg.current_points)
-      end
-      self.count!
-    end
-  end
-
   def self.past
     where('start_date < ?', Time.now)
   end
@@ -230,6 +220,20 @@ class Tournament < ActiveRecord::Base
     where('start_date > ?', Time.now)
   end
 
+  def points_for_registration(reg)
+    if for_teams?
+      registrations = team_registrations.sort{|a,b| b.final_points <=> a.final_points}
+    else
+      registrations = tournament_registrations.sort{|a,b| b.final_points <=> a.final_points}
+    end
+    base = (registrations.size < 15 && is_lokal?) ? 5 + registrations.size : rank_points
+    place = registrations.index(reg) + 1
+    rank = Tournament::RankPoints[self.rank]
+    extra_points = place <= rank ? rank + 1 - place : 0
+
+    points = (base.to_f * (registrations.size + 1 - place) / registrations.size).ceil + extra_points
+  end
+
   def add_to_rank
     regs = sort_players(tournament_registrations)
     transaction do
@@ -237,7 +241,7 @@ class Tournament < ActiveRecord::Base
         PlayedTournament.create(player_id: reg.player_id,
                                 tournament_id: self.id,
                                 place: i+1,
-                                points: reg.current_points,
+                                points: points_for_registration(reg),
                                 registration_id: reg.id)
       end
       regs.each do |reg|

@@ -12,11 +12,7 @@ class Player < ActiveRecord::Base
   has_many :played_tournaments, :dependent => :destroy
   has_one  :rank_place, :dependent => :destroy
   has_many :team_registration_players, :dependent => :nullify
-  has_many :team_regisrations, :through => :team_registration_players, :dependent => :nullify
-  has_many :played_tournaments, :dependent => :destroy
-  has_one  :rank_place, :dependent => :destroy
-  has_many :team_registration_players, :dependent => :nullify
-  has_many :team_regisrations, :through => :team_registration_players, :dependent => :nullify
+  has_many :team_registrations, :through => :team_registration_players, :dependent => :nullify
   has_many :player1_pairings, :class_name => 'TournamentPairing', :foreign_key => 'player1_id'
   has_many :player2_pairings, :class_name => 'TournamentPairing', :foreign_key => 'player2_id'
   has_many :pairings, :class_name => 'TournamentPairing', :finder_sql => Proc.new {
@@ -26,7 +22,7 @@ class Player < ActiveRecord::Base
       WHERE tp.player1_id = #{id} OR tp.player2_id = #{id}
     }
   }
-  
+
   #def pairings
   #   player1_pairings + player2_pairings
   #end
@@ -42,7 +38,7 @@ class Player < ActiveRecord::Base
       nick
     end
   end
-  
+
   def full_name_with_id
     "#{league_id} - #{full_name}"
   end
@@ -53,12 +49,12 @@ class Player < ActiveRecord::Base
 
   def points_for_tournament(id)
     player1_pairings.where(:tournament_id => id).sum(:player1_match_points) +
-    player2_pairings.where(:tournament_id => id).sum(:player2_match_points) 
+    player2_pairings.where(:tournament_id => id).sum(:player2_match_points)
   end
-  
+
   def game_points_for_tournament(id)
     player1_pairings.where(:tournament_id => id).sum(:player1_game_points) +
-    player2_pairings.where(:tournament_id => id).sum(:player2_game_points) 
+    player2_pairings.where(:tournament_id => id).sum(:player2_game_points)
   end
 
   def played_with?(registration = nil)
@@ -71,7 +67,7 @@ class Player < ActiveRecord::Base
   def self.import(file)
     CSV.parse(file) do |row|
       user = Player.find_or_initialize_by_league_id(row[0])
-      user.update_attributes(  :first_name => row[1], 
+      user.update_attributes(  :first_name => row[1],
                                :last_name => row[2],
                                :nick => row[3],
                                :city => row[4])

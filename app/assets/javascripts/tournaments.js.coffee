@@ -4,9 +4,9 @@
 $ ->
   $('.datepicker, .input.datepicker').datepicker(
     dateFormat: "yy-mm-dd"
-    altField: $(this).next()
     onSelect: (e) ->
       $('.hasDatepicker').val(e)
+      $('.start_date-alt').val(e)
 
   )
 
