@@ -48,19 +48,20 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :development do
+group :test, :development do
   gem "byebug"
-  gem 'webrick', '1.3.1'
+  gem "letter_opener"
+end
+
+group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem "letter_opener", :group => :development
   gem "thin"
   gem "quiet_assets"
   gem 'rack-mini-profiler'
 end
 
 group :test do
-  gem "byebug"
   gem 'mocha'
   gem 'shoulda'
   gem 'factory_girl_rails'
