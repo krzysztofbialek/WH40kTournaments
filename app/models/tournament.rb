@@ -14,6 +14,10 @@ class Tournament < ActiveRecord::Base
                 'Master' => 5
                }
 
+  BASE_RANK_POINTS = {
+    'Lokal' => 20, 'Czelendżer' => 35, 'Master' => 50
+  }
+
 
   attr_accessor :results_required
   validates_presence_of :name, :rank, :start_date, :city, :number_of_rounds #add date
@@ -201,15 +205,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def rank_points
-    base_points = case rank
-    when 'Lokal'
-      20
-    when 'Czelendżer'
-      35
-    when 'Master'
-      50
-    end
-    base_points
+    Tournament::BASE_RANK_POINTS[rank]
   end
 
   def self.past
@@ -245,6 +241,7 @@ class Tournament < ActiveRecord::Base
                                 registration_id: reg.id)
       end
       RankPlace.update_places
+      self.count!
     end
   end
 
