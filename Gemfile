@@ -15,7 +15,6 @@ gem "friendly_id", "~> 4.0.9"
 gem "aasm"
 gem "acts_as_paranoid"
 gem 'tinymce-rails'
-gem 'mercury-rails'
 gem 'active_model_serializers'
 gem 'gon', '~> 3.0.5'
 gem 'simple_form'

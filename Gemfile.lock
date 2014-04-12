@@ -131,9 +131,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mercury-rails (0.9.0)
-      coffee-rails
-      railties (~> 3.2)
     metaclass (0.0.1)
     mime-types (1.25.1)
     mocha (0.13.3)
@@ -257,7 +254,6 @@ DEPENDENCIES
   jquery-ui-rails
   less-rails
   letter_opener
-  mercury-rails
   mocha
   mysql2
   newrelic_rpm
