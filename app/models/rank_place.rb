@@ -25,8 +25,17 @@ class RankPlace < ActiveRecord::Base
     player.player2_pairings.where('player2_match_points = 10').size
   end
 
-  def update_place
+  def self.update_places
+    places = RankPlace.all.sort_by(&:total_points).reverse
+    places.each{|p| p.update_place(places)}
+  end
 
+  def update_place(places)
+    self.update_column(:place, places.index(self) + 1)
+  end
+
+  def current_place
+    RankPlace.all.sort_by(&:total_points).reverse.index(self) + 1
   end
 end
 

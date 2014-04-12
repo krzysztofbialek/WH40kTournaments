@@ -244,10 +244,7 @@ class Tournament < ActiveRecord::Base
                                 points: points_for_registration(reg),
                                 registration_id: reg.id)
       end
-      regs.each do |reg|
-        reg.player.rank_place.update_place
-      end
-      self.count!
+      RankPlace.update_places
     end
   end
 
