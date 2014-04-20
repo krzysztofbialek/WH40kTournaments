@@ -9,14 +9,12 @@ class Tournament < ActiveRecord::Base
 
   TournamentRanks = ['Lokal', 'Czelendżer', 'Master']
   RankPoints = {
-                'Lokal' => 3,
-                'Czelendżer' => 5,
-                'Master' => 5
-               }
+                'Lokal' => 3, 'Czelendżer' => 5, 'Master' => 5
+               }.freeze
 
   BASE_RANK_POINTS = {
     'Lokal' => 20, 'Czelendżer' => 35, 'Master' => 50
-  }
+  }.freeze
 
 
   attr_accessor :results_required
