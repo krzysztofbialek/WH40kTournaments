@@ -1,6 +1,6 @@
 #encoding: utf-8
 class PlayedTournament < ActiveRecord::Base
-  attr_accessible :place, :player_id, :points, :tournament_id
+  attr_accessible :place, :player_id, :points, :tournament_id, :registration_id
 
   belongs_to :tournament
   belongs_to :player
@@ -22,13 +22,13 @@ class PlayedTournament < ActiveRecord::Base
     end
     rp.save
   end
-  
+
   def rank_points(tournament, result)
     registrations = tournament.tournament_registrations
     base = (registrations.size < 15 && tournament.is_lokal?) ? 5 + registrations.size : tournament.rank_points
     rank = Tournament::RankPoints[tournament.rank]
     extra_points = place <= rank ? rank + 1 - place : 0
-  
+
     points = (base.to_f * (registrations.size + 1 - place) / registrations.size).ceil + extra_points
   end
 end

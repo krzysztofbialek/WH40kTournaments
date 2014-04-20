@@ -9,10 +9,12 @@ class Tournament < ActiveRecord::Base
 
   TournamentRanks = ['Lokal', 'Czelendżer', 'Master']
   RankPoints = {
-                'Lokal' => 3,
-                'Czelendżer' => 5,
-                'Master' => 5
-               }
+                'Lokal' => 3, 'Czelendżer' => 5, 'Master' => 5
+               }.freeze
+
+  BASE_RANK_POINTS = {
+    'Lokal' => 20, 'Czelendżer' => 35, 'Master' => 50
+  }.freeze
 
 
   attr_accessor :results_required
@@ -201,15 +203,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def rank_points
-    base_points = case rank
-    when 'Lokal'
-      20
-    when 'Czelendżer'
-      35
-    when 'Master'
-      50
-    end
-    base_points
+    Tournament::BASE_RANK_POINTS[rank]
   end
 
   def self.past
@@ -244,9 +238,7 @@ class Tournament < ActiveRecord::Base
                                 points: points_for_registration(reg),
                                 registration_id: reg.id)
       end
-      regs.each do |reg|
-        reg.player.rank_place.update_place
-      end
+      RankPlace.update_places
       self.count!
     end
   end
