@@ -4,6 +4,7 @@ class TournamentRegistration < ActiveRecord::Base
   MONITORED_ATTRS = ['roster_send', 'roster_valid', 'payment_send']
 
   acts_as_paranoid 
+  validates_as_paranoid
 
   belongs_to :tournament
   belongs_to :player
@@ -15,9 +16,9 @@ class TournamentRegistration < ActiveRecord::Base
     }
   }
 
-  validates_uniqueness_of :player_id, :scope => :tournament_id
+  validates_uniqueness_of_without_deleted :player_id, :scope => :tournament_id
   validates_presence_of :player_id
-  validates_uniqueness_of :player_email, :scope => :tournament_id, :allow_blank => true
+  validates_uniqueness_of_without_deleted :player_email, :scope => :tournament_id, :allow_blank => true
 
   after_create :notify_player, :unless => Proc.new{ self.player_email.blank? }
   after_update :notify_player_of_change, :unless => Proc.new{ self.player_email.blank? }
