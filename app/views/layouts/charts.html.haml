@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+%html
+%head
+  %title
+  %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+  =stylesheet_link_tag "charts"
+  =javascript_include_tag "//www.google.com/jsapi", "chartkick"
+
+
+  =csrf_meta_tags
+
+%body
+  .navbar.navbar-fixed-top
+    .navbar-inner
+      .container
+        .nav-colapse
+          %ul.nav
+            -if @tournament && @tournament.persisted?
+              %li
+                =link_to 'Blog', tournament_posts_path(@tournament)
+              %li
+                =link_to 'Zgłoszenia', tournament_tournament_registrations_path(@tournament)
+              - if @pages
+                - @pages.each do |page|
+                  -if page.persisted?
+                    %li
+                      =link_to raw(page.title), tournament_page_path(@tournament, page)
+              -if owner_or_admin?
+                %li
+                  = link_to 'Dodaj sekcję', new_tournament_page_path(@tournament)
+              %li
+                - text = @tournament.current_round == 0 && owner_or_admin? ? 'Rozpocznij turniej' : 'Przebieg turnieju'
+                = link_to text , tournament_play_path(@tournament)
+              -if @tournament.counted? || @tournament.finished? || @tournament.imported?
+                %li
+                  = link_to 'Wyniki', results_tournament_path(@tournament)
+          %ul.nav.pull-right
+            %li
+              =link_to "Ranking", rank_root_path
+            %li
+              =link_to "Wszystkie turnieje", tournaments_path
+            -if logged_in?
+              -if current_user.admin?
+                %li
+                  =link_to 'Panel admina', '/admin/tournaments'
+              %li
+                =link_to current_user.username, ""
+              %li
+                =link_to 'Wyloguj', logout_path
+            -else
+              %li
+                =link_to 'Zaloguj', login_path
+              %li
+                =link_to 'Zarejestruj', signup_path
+
+  .container
+    .row.header
+    .row
+      .span12
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}"
+
+        = yield
+  .navbar.navbar-fixed-bottom
+    .navbar-inner.footer
+      Copyright 2013 Krzysztof 'Zły' Białek, powered by Rails & Heroku

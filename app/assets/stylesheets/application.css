@@ -6,5 +6,15 @@
  *= require jquery.ui.all
  *= require jquery.ui.datepicker
  *= require common
- *= require_tree 
+ *= require bootstrap
+ *= require bootstrap_and_overrides
+ *= require custom_typeahead
+ *= require play
+ *= require posts
+ *= require scaffolds
+ *= require team_registrations
+ *= require teams
+ *= require tournament_registrations
+ *= require tournaments
+
 */

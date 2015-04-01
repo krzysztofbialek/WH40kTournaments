@@ -29,7 +29,7 @@ class TournamentRegistrationsController < ApplicationController
     if @tournament.for_teams?
       @team_registration = @tournament.team_registrations.find(params[:id])
     else
-      @registration = @tournament.tournament_registrations.find(params[:id])
+      @tournament_registration = @tournament.tournament_registrations.find(params[:id])
     end
   end
   

@@ -13,6 +13,6 @@ $ ->
 
     input.on "typeahead:selected typeahead:autocompleted", (e, datum) ->
       $('.player-id_' + input.data('index')).val(datum.id)
-  
-  $(".players-popover").popover({html: true})
+  if $('.players-popover').size > 0
+    $(".players-popover").popover({html: true})
 

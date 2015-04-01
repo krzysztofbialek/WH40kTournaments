@@ -65,6 +65,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    chartkick (1.2.4)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.0.9)
@@ -243,6 +244,7 @@ DEPENDENCIES
   byebug
   capybara
   carrierwave
+  chartkick
   coffee-rails (~> 3.2.2)
   ejs (~> 1.1.1)
   factory_girl_rails

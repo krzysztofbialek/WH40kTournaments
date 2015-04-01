@@ -1,11 +1,11 @@
 defaults: &defaults
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  adapter: mysq
+  adapter: postgresql
+  username: postgres
+  password: zyrafynaszafy
+  host: localhost
   pool: 5
-  username: root
-  password: 
-  socket: /var/run/mysqld/mysqld.sock
+  timeout: 5000
 
 development:
   <<: *defaults

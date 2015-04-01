@@ -1,11 +1,5 @@
 Dmp40k::Application.routes.draw do
 
-  mount Mercury::Engine => '/'
-
-  Mercury::Engine.routes
-
-  match 'user/edit' => 'users#edit', :as => :edit_current_user
-
   match 'signup' => 'users#new', :as => :signup
 
   match 'logout' => 'sessions#destroy', :as => :logout
@@ -22,6 +16,12 @@ Dmp40k::Application.routes.draw do
 
   resources :players do
     resources :tournament_registrations
+  end
+
+  resources :charts, only: :index do
+    collection do
+      get 'massacres'
+    end
   end
 
   resources :sessions
