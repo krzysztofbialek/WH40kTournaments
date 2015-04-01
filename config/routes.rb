@@ -1,9 +1,5 @@
 Dmp40k::Application.routes.draw do
 
-  mount Mercury::Engine => '/'
-
-  Mercury::Engine.routes
-
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup
